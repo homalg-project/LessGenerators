@@ -11,3 +11,4 @@
 
 ReadPackage( "LessGenerators", "gap/LessGenerators.gd" );
 
+ReadPackage( "LessGenerators", "gap/Tools.gd" );

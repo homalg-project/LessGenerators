@@ -23,12 +23,3 @@ SetInfoLevel( InfoLessGenerators, 1 );
 #
 ####################################
 
-DeclareOperation( "GetAllButOneGcd1ColumnPosition",
-        [ IsHomalgMatrix, IsList, IsList ] );
-
-DeclareOperation( "GetAllButOneGcd1ColumnPosition",
-        [ IsHomalgMatrix ] );
-
-DeclareOperation( "EliminateAllButOneGcd1Columns",
-        [ IsHomalgMatrix, IsList, IsList ] );
-
