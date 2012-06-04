@@ -9,6 +9,16 @@
 ##
 #############################################################################
 
+
+####################################
+#
+# global variables:
+#
+####################################
+
+## the Cauchy-Binet column of a unimodular (n-1) x n matrix
+HOMALG_IO.Pictograms.CauchyBinetColumn := "CBc";
+
 ####################################
 #
 # methods for operations:
@@ -35,8 +45,8 @@ InstallMethod( CauchyBinetColumn,
     
     RP := homalgTable( R );
     
-    if IsBound(RP!.CauchyBinetRow) then
-        row := RP!.CauchyBinetRow( M );
+    if IsBound(RP!.CauchyBinetColumn) then
+        row := RP!.CauchyBinetColumn( M );
         return HomalgMatrix( row, c, 1, R );
     fi;
     

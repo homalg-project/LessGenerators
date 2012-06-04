@@ -5,3 +5,4 @@ m := HomalgMatrix( "[ \
 x*y+y^2+x,        y^2+1,    y   \
 ]", 2, 3, R );
 M := LeftPresentation( m );
+IsStablyFree( M );
