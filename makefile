@@ -5,7 +5,7 @@ doc: doc/manual.six
 doc/manual.six: makedoc.g maketest.g \
 		PackageInfo.g \
 		doc/LessGenerators.bib doc/*.xml doc/*.css \
-		gap/*.gd gap/*.gi
+		gap/*.gd gap/*.gi examples/*.g examples/doc/*.g
 	        gap makedoc.g
 
 clean:

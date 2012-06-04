@@ -15,6 +15,15 @@
 #
 ####################################
 
+DeclareOperation( "CauchyBinetColumn",
+        [ IsHomalgMatrix ] );
+
+DeclareOperation( "CauchyBinetBaseChange",
+        [ IsHomalgMatrix ] );
+
+DeclareOperation( "CauchyBinetCompletion",
+        [ IsHomalgMatrix ] );
+
 DeclareOperation( "GetAllButOneGcd1ColumnPosition",
         [ IsHomalgMatrix, IsList, IsList ] );
 

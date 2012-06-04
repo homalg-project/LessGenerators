@@ -23,3 +23,4 @@ SetInfoLevel( InfoLessGenerators, 1 );
 #
 ####################################
 
+DeclareGlobalFunction( "OnLessGenerators_ForStablyFreeRank1OverCommutative" );
