@@ -28,3 +28,4 @@ doc/*.tex
 doc/*.toc
 doc/manual.lab
 *.DS_Store
+LessGeneratorsSingular
