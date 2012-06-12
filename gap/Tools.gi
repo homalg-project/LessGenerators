@@ -18,6 +18,7 @@
 
 ## the Cauchy-Binet column of a unimodular (n-1) x n matrix
 HOMALG_IO.Pictograms.CauchyBinetColumn := "CBc";
+HOMALG_IO.Pictograms.GetRidOfRowsAndColumnsWithUnits := "gru";
 
 ####################################
 #
