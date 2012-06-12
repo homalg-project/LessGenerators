@@ -32,7 +32,7 @@ Subtitle := "LessGenerators - Find smaller generating sets for modules",
 Version := Maximum( [
   "2010.06.12", ## Mohamed's version
 ## this line prevents merge conflicts
-  "2010.04.04", ## Vinai's version
+  "2010.04.04", ## Vinay's version
 ] ),
 ##  Please adjust also the VERSION file in the package directory when
 ##  changing this.
