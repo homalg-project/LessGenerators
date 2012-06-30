@@ -3,7 +3,7 @@
 ##  Tools.gi                                          LessGenerators package
 ##
 ##  Copyright 2012, Mohamed Barakat, University of Kaiserslautern
-##                  Vinai Wagh, Indian Institute of Technology Guwahati
+##                  Vinay Wagh, Indian Institute of Technology Guwahati
 ##
 ##  Implementations for tools.
 ##

@@ -1,9 +1,10 @@
 #############################################################################
 ##
-##  LessGenerators.gi           LessGenerators package       Mohamed Barakat
-##                                                            Anna Fabianska
+##  LessGenerators.gi                                 LessGenerators package
 ##
-##  Copyright 2007-2008 Lehrstuhl B für Mathematik, RWTH Aachen
+##  Copyright 2007-2012, Mohamed Barakat, University of Kaiserslautern
+##                       Anna Fabiańska, RWTH-Aachen University
+##                       Vinay Wagh, Indian Institute of Technology Guwahati
 ##
 ##  Implementation stuff for LessGenerators.
 ##

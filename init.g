@@ -3,8 +3,8 @@
 ##  init.g                                            LessGenerators package
 ##
 ##  Copyright 2007-2012, Mohamed Barakat, University of Kaiserslautern
-##                       Anna Fabianska, RWTH-Aachen University
-##                       Vinai Wagh, Indian Institute of Technology Guwahati
+##                       Anna Fabiańska, RWTH-Aachen University
+##                       Vinay Wagh, Indian Institute of Technology Guwahati
 ##
 ##  Reading the declaration part of the LessGenerators package.
 ##
