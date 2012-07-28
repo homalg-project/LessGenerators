@@ -25,3 +25,8 @@ SetInfoLevel( InfoLessGenerators, 1 );
 ####################################
 
 DeclareGlobalFunction( "OnLessGenerators_ForStablyFreeRank1OverCommutative" );
+
+# basic operations:
+
+DeclareOperation( "SuslinLemma",
+        [ IsHomalgRingElement, IsHomalgRingElement, IsInt ] );

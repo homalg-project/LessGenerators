@@ -30,7 +30,7 @@ Subtitle := "LessGenerators - Find smaller generating sets for modules",
 ##  of valid version numbers. For an automatic package distribution update
 ##  you must provide a new version number even after small changes.
 Version := Maximum( [
-  "2010.06.14", ## Mohamed's version
+  "2010.07.02", ## Mohamed's version
 ## this line prevents merge conflicts
   "2010.04.04", ## Vinay's version
 ] ),
@@ -286,7 +286,8 @@ Dependencies := rec(
   NeededOtherPackages := [
                       [ "Modules", ">= 2012.05.29" ],
                       [ "homalg", ">= 2012.05.18" ],
-                      [ "RingsForHomalg", ">= 2012.05.25" ],
+                      [ "RingsForHomalg", ">= 2012.06.27" ],
+                      [ "MatricesForHomalg", ">= 2012.06.29" ],
                       [ "GAPDoc", ">= 1.1" ]
                       ],
   # without these the package will issue a warning while loading
