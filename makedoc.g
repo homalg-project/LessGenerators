@@ -20,4 +20,4 @@ MakeGAPDocDoc( "doc", "LessGenerators", list, "LessGenerators" );
 
 GAPDocManualLab("LessGenerators");
 
-quit;
+QUIT;

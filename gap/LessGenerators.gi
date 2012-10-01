@@ -174,8 +174,8 @@ InstallMethod( SuslinLemma,
     
     e := cg * f + cf * g;
     
-    Assert( 4, Degree( e ) = Degree( f ) - 1 );
-    Assert( 4, LeadingCoefficient( e ) = b );
+    Assert( 6, Degree( e ) = Degree( f ) - 1 );
+    Assert( 6, LeadingCoefficient( e ) = b );
     
     return [ e, cg, cf ];
     
