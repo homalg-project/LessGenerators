@@ -75,6 +75,9 @@ InstallGlobalFunction( OnLessGenerators_ForStablyFreeRank1OverCommutative,
             SetEvalMatrixOperation( T, [ r -> Involution( CauchyBinetColumn( Involution( r ) ) ), [ rel ] ] );
             TI := RightInverseLazy( T );
         fi;
+        
+    else
+        TryNextMethod( );
     fi;
     
     AddANewPresentation( M, empty, T, TI );
