@@ -26,6 +26,8 @@ SetInfoLevel( InfoLessGenerators, 1 );
 
 DeclareGlobalFunction( "OnLessGenerators_ForStablyFreeRank1OverCommutative" );
 
+DeclareGlobalFunction( "OnLessGenerators_UsingParametrization" );
+
 # basic operations:
 
 DeclareOperation( "SuslinLemma",

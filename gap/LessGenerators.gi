@@ -87,12 +87,36 @@ InstallGlobalFunction( OnLessGenerators_ForStablyFreeRank1OverCommutative,
 end );
 
 ##
+InstallGlobalFunction( OnLessGenerators_UsingParametrization,
+  function( M )
+    local par;
+    
+    par := Parametrization( M );
+    
+    if not IsIsomorphism( par ) then
+        TryNextMethod( );
+    fi;
+    
+    PushPresentationByIsomorphism( par^-1 );
+    
+    return M;
+    
+end );
+
+##
 InstallMethod( OnLessGenerators,
         "for stably free modules of rank 1",
         [ IsFinitelyPresentedModuleRep and
           IsStablyFree and FiniteFreeResolutionExists ],
         
   OnLessGenerators_ForStablyFreeRank1OverCommutative );
+
+##
+InstallMethod( OnLessGenerators,
+        "for modules",
+        [ IsFinitelyPresentedModuleRep  ], 101,
+        
+  OnLessGenerators_UsingParametrization );
 
 ## [Rotman09, Prop. 4.98], [ Fabianska09, QuillenSuslin package: SuslinLemma ]
 InstallMethod( SuslinLemma,
