@@ -5,7 +5,7 @@
   title.xml            LessGenerators package documentation               Mohamed Barakat
                                                                                Vinay Wagh
 
-         Copyright (C) 2007-2012, Mohamed Barakat, University of Kaiserslautern
+         Copyright (C) 2007-2013, Mohamed Barakat, University of Kaiserslautern
                                   Vinay Wagh, Indian Institute of Technology Guwahati
 -->
 <TitlePage>
@@ -38,10 +38,10 @@
     <Email>waghoba@gmail.com</Email>
     <Homepage>http://www.iitg.ernet.in/vinay.wagh/</Homepage>
   </Author>
-  <Date>October 2012</Date>
+  <Date>May 2013</Date>
   
   <Copyright>
-    &copyright; 2010-2012 by Mohamed Barakat and Vinay Wagh <P/>
+    &copyright; 2010-2013 by Mohamed Barakat and Vinay Wagh <P/>
     
     This package may be distributed under the terms and conditions of the
     GNU Public License Version 2.

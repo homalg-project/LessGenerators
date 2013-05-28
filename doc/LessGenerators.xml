@@ -62,6 +62,7 @@
 
 <#Include SYSTEM "intro.xml">
 <#Include SYSTEM "install.xml">
+<#Include SYSTEM "AutoDocMainFile.xml">
 <#Include SYSTEM "examples.xml">
 </Body>
 
