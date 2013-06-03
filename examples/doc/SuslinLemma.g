@@ -4,9 +4,7 @@ Q := HomalgFieldOfRationalsInSingular( );
 
 R := ( Q * "x" ) * "y";
 
-x := "x" / R;
-y := "y" / R;
-
+AssignGeneratorVariables( R );
 
 f := x^2*y^4+23*x*y^5+y^6+7*x-y^2;
 g := (4*x*y^2+x^2+x^2*y-x*y^3);
