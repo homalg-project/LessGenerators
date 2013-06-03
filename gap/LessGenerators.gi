@@ -207,3 +207,58 @@ InstallMethod( SuslinLemma,
     return [ e, cg, cf ];
     
 end );
+
+## apply Suslin Lemma with specified input
+InstallMethod( SuslinLemma,
+        "for a homalg matrix and three integers",
+        [ IsHomalgMatrix, IsInt, IsInt, IsInt ],
+        
+  function( row, pos_f, pos_g, j )
+    local c, f, g, bj, pos_h, h, deg_h, e, af, ag, lc, a, R, T;
+    
+    c := NrColumns( row );
+    
+    if c < 3 then
+        Error( "the row has less than three columns\n" );
+    fi;
+    
+    f := MatElm( row, 1, pos_f );
+    g := MatElm( row, 1, pos_g );
+    
+    bj := CoefficientOfUnivariatePolynomial( g, j );
+    
+    Assert( 4, IsUnit( bj ) );	## in the local base ring
+    
+    pos_h := First( [ 1 .. c ], i -> not i in [ pos_f, pos_g ] );
+    h := MatElm( row, 1, pos_h );
+    
+    deg_h := Degree( h );
+    
+    Assert( 0, deg_h < Degree( f ) and not IsMonic( h ) );
+    
+    e := SuslinLemma( f, g, j );
+    
+    af := e[2];
+    ag := e[3];
+    e := e[1];
+    
+    Assert( 4, LeadingCoefficient( e ) = bj );
+    
+    if deg_h < Degree( f ) - 1 then
+        a := bj^-1;
+    else
+        lc := LeadingCoefficient( h );
+        a := ( 1 - lc ) * bj^-1;
+    fi;
+    
+    R := HomalgRing( row );
+    T := HomalgInitialIdentityMatrix( c, R );
+    
+    SetMatElm( T, pos_f, pos_h, a * af );
+    SetMatElm( T, pos_g, pos_h, a * ag );
+    
+    MakeImmutable( T );
+    
+    return [ row * T, T, pos_h, bj ];
+    
+end );

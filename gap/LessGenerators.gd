@@ -32,3 +32,6 @@ DeclareGlobalFunction( "OnLessGenerators_UsingParametrization" );
 
 DeclareOperation( "SuslinLemma",
         [ IsHomalgRingElement, IsHomalgRingElement, IsInt ] );
+
+DeclareOperation( "SuslinLemma",
+        [ IsHomalgMatrix, IsInt, IsInt, IsInt ] );
