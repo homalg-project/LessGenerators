@@ -118,7 +118,7 @@ InstallMethod( OnLessGenerators,
         
   OnLessGenerators_UsingParametrization );
 
-## [Rotman09, Prop. 4.98], [ Fabianska09, QuillenSuslin package: SuslinLemma ]
+## [Rotman09, Lemma. 4.97], [ Fabianska09, QuillenSuslin package: SuslinLemma ]
 InstallMethod( SuslinLemma,
         "for two homalg ring elements and an integer",
         [ IsHomalgRingElement, IsHomalgRingElement, IsInt ],
