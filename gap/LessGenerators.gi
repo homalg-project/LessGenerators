@@ -122,7 +122,6 @@ InstallMethod( OnLessGenerators,
 InstallMethod( SuslinLemma,
         "for two homalg ring elements and an integer",
         [ IsHomalgRingElement, IsHomalgRingElement, IsInt ],
-        
   function( f, g, j )
     local R, indets, y, s, zero, t, cf, cg, b, Y, e;
     
@@ -262,3 +261,68 @@ InstallMethod( SuslinLemma,
     return [ row * T, T, pos_h, bj ];
     
 end );
+
+#InstallMethodWithDocumentation( Horrocks,
+InstallMethod( Horrocks,
+        "for a row matrix",
+        [ IsHomalgMatrix, IsPosInt ],
+        # The paramaters are a matrix and an integers.
+        # The matrix is a row matrix with at least 3 entries.
+        # The int indicates position of first monic entry.
+  function( row, o )
+    local R, c, a1, s, cols, a, m, Rm, i, a2, coeffs, j, U;
+    
+    R := HomalgRing( row );
+    Assert( 4, Length( RelativeIndeterminatesOfPolynomialRing( R ) ) = 1 );
+    
+    if not NrRows( row ) = 1 then
+        TryNextMethod( );
+    fi;
+    
+    c := NrColumns( row );
+    
+    if not c >= 3 then
+        TryNextMethod( );
+    fi;
+    
+    a1 := MatElm( row, 1, o );
+    
+    Assert( 4, IsMonic( a1 ) );
+    
+    s := Degree( a1 );
+    
+    if s = 0 then
+        TryNextMethod( );
+    fi;
+    
+    cols := [ 1 .. c ];
+    Remove( cols, o );
+    
+    a := EntriesOfHomalgMatrix( row );
+    
+    if ForAny( a{ cols }, a -> not ( Degree( a ) < s ) ) then
+        TryNextMethod( );
+    fi;
+    
+    # We will assume the base field is Q,
+    # This is necessary as primary decomposition in Singular is implemented only for rationals.
+    # To have this algorithm working for other baserings, we need to find PrimDec algorithms.
+    
+    m := AMaximalIdealContaining( ZeroLeftSubmodule( BaseRing( R ) ) );
+    Rm := R * m;
+    
+    i := First( cols, i -> not a[i] in Rm );
+    
+    Assert( 0, not i = fail );
+    
+    a2 := a[i];
+    coeffs := Reversed( EntriesOfHomalgMatrix( CoefficientsOfUnivariatePolynomial( a2 ) ) );
+    
+    j := First( [ 1 .. Length( coeffs ) ], i -> IsUnit( coeffs[ i ] ) );
+    
+    U := SuslinLemma( row, o, i, j );
+    
+    return Horrocks( row * U, 1 );
+    
+end );
+
