@@ -35,3 +35,7 @@ DeclareOperation( "SuslinLemma",
 
 DeclareOperation( "SuslinLemma",
         [ IsHomalgMatrix, IsInt, IsInt, IsInt ] );
+
+DeclareOperation( "Horrocks",
+        [ IsHomalgMatrix, IsInt ] );
+
