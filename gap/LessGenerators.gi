@@ -213,7 +213,11 @@ InstallMethod( SuslinLemma,
         [ IsHomalgMatrix, IsInt, IsInt, IsInt ],
         
   function( row, pos_f, pos_g, j )
-    local c, f, g, bj, pos_h, h, deg_h, e, af, ag, lc, a, R, T;
+    local c, f, g, bj, pos_h, h, deg_h, e, af, ag, lc, a, R, T, TI;
+    
+    if not NrRows( row ) = 1 then
+        Error( "Number of rows should be 1\n" );
+    fi;
     
     c := NrColumns( row );
     
@@ -252,31 +256,37 @@ InstallMethod( SuslinLemma,
     
     R := HomalgRing( row );
     T := HomalgInitialIdentityMatrix( c, R );
+    TI := HomalgInitialIdentityMatrix( c, R );
     
     SetMatElm( T, pos_f, pos_h, a * af );
     SetMatElm( T, pos_g, pos_h, a * ag );
     
-    MakeImmutable( T );
+    SetMatElm( TI, pos_f, pos_h, -a * af );
+    SetMatElm( TI, pos_g, pos_h, -a * ag );
     
-    return [ row * T, T, pos_h, bj ];
+    MakeImmutable( T );
+    MakeImmutable( TI );
+    
+    return [ row * T, T, TI, pos_h, bj ];
     
 end );
 
 #InstallMethodWithDocumentation( Horrocks,
 InstallMethod( Horrocks,
         "for a row matrix",
-        [ IsHomalgMatrix, IsPosInt ],
-        # The paramaters are a matrix and an integers.
-        # The matrix is a row matrix with at least 3 entries.
+        [ IsHomalgMatrix and IsRightInvertibleMatrix, IsPosInt ],
+        # The paramaters are a matrix and an integer.
+        # The matrix is a unimodular row matrix with at least 3 entries.
         # The int indicates position of first monic entry.
   function( row, o )
-    local R, c, a1, s, cols, a, m, Rm, i, a2, coeffs, j, U;
+    local R, c, a1, s, cols, a, B, resR, i, a2, coeffs, j, V, row_old, quotR, row_o, t, T, TI, H;
     
     R := HomalgRing( row );
-    Assert( 4, Length( RelativeIndeterminatesOfPolynomialRing( R ) ) = 1 );
+    
+    Assert( 4, Length( Indeterminates( R ) ) = 1 );
     
     if not NrRows( row ) = 1 then
-        TryNextMethod( );
+        Error( "number of rows should be 1\n" );
     fi;
     
     c := NrColumns( row );
@@ -292,7 +302,9 @@ InstallMethod( Horrocks,
     s := Degree( a1 );
     
     if s = 0 then
-        TryNextMethod( );
+        H := GetRidOfRowsAndColumnsWithUnits( row );
+        Assert( 0, IsEmptyMatrix( H[3] ) );
+        return H{[ 5, 4 ]};
     fi;
     
     cols := [ 1 .. c ];
@@ -301,28 +313,117 @@ InstallMethod( Horrocks,
     a := EntriesOfHomalgMatrix( row );
     
     if ForAny( a{ cols }, a -> not ( Degree( a ) < s ) ) then
-        TryNextMethod( );
+        Error( "there exists a row entry with degree not less than deg( a_o ) = ", s, "\n" );
     fi;
     
     # We will assume the base field is Q,
     # This is necessary as primary decomposition in Singular is implemented only for rationals.
     # To have this algorithm working for other baserings, we need to find PrimDec algorithms.
     
-    m := AMaximalIdealContaining( ZeroLeftSubmodule( BaseRing( R ) ) );
-    Rm := R * m;
+    B := BaseRing( R );
+    resR := AssociatedResidueClassRing( R );
     
-    i := First( cols, i -> not a[i] in Rm );
+    i := First( cols, i -> not IsZero( a[i] / resR ) );
     
     Assert( 0, not i = fail );
     
     a2 := a[i];
-    coeffs := Reversed( EntriesOfHomalgMatrix( CoefficientsOfUnivariatePolynomial( a2 ) ) );
+    coeffs := EntriesOfHomalgMatrix( CoefficientsOfUnivariatePolynomial( a2 ) );
     
     j := First( [ 1 .. Length( coeffs ) ], i -> IsUnit( coeffs[ i ] ) );
+    Assert( 0, not j = fail );
     
-    U := SuslinLemma( row, o, i, j );
+    j := j - 1;
     
-    return Horrocks( row * U, 1 );
+    V := SuslinLemma( row, o, i, j );
+    
+    Assert( 0, V[1] = row * V[2] );
+    
+    row_old := row;
+    
+    quotR := AssociatedComputationRing( R );
+    
+    row := Eval( V[1] );
+    o := V[4];
+    
+    row_o := CertainColumns( row, [ o ] );
+    
+    t := HomalgVoidMatrix( 1, c, quotR );
+    
+    row := DecideZeroColumnsEffectively( row, row_o, t );
+    row := UnionOfColumns(
+                   UnionOfColumns( CertainColumns( row, [ 1 .. o - 1 ] ), row_o ),
+                   CertainColumns( row, [ o + 1 .. c ] ) );
+    
+    cols := [ 1 .. c ];
+    Remove( cols, o );
+    
+    T := HomalgInitialIdentityMatrix( c, quotR );
+    Perform( cols, function( j ) SetMatElm( T, o, j, MatElm( t, 1, j ) ); end );
+    MakeImmutable( T );
+    
+    TI := HomalgInitialIdentityMatrix( c, quotR );
+    Perform( cols, function( j ) SetMatElm( TI, o, j, -MatElm( t, 1, j ) ); end );
+    MakeImmutable( TI );
+    
+    row := R * row;
+    T := R * T;
+    TI := R * TI;
+    
+    ## We cannot algorithmically verify the line below.
+    SetIsRightInvertibleMatrix( row, true );
+    
+    Assert( 0, row = row_old * V[2] * T );
+    
+    H := Horrocks( row, o );
+    
+    return [ V[2] * T * H[1], H[2] * TI * V[3] ];
     
 end );
 
+##
+InstallMethod( Patch,
+        "patch local solutions obtained by Horrocks",
+        [ IsHomalgMatrix and IsRightInvertibleMatrix, IsList, IsList ],
+        # The paramaters are: a unimodular row matrix and an integer
+        # The list of U's obtained by Horrocks
+        # The list of V's obtained by Horrocks
+  function( row, Us, Vs )
+    local n, DeltaI, d, i, R, Rz, indets, y, z, quotR, D, dinv;
+    
+    n := Length( Us );
+    
+    DeltaI := [ ];
+    d := [ ];
+    
+    for i in [ 1 .. n ] do
+        
+        R := HomalgRing( Us[i] );
+        
+        Us[i] := UnionOfRows( row, Us[i] );
+        
+        Rz := R * "z__";
+        
+        indets := Indeterminates( Rz );
+        
+        ## It is assumed that R is of the form (k[x_1..x_n]_<p>)[y]
+        Assert( 0, Length( indets ) = 2 );
+        
+        y := indets[1];
+        z := indets[2];
+        
+        DeltaI[i] := ( Rz * Us[i] ) * Value( ( Rz * Vs[i] ), y, y + z ); 
+        d[i] := Denominator( DeltaI[i] );
+        
+    od;
+    
+    D := HomalgMatrix( d, 1, Length( d ), HomalgRing( d[1] ) );
+    
+    D := AssociatedComputationRing( R ) * D;
+    
+    dinv := RightInverse( D );
+    Error( "here" );
+    
+    return dinv;
+    
+end );

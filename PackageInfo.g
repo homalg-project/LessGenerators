@@ -288,6 +288,7 @@ Dependencies := rec(
                       [ "Modules", ">= 2012.05.29" ],
                       [ "homalg", ">= 2012.05.18" ],
                       [ "RingsForHomalg", ">= 2012.06.27" ],
+                      [ "LocalizeRingForHomalg", ">= 2013.06.25" ],
                       [ "MatricesForHomalg", ">= 2013.05.27" ],
                       [ "GAPDoc", ">= 1.1" ]
                       ],
