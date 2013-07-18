@@ -376,7 +376,7 @@ InstallMethod( Horrocks,
     B := BaseRing( R );
     resR := AssociatedResidueClassRing( R );
     
-    i := First( cols, i -> not IsZero( a[i] / resR ) );
+    i := First( cols, i -> not IsZero( Numerator( a[i] ) / resR ) );
     
     Assert( 0, not i = fail );
     
