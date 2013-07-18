@@ -279,11 +279,11 @@ InstallMethod( Horrocks,
         # The matrix is a unimodular row matrix with at least 3 entries.
         # The int indicates position of first monic entry.
   function( row, o )
-    local R, c, a1, s, cols, a, B, resR, i, a2, coeffs, j, V, row_old, quotR, row_o, t, T, TI, H;
+    local R, c, a1, s, cols, a, B, resR, i, a2, coeffs, j, V, row_old, quotR, t, T, TI, H;
     
     R := HomalgRing( row );
     
-    Assert( 4, Length( Indeterminates( R ) ) = 1 );
+     Assert( 4, Length( Indeterminates( R ) ) = 1 );
     
     if not NrRows( row ) = 1 then
         Error( "number of rows should be 1\n" );
@@ -301,14 +301,24 @@ InstallMethod( Horrocks,
     
     s := Degree( a1 );
     
-    if s = 0 then
-        H := GetRidOfRowsAndColumnsWithUnits( row );
-        Assert( 0, IsEmptyMatrix( H[3] ) );
-        return H{[ 5, 4 ]};
-    fi;
-    
     cols := [ 1 .. c ];
     Remove( cols, o );
+    
+    if s = 0 then
+        
+        T := HomalgInitialIdentityMatrix( c, R );
+        Perform( cols, function( j ) SetMatElm( T, o, j, -MatElm( row, 1, j ) / a1 ); end );
+        SetMatElm( T, o, o, 1 / a1 );
+        MakeImmutable( T );
+        
+        TI := HomalgInitialIdentityMatrix( c, R );
+        Perform( cols, function( j ) SetMatElm( TI, o, j, MatElm( row, 1, j ) / a1 ); end );
+        SetMatElm( TI, o, o, 1 / a1 );
+        MakeImmutable( TI );
+        
+        return [ T, TI ];
+        
+    fi;
     
     a := EntriesOfHomalgMatrix( row );
     
@@ -346,13 +356,13 @@ InstallMethod( Horrocks,
     row := Eval( V[1] );
     o := V[4];
     
-    row_o := CertainColumns( row, [ o ] );
+    a1 := CertainColumns( row, [ o ] );
     
     t := HomalgVoidMatrix( 1, c, quotR );
     
-    row := DecideZeroColumnsEffectively( row, row_o, t );
+    row := DecideZeroColumnsEffectively( row, a1, t );
     row := UnionOfColumns(
-                   UnionOfColumns( CertainColumns( row, [ 1 .. o - 1 ] ), row_o ),
+                   UnionOfColumns( CertainColumns( row, [ 1 .. o - 1 ] ), a1 ),
                    CertainColumns( row, [ o + 1 .. c ] ) );
     
     cols := [ 1 .. c ];
@@ -389,9 +399,10 @@ InstallMethod( Patch,
         # The list of U's obtained by Horrocks
         # The list of V's obtained by Horrocks
   function( row, Us, Vs )
-    local n, DeltaI, d, i, R, Rz, indets, y, z, quotR, D, dinv;
+    local n, quotR, DeltaI, d, i, R, Rz, indets, y, z, D, dinv, x, V;
     
     n := Length( Us );
+    quotR := AssociatedComputationRing( R );
     
     DeltaI := [ ];
     d := [ ];
@@ -417,13 +428,24 @@ InstallMethod( Patch,
         
     od;
     
-    D := HomalgMatrix( d, 1, Length( d ), HomalgRing( d[1] ) );
+    d := quotR * d;
     
-    D := AssociatedComputationRing( R ) * D;
+    D := HomalgMatrix( d, 1, Length( d ), quotR );
     
     dinv := RightInverse( D );
-    Error( "here" );
     
-    return dinv;
+    x := Indeterminates( quotR );
+    y := x;
+    
+    z := Indeterminates( HomalgRing( DeltaI[1] ) )[2];
+    
+    V := Value( DeltaI[1], z, -x * d[1] * dinv[1] );
+    
+    for i in [ 2 .. n ] do
+        y := y - d[i-1] * dinv[i-1] * x;
+        V := V * Value( Value( DeltaI[i], x, y), z, -d[i] * dinv[i] * x );
+    od;
+    
+    return V;
     
 end );
