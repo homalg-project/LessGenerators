@@ -323,8 +323,51 @@ InstallMethod( Horrocks,
     a := EntriesOfHomalgMatrix( row );
     
     if ForAny( a{ cols }, a -> not ( Degree( a ) < s ) ) then
-        Error( "there exists a row entry with degree not less than deg( a_o ) = ", s, "\n" );
+        row_old := row;
+        
+        quotR := AssociatedComputationRing( R );
+        
+        row := Eval( row );
+        
+        a1 := CertainColumns( row, [ o ] );
+        
+        t := HomalgVoidMatrix( 1, c, quotR );
+        
+        row := DecideZeroColumnsEffectively( row, a1, t );
+        row := UnionOfColumns(
+                       UnionOfColumns( CertainColumns( row, [ 1 .. o - 1 ] ), a1 ),
+                       CertainColumns( row, [ o + 1 .. c ] ) );
+        
+        cols := [ 1 .. c ];
+        Remove( cols, o );
+        
+        T := HomalgInitialIdentityMatrix( c, quotR );
+        Perform( cols, function( j ) SetMatElm( T, o, j, MatElm( t, 1, j ) ); end );
+        MakeImmutable( T );
+        
+        TI := HomalgInitialIdentityMatrix( c, quotR );
+        Perform( cols, function( j ) SetMatElm( TI, o, j, -MatElm( t, 1, j ) ); end );
+        MakeImmutable( TI );
+        
+        row := R * row;
+        T := R * T;
+        TI := R * TI;
+        
+        ## We cannot algorithmically verify the line below.
+        SetIsRightInvertibleMatrix( row, true );
+        
+        Assert( 0, row = row_old * T );
+        
+    else
+        
+        T := HomalgIdentityMatrix( c, R );
+        TI := HomalgIdentityMatrix( c, R );
+        
     fi;
+    
+    a := EntriesOfHomalgMatrix( row );
+    
+    Assert( 0, ForAll( a{ cols }, a -> Degree( a ) < s ) );
     
     # We will assume the base field is Q,
     # This is necessary as primary decomposition in Singular is implemented only for rationals.
@@ -347,47 +390,18 @@ InstallMethod( Horrocks,
     
     V := SuslinLemma( row, o, i, j );
     
-    Assert( 0, V[1] = row * V[2] );
-    
-    row_old := row;
-    
-    quotR := AssociatedComputationRing( R );
-    
-    row := Eval( V[1] );
-    o := V[4];
-    
-    a1 := CertainColumns( row, [ o ] );
-    
-    t := HomalgVoidMatrix( 1, c, quotR );
-    
-    row := DecideZeroColumnsEffectively( row, a1, t );
-    row := UnionOfColumns(
-                   UnionOfColumns( CertainColumns( row, [ 1 .. o - 1 ] ), a1 ),
-                   CertainColumns( row, [ o + 1 .. c ] ) );
-    
-    cols := [ 1 .. c ];
-    Remove( cols, o );
-    
-    T := HomalgInitialIdentityMatrix( c, quotR );
-    Perform( cols, function( j ) SetMatElm( T, o, j, MatElm( t, 1, j ) ); end );
-    MakeImmutable( T );
-    
-    TI := HomalgInitialIdentityMatrix( c, quotR );
-    Perform( cols, function( j ) SetMatElm( TI, o, j, -MatElm( t, 1, j ) ); end );
-    MakeImmutable( TI );
-    
-    row := R * row;
-    T := R * T;
-    TI := R * TI;
+    row := row * V[2];
     
     ## We cannot algorithmically verify the line below.
     SetIsRightInvertibleMatrix( row, true );
     
-    Assert( 0, row = row_old * V[2] * T );
+    o := V[4];
     
     H := Horrocks( row, o );
     
-    return [ V[2] * T * H[1], H[2] * TI * V[3] ];
+    Assert( 0, IsOne( H[1] * H[2] ) );
+    
+    return [ T * V[2] * H[1], H[2] * V[3] * TI ];
     
 end );
 
@@ -396,56 +410,60 @@ InstallMethod( Patch,
         "patch local solutions obtained by Horrocks",
         [ IsHomalgMatrix and IsRightInvertibleMatrix, IsList, IsList ],
         # The paramaters are: a unimodular row matrix and an integer
-        # The list of U's obtained by Horrocks
         # The list of V's obtained by Horrocks
-  function( row, Us, Vs )
-    local n, quotR, DeltaI, d, i, R, Rz, indets, y, z, D, dinv, x, V;
+        # The list of VI's obtained by Horrocks
+  function( row, Vs, VIs )
+    local R, globalR, quotR, Rz, quotRz, indets, y, z, n, DeltaI, d, i, D, dinv, yy, V;
     
-    n := Length( Us );
+    ## (k[x]_p)[y]
+    R := HomalgRing( Vs[1] );
+    
+    ## k[x][y]
+    globalR := AssociatedGlobalRing( R );
+    
+    ## k(x)[y]
     quotR := AssociatedComputationRing( R );
+    
+    ## (k[x]_<x>)[y,z]
+    Rz := R * "z__";
+    
+    ## k(x)[y,z]
+    quotRz := AssociatedComputationRing( Rz );
+    
+    ## [y,z]
+    indets := Indeterminates( quotRz );
+    
+    Assert( 0, Length( indets ) = 2 );
+    
+    y := indets[1];
+    z := indets[2];
+    
+    n := Length( Vs );
     
     DeltaI := [ ];
     d := [ ];
     
     for i in [ 1 .. n ] do
         
-        R := HomalgRing( Us[i] );
-        
-        Us[i] := UnionOfRows( row, Us[i] );
-        
-        Rz := R * "z__";
-        
-        indets := Indeterminates( Rz );
-        
-        ## It is assumed that R is of the form (k[x_1..x_n]_<p>)[y]
-        Assert( 0, Length( indets ) = 2 );
-        
-        y := indets[1];
-        z := indets[2];
-        
-        DeltaI[i] := ( Rz * Us[i] ) * Value( ( Rz * Vs[i] ), y, y + z ); 
-        d[i] := Denominator( DeltaI[i] );
+        DeltaI[i] := ( quotRz * Vs[i] ) * Value( ( quotRz * VIs[i] ), y, y + z ); 
+        d[i] := Denominator( Rz * DeltaI[i] );
+        d[i] := d[i] / quotRz;
         
     od;
     
-    d := quotR * d;
+    D := HomalgMatrix( d, 1, Length( d ), quotRz );
     
-    D := HomalgMatrix( d, 1, Length( d ), quotR );
+    dinv := quotRz * RightInverse( globalR * D );
     
-    dinv := RightInverse( D );
+    yy := y;
     
-    x := Indeterminates( quotR );
-    y := x;
-    
-    z := Indeterminates( HomalgRing( DeltaI[1] ) )[2];
-    
-    V := Value( DeltaI[1], z, -x * d[1] * dinv[1] );
+    V := Value( DeltaI[1], z, -y * d[1] * MatElm( dinv, 1, 1 ) );
     
     for i in [ 2 .. n ] do
-        y := y - d[i-1] * dinv[i-1] * x;
-        V := V * Value( Value( DeltaI[i], x, y), z, -d[i] * dinv[i] * x );
+        yy := yy - y * d[i - 1] * MatElm( dinv, i - 1, 1 );
+        V := V * Value( Value( DeltaI[i], y, yy ), z, -y * d[i] * MatElm( dinv, i, 1 ) );
     od;
     
-    return V;
+    return globalR * V;
     
 end );
