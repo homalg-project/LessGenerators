@@ -285,7 +285,7 @@ Dependencies := rec(
   # without these, the package will not load
   NeededOtherPackages := [
                       [ "AutoDoc", ">= 2013.01.16" ],
-                      [ "Modules", ">= 2012.05.29" ],
+                      [ "Modules", ">= 2013.07.05" ],
                       [ "homalg", ">= 2012.05.18" ],
                       [ "RingsForHomalg", ">= 2013.07.12" ],
                       [ "LocalizeRingForHomalg", ">= 2013.07.12" ],
