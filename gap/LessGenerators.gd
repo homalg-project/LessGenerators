@@ -27,20 +27,3 @@ SetInfoLevel( InfoLessGenerators, 1 );
 DeclareGlobalFunction( "OnLessGenerators_ForStablyFreeRank1OverCommutative" );
 
 DeclareGlobalFunction( "OnLessGenerators_UsingParametrization" );
-
-# basic operations:
-
-DeclareOperation( "SuslinLemma",
-        [ IsHomalgRingElement, IsHomalgRingElement, IsInt ] );
-
-DeclareOperation( "SuslinLemma",
-        [ IsHomalgMatrix, IsInt, IsInt, IsInt ] );
-
-DeclareOperation( "Horrocks",
-        [ IsHomalgMatrix, IsInt ] );
-
-DeclareOperation( "Horrocks",
-        [ IsHomalgMatrix ] );
-
-DeclareOperation( "Patch",
-        [ IsHomalgMatrix, IsList, IsList ] );
