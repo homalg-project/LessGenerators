@@ -18,8 +18,13 @@
 
 # basic operations:
 
-DeclareOperation( "SuslinLemma",
-        [ IsHomalgRingElement, IsHomalgRingElement, IsInt ] );
+DeclareOperationWithDocumentation( "SuslinLemma",
+        [ IsHomalgRingElement, IsHomalgRingElement, IsInt ],
+        [ "Returns a linear combination of <A>f</A> and <A>g</A> with",
+          "leading coefficient being the <A>o</A>-th coefficient in <A>g</A>." ],
+        "a homalg ring element",
+        "f, g, o",
+        [ "Quillen-Suslin", "Core_procedures" ] );
 
 DeclareOperation( "SuslinLemma",
         [ IsHomalgMatrix, IsInt, IsInt, IsInt ] );

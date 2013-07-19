@@ -32,3 +32,5 @@ doc/manual.lab
 doc/AutoDocMainFile.xml
 gap/AutoDocEntries.g
 LessGeneratorsSingular
+doc/Quillen-Suslin.xml
+doc/Quillen-SuslinSectionCore_procedures.xml
