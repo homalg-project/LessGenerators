@@ -21,19 +21,34 @@
 DeclareOperationWithDocumentation( "SuslinLemma",
         [ IsHomalgRingElement, IsHomalgRingElement, IsInt ],
         [ "Returns a linear combination of <A>f</A> and <A>g</A> with",
-          "leading coefficient being the <A>o</A>-th coefficient in <A>g</A>." ],
+          "leading coefficient being the <A>j</A>-th coefficient of <A>g</A>.",
+	  "<A>f</A> has to be monic." ],
         "a homalg ring element",
-        "f, g, o",
+        "f, g, j",
         [ "Quillen-Suslin", "Core_procedures" ] );
 
-DeclareOperation( "SuslinLemma",
-        [ IsHomalgMatrix, IsInt, IsInt, IsInt ] );
+DeclareOperationWithDocumentation( "SuslinLemma",
+        [ IsHomalgMatrix, IsInt, IsInt, IsInt ],
+        [ "Returns a list of 5 objects:",
+	  "[ <A>row</A> * <C>T</C>, <C>T</C>, <C>TI</C>, <C>pos_h</C>, <C>bj</C> ].<Br/>",
+	  "T is a square transformation matrix which transforms <C>pos_h</C>-th entry of the <A>row</A>",
+	  "to the linear combination of the monic entry <C>f</C> and <A>g</A>",
+	  "(at <A>pos_f</A> and <A>pos_g</A>-th positions, respectively)",
+	  "with leading coefficient being the <A>j</A>-th coefficient <C>bj</C> of <C>g</C> and",
+	  "<C>TI</C> is the inverse matrix of <C>T</C>.<Br/>",
+	  "<A>f</A> has to be monic and <C>bj</C> is a unit." ],
+        "a list",
+        "row, pos_f, pos_g, j",
+        [ "Quillen-Suslin", "Core_procedures" ] );
 
 DeclareOperation( "Horrocks",
+# DeclareOperationWithDocumentation( "Horrocks",
         [ IsHomalgMatrix, IsInt ] );
 
 DeclareOperation( "Horrocks",
+# DeclareOperationWithDocumentation( "Horrocks",
         [ IsHomalgMatrix ] );
 
 DeclareOperation( "Patch",
+# DeclareOperationWithDocumentation( "Patch",
         [ IsHomalgMatrix, IsList, IsList ] );
