@@ -4,5 +4,6 @@ list := [
          "../gap/LessGenerators.gi",
          "../gap/Tools.gd",
          "../gap/Tools.gi",
+         "../examples/doc/SuslinLemma.g",
          ];
 

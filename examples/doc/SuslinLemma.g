@@ -1,3 +1,47 @@
+##  <#GAPDoc Label="SuslinLemma:3arg">
+##  <Example><![CDATA[
+##  gap> Q := HomalgFieldOfRationalsInSingular( );;
+##  gap> R := ( Q * "x" ) * "y";
+##  Q[x][y]
+##  gap> AssignGeneratorVariables( R );
+##  #I  Assigned the global variables [ x, y ]
+##  gap> f := x^2*y^4+23*x*y^5+y^6+7*x-y^2;;
+##  gap> g := (4*x*y^2+x^2+x^2*y-x*y^3);;
+##  gap> h := y^2 * g;;
+##  gap> G := (4*x*y^2+x^2+2*y-x*y^3);;
+##  gap> SuslinLemma( f, g, 3 );
+##  [ -x^3*y^3-23*x^2*y^4-x*y^5+x^4*y+27*x^3*y^2+93*x^2*y^3+4*x*y^4+x^4+23*x^3*y+
+##    x^2*y^2, 0, x^2+23*x*y+y^2 ]
+##  gap> SuslinLemma( f, g, 2 );
+##  [ x^4*y^2+27*x^3*y^3+93*x^2*y^4+4*x*y^5+x^4*y+23*x^3*y^2+x^2*y^3-x*y^2+7*x^2,
+##    x, x^2*y+23*x*y^2+y^3 ]
+##  gap> SuslinLemma( f, g, 1 );
+##  [ x^4*y^3+23*x^3*y^4+x^2*y^5+x^4*y^2+23*x^3*y^3+x^2*y^4+6*x^2*y-29*x^2,
+##    x*y-4*x, x^2*y^2+23*x*y^3+y^4-1 ]
+##  gap> SuslinLemma( f, g, 0 );
+##  [ x^4*y^3+23*x^3*y^4+x^2*y^5+7*x^2*y^2-7*x^3-29*x^2*y, x*y^2-x^2-4*x*y,
+##    x^2*y^3+23*x*y^4+y^5-y ]
+##  gap> SuslinLemma( f, h, 5 );
+##  [ -x*y^5+x^2*y^3+4*x*y^4+x^2*y^2, 0, 1]
+##  gap> SuslinLemma( f, h, 4 );
+##  [ x^3*y^4+23*x^3*y^3+93*x^2*y^4+4*x*y^5+23*x^3*y^2+x^2*y^3-x*y^2+7*x^2, x,
+##    23*x+y ]
+##  gap> SuslinLemma( f, h, 3 );
+##  [ x^4*y^3+23*x^3*y^4+x^2*y^5+x^4*y^2+23*x^3*y^3+x^2*y^4-x*y^3+7*x^2*y+
+##    4*x*y^2-28*x^2, x*y-4*x, x^2+23*x*y+y^2 ]
+##  gap> SuslinLemma( f, h, 2 );
+##  [ x^4*y^3+23*x^3*y^4+x^2*y^5-x*y^4+8*x^2*y^2+4*x*y^3-7*x^3-28*x^2*y,
+##    x*y^2-x^2-4*x*y, x^2*y+23*x*y^2+y^3 ]
+##  gap> SuslinLemma( f, h, 1 );
+##  [ 0, 0, 0 ]
+##  gap> SuslinLemma( f, h, 0 );
+##  [ 0, 0, 0 ]
+##  gap> SuslinLemma( f, G, 1 );
+##  [ x^4*y^2+23*x^3*y^3+x^2*y^4+2*x^2*y^3+46*x*y^4+2*y^5+7*x^2*y-29*x^2-2*y,
+##    x*y-4*x, x^2*y^2+23*x*y^3+y^4-1 ]
+##  ]]></Example>
+##  <#/GAPDoc>
+
 LoadPackage( "LessGenerators" );
 
 Q := HomalgFieldOfRationalsInSingular( );
