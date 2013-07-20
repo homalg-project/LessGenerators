@@ -169,7 +169,7 @@ InstallMethod( SuslinLemma,
     
 end );
 
-#InstallMethodWithDocumentation( Horrocks,
+##
 InstallMethod( Horrocks,
         "for a row matrix",
         [ IsHomalgMatrix and IsRightInvertibleMatrix, IsPosInt ],
