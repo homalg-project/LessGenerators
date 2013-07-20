@@ -42,6 +42,28 @@
 ##  ]]></Example>
 ##  <#/GAPDoc>
 
+##  <#GAPDoc Label="SuslinLemma:4arg">
+##  <Example><![CDATA[
+##  gap> row := HomalgMatrix( [ h, G, f, g + h ], 1, 4, R );;
+##  gap> sus := SuslinLemma( row, 3, 2, 1 );
+##  [ <An unevaluated 1 x 4 matrix over an external ring>,
+##    <A 4 x 4 matrix over an external ring>, <A 4 x 4 matrix over an external ring>,
+##    1, 2 ]
+##  gap> EntriesOfHomalgMatrix( sus[1] );
+##  [ 1/2*x^5*y^2+23/2*x^4*y^3+1/2*x^3*y^4+1/2*x^4*y^2+25/2*x^3*y^3+47/2*x^2*y^4+
+##    2*x^2*y^3+27*x*y^4+y^5+7/2*x^3*y+x^2*y^2-29/2*x^3+7/2*x^2*y-29/2*x^2-x*y-y, 
+##    -x*y^3+4*x*y^2+x^2+2*y, x^2*y^4+23*x*y^5+y^6-y^2+7*x, -x*y^5+x^2*y^3+4*x*y^4+
+##    x^2*y^2-x*y^3+x^2*y+4*x*y^2+x^2 ]
+##  gap> EntriesOfHomalgMatrix( sus[2] );
+##  [ 1, 0, 0, 0, 1/2*x^3*y^2+23/2*x^2*y^3+1/2*x*y^4+1/2*x^2*y^2+23/2*x*y^3+
+##    1/2*y^4-1/2*x-1/2, 1, 0, 0, 1/2*x^2*y-2*x^2+1/2*x*y-2*x, 0, 1, 0, 0, 0, 0, 1 ]
+##  gap> EntriesOfHomalgMatrix( sus[3] );
+##  [ 1, 0, 0, 0, -1/2*x^3*y^2-23/2*x^2*y^3-1/2*x*y^4-1/2*x^2*y^2-23/2*x*y^3-1/2*y^4+
+##    1/2*x+1/2, 1, 0, 0, -1/2*x^2*y+2*x^2-1/2*x*y+2*x, 0, 1, 0, 0, 0, 0, 1 ]
+##  ]]></Example>
+##  <#/GAPDoc>
+
+
 LoadPackage( "LessGenerators" );
 
 Q := HomalgFieldOfRationalsInSingular( );
