@@ -193,7 +193,9 @@ InstallMethod( Horrocks,
     
     R := HomalgRing( row );
     
-    Assert( 4, Length( Indeterminates( R ) ) = 1 );
+    if not Length( Indeterminates( R ) ) = 1 then
+        Error( "Horrocks assumes the ring to be univariate polynomial ring over a local ring" );
+    fi;
     
     if not NrRows( row ) = 1 then
         Error( "number of rows should be 1\n" );
