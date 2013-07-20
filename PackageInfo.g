@@ -131,7 +131,7 @@ Persons := [
     IsAuthor      := true,
     IsMaintainer  := true,
     Email         := "mohamed.barakat@rwth-aachen.de",
-    WWWHome       := "http://homalg.math.rwth-aachen.de/~barakat/",
+    WWWHome       := "http://www.mathematik.uni-kl.de/~barakat/",
     PostalAddress := Concatenation( [
                        "Lehrstuhl B fuer Mathematik, RWTH Aachen\n",
                        "Templergraben 64\n",
@@ -146,7 +146,7 @@ Persons := [
     IsAuthor      := true,
     IsMaintainer  := false,
     Email         := "fabianska@momo.math.rwth-aachen.de",
-    WWWHome       := "http://homalg.math.rwth-aachen.de/~fabianska/",
+    WWWHome       := "http://wwwb.math.rwth-aachen.de/~fabianska/",
     PostalAddress := Concatenation( [
                        "Lehrstuhl B fuer Mathematik, RWTH Aachen\n",
                        "Templergraben 64\n",
