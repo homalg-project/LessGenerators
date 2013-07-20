@@ -44,6 +44,7 @@
 
 ##  <#GAPDoc Label="SuslinLemma:4arg">
 ##  <Example><![CDATA[
+##  gap> ## Continuing of the previous example:
 ##  gap> row := HomalgMatrix( [ h, G, f, g + h ], 1, 4, R );;
 ##  gap> sus := SuslinLemma( row, 3, 2, 1 );
 ##  [ <An unevaluated 1 x 4 matrix over an external ring>,
