@@ -32,3 +32,10 @@ DeclareOperation( "GetAllButOneGcd1ColumnPosition",
 
 DeclareOperation( "EliminateAllButOneGcd1Columns",
         [ IsHomalgMatrix, IsList, IsList ] );
+
+DeclareOperation( "GetFirstMonicOfSmallestDegree",
+        [ IsHomalgMatrix, IsInt ] );
+
+DeclareOperation( "CleanRowUsingMonics",
+        [ IsHomalgMatrix, IsInt ] );
+

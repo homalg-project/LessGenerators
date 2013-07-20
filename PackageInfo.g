@@ -32,7 +32,7 @@ Subtitle := "LessGenerators - Find smaller generating sets for modules",
 Version := Maximum( [
   "2013.06.01", ## Mohamed's version
 ## this line prevents merge conflicts
-  "2013.07.13", ## Vinay's version
+  "2013.07.15", ## Vinay's version
 ] ),
 ##  Please adjust also the VERSION file in the package directory when
 ##  changing this.
@@ -131,7 +131,7 @@ Persons := [
     IsAuthor      := true,
     IsMaintainer  := true,
     Email         := "mohamed.barakat@rwth-aachen.de",
-    WWWHome       := "http://homalg.math.rwth-aachen.de/~barakat/",
+    WWWHome       := "http://www.mathematik.uni-kl.de/~barakat/",
     PostalAddress := Concatenation( [
                        "Lehrstuhl B fuer Mathematik, RWTH Aachen\n",
                        "Templergraben 64\n",
@@ -146,7 +146,7 @@ Persons := [
     IsAuthor      := true,
     IsMaintainer  := false,
     Email         := "fabianska@momo.math.rwth-aachen.de",
-    WWWHome       := "http://homalg.math.rwth-aachen.de/~fabianska/",
+    WWWHome       := "http://wwwb.math.rwth-aachen.de/~fabianska/",
     PostalAddress := Concatenation( [
                        "Lehrstuhl B fuer Mathematik, RWTH Aachen\n",
                        "Templergraben 64\n",

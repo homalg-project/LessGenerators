@@ -173,15 +173,13 @@ end );
 InstallMethod( Horrocks,
         "for a row matrix",
         [ IsHomalgMatrix and IsRightInvertibleMatrix, IsPosInt ],
-        # The paramaters are a matrix and an integer.
-        # The matrix is a unimodular row matrix with at least 3 entries.
-        # The int indicates position of first monic entry.
+        
   function( row, o )
-    local R, c, a1, s, cols, a, B, resR, i, a2, coeffs, j, V, row_old, quotR, t, T, TI, H;
+    local R, c, l, T, TI, cols, a, resR, i, coeffs, j, H;
     
     R := HomalgRing( row );
     
-     Assert( 4, Length( Indeterminates( R ) ) = 1 );
+    Assert( 4, Length( Indeterminates( R ) ) = 1 );
     
     if not NrRows( row ) = 1 then
         Error( "number of rows should be 1\n" );
@@ -189,117 +187,69 @@ InstallMethod( Horrocks,
     
     c := NrColumns( row );
     
-    if not c >= 3 then
-        TryNextMethod( );
+    ## we ensure that the entry at the o-th position is the only monic
+    ## and that all other entries are of lower degree
+    l := CleanRowUsingMonics( row, o );
+    
+    row := l[1];
+    T := l[2];
+    TI := l[3];
+    
+    if HasIsSubidentityMatrix( row ) and IsSubidentityMatrix( row ) then
+        return [ T, TI ];
     fi;
     
-    a1 := MatElm( row, 1, o );
+    o := l[4];
     
-    Assert( 4, IsMonic( a1 ) );
-    
-    s := Degree( a1 );
+    a := EntriesOfHomalgMatrix( row );
     
     cols := [ 1 .. c ];
     Remove( cols, o );
     
-    if s = 0 then
-        
-        T := HomalgInitialIdentityMatrix( c, R );
-        Perform( cols, function( j ) SetMatElm( T, o, j, -MatElm( row, 1, j ) / a1 ); end );
-        SetMatElm( T, o, o, 1 / a1 );
-        MakeImmutable( T );
-        
-        TI := HomalgInitialIdentityMatrix( c, R );
-        Perform( cols, function( j ) SetMatElm( TI, o, j, MatElm( row, 1, j ) / a1 ); end );
-        SetMatElm( TI, o, o, 1 / a1 );
-        MakeImmutable( TI );
-        
-        return [ T, TI ];
-        
-    fi;
-    
-    a := EntriesOfHomalgMatrix( row );
-    
-    if ForAny( a{ cols }, a -> not ( Degree( a ) < s ) ) then
-        row_old := row;
-        
-        quotR := AssociatedComputationRing( R );
-        
-        row := Eval( row );
-        
-        a1 := CertainColumns( row, [ o ] );
-        
-        t := HomalgVoidMatrix( 1, c, quotR );
-        
-        row := DecideZeroColumnsEffectively( row, a1, t );
-        row := UnionOfColumns(
-                       UnionOfColumns( CertainColumns( row, [ 1 .. o - 1 ] ), a1 ),
-                       CertainColumns( row, [ o + 1 .. c ] ) );
-        
-        cols := [ 1 .. c ];
-        Remove( cols, o );
-        
-        T := HomalgInitialIdentityMatrix( c, quotR );
-        Perform( cols, function( j ) SetMatElm( T, o, j, MatElm( t, 1, j ) ); end );
-        MakeImmutable( T );
-        
-        TI := HomalgInitialIdentityMatrix( c, quotR );
-        Perform( cols, function( j ) SetMatElm( TI, o, j, -MatElm( t, 1, j ) ); end );
-        MakeImmutable( TI );
-        
-        row := R * row;
-        T := R * T;
-        TI := R * TI;
-        
-        ## We cannot algorithmically verify the line below.
-        SetIsRightInvertibleMatrix( row, true );
-        
-        Assert( 0, row = row_old * T );
-        
-    else
-        
-        T := HomalgIdentityMatrix( c, R );
-        TI := HomalgIdentityMatrix( c, R );
-        
-    fi;
-    
-    a := EntriesOfHomalgMatrix( row );
-    
-    Assert( 0, ForAll( a{ cols }, a -> Degree( a ) < s ) );
-    
-    # We will assume the base field is Q,
-    # This is necessary as primary decomposition in Singular is implemented only for rationals.
-    # To have this algorithm working for other baserings, we need to find PrimDec algorithms.
-    
-    B := BaseRing( R );
     resR := AssociatedResidueClassRing( R );
     
+    ## we now search for the first i such that a[i] is not in Rm
     i := First( cols, i -> not IsZero( Numerator( a[i] ) / resR ) );
     
     Assert( 0, not i = fail );
     
-    a2 := a[i];
-    coeffs := EntriesOfHomalgMatrix( CoefficientsOfUnivariatePolynomial( a2 ) );
+    coeffs := EntriesOfHomalgMatrix( CoefficientsOfUnivariatePolynomial( a[i] ) );
     
-    j := First( [ 1 .. Length( coeffs ) ], i -> IsUnit( coeffs[ i ] ) );
+    ## the first j such that the coefficient of y^j in a[i] is a unit
+    j := First( [ 0 .. Length( coeffs ) - 1 ], j -> IsUnit( coeffs[j + 1] ) );
     Assert( 0, not j = fail );
     
-    j := j - 1;
+    l := SuslinLemma( row, o, i, j );
     
-    V := SuslinLemma( row, o, i, j );
-    
-    row := row * V[2];
+    row := l[1];
+    T := T * l[2];
+    TI := l[3] * TI;
     
     ## We cannot algorithmically verify the line below.
+    ## TODO: should become obsolete with ToDo-lists in MatricesForHomalg.
     SetIsRightInvertibleMatrix( row, true );
     
-    o := V[4];
+    o := l[4];
+    
+    ## we ensure that the entry at the o-th position is the only monic
+    ## and that all other entries are of lower degree
+    l := CleanRowUsingMonics( row, o );
+    
+    row := l[1];
+    T := T * l[2];
+    TI := l[3] * TI;
+    
+    if HasIsSubidentityMatrix( row ) and IsSubidentityMatrix( row ) then
+        return [ T, TI ];
+    fi;
+    
+    o := l[4];
     
     H := Horrocks( row, o );
     
     Assert( 0, IsOne( H[1] * H[2] ) );
     
-    return [ T * V[2] * H[1], H[2] * V[3] * TI ];
+    return [ T * H[1], H[2] * TI ];
     
 end );
 
