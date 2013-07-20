@@ -111,7 +111,7 @@ InstallMethod( SuslinLemma,
         [ IsHomalgMatrix, IsInt, IsInt, IsInt ],
         
   function( row, pos_f, pos_g, j )
-    local c, f, g, bj, pos_h, h, deg_h, e, af, ag, lc, a, R, T, TI;
+    local c, bool_inv, f, g, bj, pos_h, h, deg_h, e, af, ag, lc, a, R, T, TI;
     
     if not NrRows( row ) = 1 then
         Error( "Number of rows should be 1\n" );
@@ -121,6 +121,10 @@ InstallMethod( SuslinLemma,
     
     if c < 3 then
         Error( "the row has less than three columns\n" );
+    fi;
+    
+    if HasIsRightInvertibleMatrix( row ) then
+        bool_inv := IsRightInvertibleMatrix( row );
     fi;
     
     f := MatElm( row, 1, pos_f );
@@ -167,7 +171,15 @@ InstallMethod( SuslinLemma,
     
     Assert( 4, IsOne( T, TI ) );
     
-    return [ row * T, T, TI, pos_h, bj ];
+    row := row * T;
+    
+    if IsBound( bool_inv ) then
+        ## We cannot algorithmically verify the line below.
+        ## TODO: should become obsolete with ToDo-lists in MatricesForHomalg.
+        SetIsRightInvertibleMatrix( row, bool_inv );
+    fi;
+    
+    return [ row, T, TI, pos_h, bj ];
     
 end );
 
@@ -226,11 +238,6 @@ InstallMethod( Horrocks,
     row := l[1];
     T := T * l[2];
     TI := l[3] * TI;
-    
-    ## We cannot algorithmically verify the line below.
-    ## TODO: should become obsolete with ToDo-lists in MatricesForHomalg.
-    SetIsRightInvertibleMatrix( row, true );
-    
     o := l[4];
     
     ## we ensure that the entry at the o-th position is the only monic
