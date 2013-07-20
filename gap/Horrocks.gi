@@ -165,6 +165,8 @@ InstallMethod( SuslinLemma,
     MakeImmutable( T );
     MakeImmutable( TI );
     
+    Assert( 4, IsOne( T, TI ) );
+    
     return [ row * T, T, TI, pos_h, bj ];
     
 end );
@@ -246,8 +248,6 @@ InstallMethod( Horrocks,
     o := l[4];
     
     H := Horrocks( row, o );
-    
-    Assert( 0, IsOne( H[1] * H[2] ) );
     
     return [ T * H[1], H[2] * TI ];
     
