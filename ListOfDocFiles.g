@@ -5,5 +5,6 @@ list := [
          "../gap/Tools.gd",
          "../gap/Tools.gi",
          "../examples/doc/SuslinLemma.g",
+         "../examples/doc/Horrocks.g",
          ];
 
