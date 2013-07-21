@@ -169,7 +169,7 @@ InstallMethod( SuslinLemma,
     MakeImmutable( T );
     MakeImmutable( TI );
     
-    Assert( 4, IsOne( T, TI ) );
+    Assert( 4, IsOne( T * TI ) );
     
     row := row * T;
     
