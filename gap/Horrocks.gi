@@ -169,7 +169,7 @@ InstallMethod( SuslinLemma,
     MakeImmutable( T );
     MakeImmutable( TI );
     
-    Assert( 4, IsOne( T, TI ) );
+    Assert( 4, IsOne( T * TI ) );
     
     row := row * T;
     
@@ -302,7 +302,10 @@ InstallMethod( Patch,
     
     for i in [ 1 .. n ] do
         
-        DeltaI[i] := ( quotRz * Vs[i] ) * Value( ( quotRz * VIs[i] ), y, y + z ); 
+        Vs[i] := quotRz * Vs[i];
+        VIs[i] := quotRz * VIs[i];
+        
+        DeltaI[i] := Vs[i] * Value( VIs[i], y, y + z );
         d[i] := Denominator( Rz * DeltaI[i] );
         d[i] := d[i] / quotRz;
         
@@ -311,14 +314,15 @@ InstallMethod( Patch,
     D := HomalgMatrix( d, 1, Length( d ), quotRz );
     
     dinv := quotRz * RightInverse( globalR * D );
+    dinv := EntriesOfHomalgMatrix( dinv );
     
     yy := y;
     
-    V := Value( DeltaI[1], z, -y * d[1] * MatElm( dinv, 1, 1 ) );
+    V := Value( DeltaI[1], z, -y * d[1] * dinv[1] );
     
     for i in [ 2 .. n ] do
-        yy := yy - y * d[i - 1] * MatElm( dinv, i - 1, 1 );
-        V := V * Value( Value( DeltaI[i], y, yy ), z, -y * d[i] * MatElm( dinv, i, 1 ) );
+        yy := yy - y * d[i - 1] * dinv[i - 1];
+        V := V * Value( Value( DeltaI[i], y, yy ), z, -y * d[i] * dinv[i] );
     od;
     
     V := globalR * V;
