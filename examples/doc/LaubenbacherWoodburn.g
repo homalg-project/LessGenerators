@@ -40,4 +40,6 @@ H2 := Horrocks( row2, 2 );
 
 V := Patch( row, [ H1[1], H2[1] ], [ H1[2], H2[2] ] );
 
-Assert( 0, ForAll( EntriesOfHomalgMatrix( row * V ), e -> Degree( e ) < 1 ) );
+y := RelativeIndeterminatesOfPolynomialRing( R )[1];;
+
+Assert( 0, row * V = Value( row, y, Zero( y ) ) );
