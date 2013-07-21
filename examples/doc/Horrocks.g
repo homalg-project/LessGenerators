@@ -12,12 +12,12 @@
 ##  gap> S1 := LocalizeBaseRingAtPrime( R, m1 );
 ##  ( Q[x]_< x > )[y]
 ##  gap> row1 := S1 * row;
-##  <A 1 x 3 matrix over a fake local ring localized at <[ x ]> ring>
+##  <A 1 x 3 matrix over a (fake) local ring>
 ##  gap> IsRightInvertibleMatrix( row1 );
 ##  true
 ##  gap> H1 := Horrocks( row1, 2 );
-##  [ <An unevaluated 3 x 3 matrix over a fake local ring localized at <[ x ]> ring>,
-##    <An unevaluated 3 x 3 matrix over a fake local ring localized at <[ x ]> ring> ]
+##  [ <An unevaluated 3 x 3 matrix over a (fake) local ring>,
+##    <An unevaluated 3 x 3 matrix over a (fake) local ring> ]
 ##  gap> EntriesOfHomalgMatrix( H1[1] );
 ##  [ 1, -y-1/2, (-x^5+2)/4, (4*x^7-4*x^5)/(x^5-2)*y+(-2*x^2+2), 
 ##    (-4*x^7+4*x^5)/(x^5-2)*y^2+(-4*x^2+4)/(x^5-2)*y+(x^2), 
@@ -36,8 +36,8 @@
 ##  gap> IsRightInvertibleMatrix( row2 );
 ##  true
 ##  gap> H2 := Horrocks( row2, 2 );
-##  [ <An unevaluated 3 x 3 matrix over a fake local ring localized at <[ x^5-2 ]> ring>,
-##    <An unevaluated 3 x 3 matrix over a fake local ring localized at <[ x^5-2 ]> ring> ]
+##  [ <An unevaluated 3 x 3 matrix over a (fake) local ring>,
+##    <An unevaluated 3 x 3 matrix over a (fake) local ring> ]
 ##  gap> EntriesOfHomalgMatrix( H2[1] );
 ##  [ (x^5-2)/4, (x^5-6)/(4*x^2)*y+(x^5-6)/(8*x^2), (-x^5+6)/(4*x^2), 
 ##    (x^7)*y+(-x^7+2*x^2)/2, (x^5)*y^2+y+(-x^5+6)/4, (-x^5)*y+(x^5-2)/2, 
