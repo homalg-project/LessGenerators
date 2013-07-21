@@ -24,7 +24,7 @@ DeclareOperationWithDocumentation( "SuslinLemma",
           "leading coefficient being the <A>j</A>-th coefficient of <A>g</A>.",
 	  "<A>f</A> has to be monic.",
           "<#Include Label=\"SuslinLemma:3arg\">" ],
-        "a homalg ring element",
+        "a &homalg; ring element",
         "f, g, j",
         [ "Quillen-Suslin", "Core_procedures" ] );
 
@@ -65,6 +65,6 @@ DeclareOperationWithDocumentation( "Patch",
 	  "<A>VIs</A><M>[j]</M> is the inverse of <A>Vs</A><M>[j]</M>. The denominators of <A>Vs</A><M>[j]</M>",
 	  "must generate the unit ideal of <M>B</M>.",
           "<#Include Label=\"Patch\">" ],
-	"a matrix",
+	"a &homalg; matrix",
 	"row, Vs, VIs",
         [ "Quillen-Suslin", "Core_procedures" ] );
