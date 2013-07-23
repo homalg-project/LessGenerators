@@ -203,6 +203,10 @@ InstallMethod( Horrocks,
     
     c := NrColumns( row );
     
+    if c < 3 then
+        Error( "the row has less than three columns\n" );
+    fi;
+    
     ## we ensure that the entry at the o-th position is the only monic
     ## and that all other entries are of lower degree
     l := CleanRowUsingMonics( row, o );

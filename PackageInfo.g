@@ -32,7 +32,7 @@ Subtitle := "LessGenerators - Find smaller generating sets for modules",
 Version := Maximum( [
   "2013.07.19", ## Mohamed's version
 ## this line prevents merge conflicts
-  "2013.07.18", ## Vinay's version
+  "2013.07.20", ## Vinay's version
 ] ),
 ##  Please adjust also the VERSION file in the package directory when
 ##  changing this.
@@ -287,9 +287,9 @@ Dependencies := rec(
                       [ "AutoDoc", ">= 2013.01.16" ],
                       [ "Modules", ">= 2013.07.05" ],
                       [ "homalg", ">= 2012.05.18" ],
-                      [ "RingsForHomalg", ">= 2013.07.12" ],
+                      [ "RingsForHomalg", ">= 2013.07.16" ],
                       [ "LocalizeRingForHomalg", ">= 2013.07.15" ],
-                      [ "MatricesForHomalg", ">= 2013.07.12" ],
+                      [ "MatricesForHomalg", ">= 2013.07.21" ],
                       [ "GAPDoc", ">= 1.1" ]
                       ],
   # without these the package will issue a warning while loading
