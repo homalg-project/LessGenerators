@@ -1,3 +1,20 @@
-- get maple95 to work
-- let the external CAS be activley informed about the dimensions of the console
-- GARBAGE COLLECTION in the code (?)
+LessGenerators
+-- method for Heuristics
+   -- square matrices
+   -- n x n-1 ==> CauchyBinet
+   -- gcd( a_i, a_j ) = 1
+   -- gcd of n-1 elements is 1
+   -- row having right inverse containing unit
+   -- free syzygies trick -->
+      --compute syz_of_cols & chk for nrcols, if n-m, then done.
+   -- chk for more?
+-- Finalize QuillenSuslin
+-- Test for integers?
+-- Example section
+-- Write intro and prepare for submission to GAP
+
+
+Modules (Noether Normalization)
+-- Noether Normalization for Finite fields
+-- Optimization of Noether Normalization
+
