@@ -4,8 +4,6 @@ Q := HomalgFieldOfRationalsInSingular( );
 
 R := ( Q * "x,y,z" ) * "t";
 
-AssignGeneratorVariables( R );
-
 row := HomalgMatrix( "[ 2*t*x*z+t*y^2+1, 2*t*x*y+t^2, t*x^2 ]", 1, 3, R );
 
 Assert( 0, IsRightInvertibleMatrix( row ) );

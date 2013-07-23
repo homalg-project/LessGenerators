@@ -78,8 +78,6 @@ Q := HomalgFieldOfRationalsInSingular( );
 
 R := ( Q * "x" ) * "y";
 
-AssignGeneratorVariables( R );
-
 row := HomalgMatrix( "[ x^2, y+1/2, x^5*y^2+y ]", 1, 3, R );
 
 Assert( 0, IsRightInvertibleMatrix( row ) );

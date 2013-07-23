@@ -4,8 +4,6 @@ Q := HomalgFieldOfRationalsInSingular( );
 
 R := ( Q * "x" ) * "y";
 
-AssignGeneratorVariables( R );
-
 row := HomalgMatrix( "[ 1+x*y+x^4, y^2+x-1, x*y-1 ]", 1, 3, R );
 
 Assert( 0, IsRightInvertibleMatrix( row ) );
