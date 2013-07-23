@@ -219,6 +219,9 @@ InstallMethod( CleanRowUsingMonics,
         
         SetIsSubidentityMatrix( row, true );
         
+        Assert( 4, NonZeroColumns( row ) = [ o ] );
+        SetNonZeroColumns( row, [ o ] );
+        
         return [ row, T, TI, o ];
         
     fi;
