@@ -23,7 +23,7 @@ InstallValue( LessGeneratorsMacrosForSingular,
     
     _Identifier := "LessGenerators",
     
-    load_LessGeneratorsSingular := Concatenation( "LIB \"", PackageInfo( "LessGenerators" )[1].InstallationPath, "/LessGeneratorsSingular/Vinay.lib\";" ),
+    load_LessGeneratorsSingular := Concatenation( "LIB \"", PackageInfo( "LessGenerators" )[1].InstallationPath, "/Singular/LessGenerators.lib\";" ),
     
     )
 
