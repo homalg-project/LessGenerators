@@ -154,7 +154,8 @@ InstallMethod( QuillenSuslin,
     
 end );
 
-##
+##  <#GAPDoc Label="QuillenSuslin_code:matrix">
+##  <Listing Type="Code"><![CDATA[
 InstallMethod( QuillenSuslin,
         "for a homalg matrix",
         [ IsHomalgMatrix ],
@@ -219,3 +220,5 @@ InstallMethod( QuillenSuslin,
     return [ U, V ];
     
 end );
+##  ]]></Listing>
+##  <#/GAPDoc>
