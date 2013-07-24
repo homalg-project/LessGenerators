@@ -105,7 +105,8 @@ InstallMethod( SuslinLemma,
     
 end );
 
-## apply Suslin Lemma with specified input
+##  <#GAPDoc Label="SuslinLemma_code:4arg">
+##  <Listing Type="Code"><![CDATA[
 InstallMethod( SuslinLemma,
         "for a homalg matrix and three integers",
         [ IsHomalgMatrix, IsInt, IsInt, IsInt ],
@@ -182,6 +183,8 @@ InstallMethod( SuslinLemma,
     return [ row, T, TI, pos_h, bj ];
     
 end );
+##  ]]></Listing>
+##  <#/GAPDoc>
 
 ##
 InstallMethod( Horrocks,
