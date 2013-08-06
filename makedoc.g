@@ -18,6 +18,8 @@ PrintTo( "VERSION", PackageInfo( "LessGenerators" )[1].Version );
 
 MakeGAPDocDoc( "doc", "LessGenerators", list, "LessGenerators" );
 
-GAPDocManualLab("LessGenerators");
+CopyHTMLStyleFiles( "doc" );
+
+GAPDocManualLab( "LessGenerators" );
 
 QUIT;

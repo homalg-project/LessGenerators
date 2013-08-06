@@ -9,10 +9,12 @@ change.log
 VERSION
 public_html
 public_html.version
+doc/manual.six
 doc/*.pdf
 doc/*.html
 doc/*.txt
-doc/*.six
+doc/*.css
+doc/*.js
 doc/*Bib.xml
 doc/*Bib.xml.bib
 doc/*.aux
@@ -31,6 +33,6 @@ doc/manual.lab
 *.DS_Store
 doc/AutoDocMainFile.xml
 gap/AutoDocEntries.g
+doc/Chapter*.xml
 LessGeneratorsSingular
-doc/Quillen-Suslin.xml
-doc/Quillen-SuslinSectionCore_procedures.xml
+
