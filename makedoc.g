@@ -16,7 +16,7 @@ Read( "ListOfDocFiles.g" );
 
 PrintTo( "VERSION", PackageInfo( "LessGenerators" )[1].Version );
 
-MakeGAPDocDoc( "doc", "LessGenerators", list, "LessGenerators" );
+MakeGAPDocDoc( "doc", "LessGenerators", list, "LessGenerators", "MathJax" );
 
 CopyHTMLStyleFiles( "doc" );
 
