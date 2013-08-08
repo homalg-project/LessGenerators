@@ -282,7 +282,7 @@ Dependencies := rec(
   # insensitive, least version denoted with '>=' prepended to version string.
   # without these, the package will not load
   NeededOtherPackages := [
-                      [ "AutoDoc", ">= 2013.01.16" ],
+                      [ "AutoDoc", ">= 2013.08.07" ],
                       [ "Modules", ">= 2013.07.05" ],
                       [ "homalg", ">= 2012.05.18" ],
                       [ "RingsForHomalg", ">= 2013.07.16" ],

@@ -5,9 +5,12 @@ CreateAutomaticDocumentation( "LessGenerators", "gap/AutoDocEntries.g", "doc/", 
          [ "Quillen-Suslin",
            [ "Intro for the chapter",
              "..." ] ],
-         [ "Quillen-Suslin", "Core_procedures",
+         [ "Quillen-Suslin", "Tool_procedures",
            [ "Intro for the section",
-             "..." ] ]
+             "..." ] ],
+         [ "Quillen-Suslin", "Main_procedures",
+           [ "Intro for the section",
+             "..." ] ],
          ] );
 
 QUIT;

@@ -10,6 +10,8 @@
 ##
 #############################################################################
 
+SetCurrentAutoDocChapter( "Quillen-Suslin" );
+
 ####################################
 #
 # global functions and operations:
@@ -17,6 +19,10 @@
 ####################################
 
 # basic operations:
+
+##
+SetCurrentAutoDocSection( "Main_procedures" );
+##
 
 DeclareOperationWithDocumentation( "QuillenSuslin",
         [ IsHomalgMatrix ],

@@ -10,6 +10,8 @@
 ##
 #############################################################################
 
+SetCurrentAutoDocChapter( "Quillen-Suslin" );
+
 ####################################
 #
 # global functions and operations:
@@ -18,6 +20,10 @@
 
 # basic operations:
 
+##
+SetCurrentAutoDocSection( "Tool_procedures" );
+##
+
 DeclareOperationWithDocumentation( "SuslinLemma",
         [ IsHomalgRingElement, IsHomalgRingElement, IsInt ],
         [ "Returns a linear combination of <A>f</A> and <A>g</A> with",
@@ -25,8 +31,7 @@ DeclareOperationWithDocumentation( "SuslinLemma",
 	  "<A>f</A> has to be monic.",
           "<#Include Label=\"SuslinLemma:3arg\">" ],
         "a &homalg; ring element",
-        "f, g, j",
-        [ "Quillen-Suslin", "Core_procedures" ] );
+        "f, g, j" );
 
 DeclareOperationWithDocumentation( "SuslinLemma",
         [ IsHomalgMatrix, IsInt, IsInt, IsInt ],
@@ -42,8 +47,7 @@ DeclareOperationWithDocumentation( "SuslinLemma",
           "<#Include Label=\"SuslinLemma_code:4arg\">",
           "<#Include Label=\"SuslinLemma:4arg\">" ],
         "a list",
-        "row, pos_f, pos_g, j",
-        [ "Quillen-Suslin", "Core_procedures" ] );
+        "row, pos_f, pos_g, j" );
 
 DeclareOperationWithDocumentation( "Horrocks",
         [ IsHomalgMatrix, IsInt ],
@@ -54,8 +58,7 @@ DeclareOperationWithDocumentation( "Horrocks",
 	  "in which the <A>o</A>-th entry is monic.",
           "<#Include Label=\"Horrocks\">" ],
 	"a list",
-	"row, o",
-        [ "Quillen-Suslin", "Core_procedures" ] );
+	"row, o" );
 
 DeclareOperationWithDocumentation( "Patch",
         [ IsHomalgMatrix, IsList, IsList ],
@@ -68,5 +71,4 @@ DeclareOperationWithDocumentation( "Patch",
 	  "must generate the unit ideal of <M>B</M>.",
           "<#Include Label=\"Patch\">" ],
 	"a &homalg; matrix",
-	"row, Vs, VIs",
-        [ "Quillen-Suslin", "Core_procedures" ] );
+	"row, Vs, VIs" );
