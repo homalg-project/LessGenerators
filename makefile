@@ -2,11 +2,10 @@ all: doc test
 
 doc: doc/manual.six
 
-doc/manual.six: createautodoc.g makedoc.g maketest.g ListOfDocFiles.g \
+doc/manual.six: makedoc.g maketest.g ListOfDocFiles.g \
 		PackageInfo.g \
 		doc/LessGenerators.bib doc/*.xml \
 		gap/*.gd gap/*.gi examples/*.g examples/doc/*.g
-		gap createautodoc.g
 	        gap makedoc.g
 
 clean:
