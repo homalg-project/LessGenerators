@@ -23,7 +23,8 @@ InstallValue( LessGeneratorsMacrosForSingular,
     
     _Identifier := "LessGenerators",
     
-    load_LessGeneratorsSingular := Concatenation( "LIB \"", PackageInfo( "LessGenerators" )[1].InstallationPath, "/Singular/LessGenerators.lib\";" ),
+    ## loads LIBs that alter the behavior of Singular which affect the package Blocks
+    #load_LessGeneratorsSingular := Concatenation( "LIB \"", PackageInfo( "LessGenerators" )[1].InstallationPath, "/Singular/LessGenerators.lib\";" ),
     
     )
 
@@ -37,14 +38,15 @@ UpdateMacrosOfLaunchedCASs( LessGeneratorsMacrosForSingular );
 InstallValue( LessGeneratorsTableForSingularTools,
         
         rec(
-               CauchyBinetColumn :=
+               ## needs Singular/LessGenerators.lib which is disabled, see comment above
+               X_CauchyBinetColumn :=
                  function( M )
                    
                    return homalgSendBlocking( [ "CauchyBinetRow( ", M, " )" ], [ "matrix" ], HOMALG_IO.Pictograms.CauchyBinetColumn );
                    
                  end,
                
-               GetRidOfRowsAndColumnsWithUnits :=
+               X_GetRidOfRowsAndColumnsWithUnits :=
                  function( M )
                    local r, c, R, l, deleted_rows, deleted_columns, rows, columns, n, i, m;
                    
