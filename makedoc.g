@@ -1,21 +1,28 @@
-##  this creates the documentation, needs: GAPDoc package, latex, pdflatex,
-##  mkindex, dvips
-##  
-##  Call this with GAP.
-##
-
 LoadPackage( "AutoDoc" );
 
-bib := ParseBibFiles( "doc/LessGenerators.bib" );
-WriteBibXMLextFile( "doc/LessGeneratorsBib.xml", bib );
-
-AutoDoc(
-    "LessGenerators" : 
-    autodoc := rec( files := [ "doc/Intros.g" ] ),
-    scaffold := false
+AutoDoc( "LessGenerators" :
+        
+        scaffold := rec( entities := [ "homalg", "GAP4" ],
+                         ),
+        
+        autodoc := rec( files := [ "doc/Intros.g" ] ),
+        
+        maketest := rec( folder := ".",
+                         commands :=
+                         [ "LoadPackage( \"LessGenerators\" );",
+                           "LoadPackage( \"IO_ForHomalg\" );",
+                           "HOMALG_IO.show_banners := false;",
+                           "HOMALG_IO.suppress_PID := true;",
+                           "HOMALG_IO.use_common_stream := true;",
+                           #"HOMALG.SuppressParityInViewObjForCommutativeStructureObjects := true;",
+                           ],
+                         ),
+        
+        Bibliography := "LessGenerators.bib"
+        
 );
 
-
-PrintTo( "VERSION", PackageInfo( "LessGenerators" )[1].Version );
+# Create VERSION file for "make towww"
+PrintTo( "VERSION", PackageInfo( "Blocks" )[1].Version );
 
 QUIT;
