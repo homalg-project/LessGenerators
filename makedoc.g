@@ -4,22 +4,18 @@
 ##  Call this with GAP.
 ##
 
-LoadPackage( "GAPDoc" );
-LoadPackage( "Modules" );
-
-SetGapDocLaTeXOptions( "utf8" );
+LoadPackage( "AutoDoc" );
 
 bib := ParseBibFiles( "doc/LessGenerators.bib" );
 WriteBibXMLextFile( "doc/LessGeneratorsBib.xml", bib );
 
-Read( "ListOfDocFiles.g" );
+AutoDoc(
+    "LessGenerators" : 
+    autodoc := rec( files := [ "doc/Intros.g" ] ),
+    scaffold := false
+);
+
 
 PrintTo( "VERSION", PackageInfo( "LessGenerators" )[1].Version );
-
-MakeGAPDocDoc( "doc", "LessGenerators", list, "LessGenerators", "MathJax" );
-
-CopyHTMLStyleFiles( "doc" );
-
-GAPDocManualLab( "LessGenerators" );
 
 QUIT;
