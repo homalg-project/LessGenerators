@@ -23,6 +23,6 @@ AutoDoc( "LessGenerators" :
 );
 
 # Create VERSION file for "make towww"
-PrintTo( "VERSION", PackageInfo( "Blocks" )[1].Version );
+PrintTo( "VERSION", PackageInfo( "LessGenerators" )[1].Version );
 
 QUIT;
