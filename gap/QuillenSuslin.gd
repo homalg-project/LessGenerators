@@ -28,8 +28,8 @@
 #!  Compute for the <M>r \times c</M>-matrix <A>mat</A> a list of two square matrices <M>U</M>,<M>V</M>
 #!  such that <M>U *</M> <A>mat</A> <M>* V</M> is equal to the first <M>r</M> rows
 #!  of the <M>c \times c</M> identity matrix.
-#! @Returns a list of two &homalg; matrices
 #! @Arguments mat
+#! @Returns a list of two &homalg; matrices
 DeclareOperation( "QuillenSuslin",
                   [ IsHomalgMatrix ] );
 

@@ -30,8 +30,8 @@
 #!  leading coefficient being the <A>j</A>-th coefficient of <A>g</A>.
 #!  <A>f</A> has to be monic.
 #!  <#Include Label="SuslinLemma:3arg">
-#! @Returns a &homalg; ring element
 #! @Arguments f, g, j
+#! @Returns a &homalg; ring element
 DeclareOperation( "SuslinLemma",
                   [ IsHomalgRingElement, IsHomalgRingElement, IsInt ] );
 
@@ -47,8 +47,8 @@ DeclareOperation( "SuslinLemma",
 #!  The corresponding method should make use of the three argument <Ref Oper="SuslinLemma" Label="for IsHomalgRingElement, IsHomalgRingElement, IsInt"/>.
 #!  <#Include Label="SuslinLemma_code:4arg">
 #!  <#Include Label="SuslinLemma:4arg">
-#! @Returns a list
 #! @Arguments row, pos_f, pos_g, j
+#! @Returns a list
 DeclareOperation( "SuslinLemma",
                   [ IsHomalgMatrix, IsInt, IsInt, IsInt ] );
 
@@ -59,8 +59,8 @@ DeclareOperation( "SuslinLemma",
 #!  <A>row</A> is a unimodular matrix with at least 3 entries
 #!  in which the <A>o</A>-th entry is monic.
 #!  <#Include Label="Horrocks">
-#! @Returns a list
 #! @Arguments row, o
+#! @Returns a list
 DeclareOperation( "Horrocks",
                   [ IsHomalgMatrix, IsInt ] );
 
@@ -73,8 +73,8 @@ DeclareOperation( "Horrocks",
 #!  <A>VIs</A><M>[j]</M> is the inverse of <A>Vs</A><M>[j]</M>. The denominators of <A>Vs</A><M>[j]</M>
 #!  must generate the unit ideal of <M>B</M>.
 #!  <#Include Label="Patch">
-#! @Returns a &homalg; matrix
 #! @Arguments row, Vs, VIs
+#! @Returns a &homalg; matrix
 DeclareOperation( "Patch",
                   [ IsHomalgMatrix, IsList, IsList ] );
 
