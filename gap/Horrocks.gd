@@ -45,7 +45,7 @@ DeclareOperation( "SuslinLemma",
 #!  <C>bj</C> of <M>g</M> and <C>TI</C> is the inverse matrix of <C>T</C>.<Br/>
 #!  <M>f</M> has to be monic and <C>bj</C> is a unit.<Br/>
 #!  The corresponding method should make use of the three argument <Ref Oper="SuslinLemma" Label="for IsHomalgRingElement, IsHomalgRingElement, IsInt"/>.
-#!  <#Include Label="SuslinLemma_code:4arg">
+#!  @InsertCode SuslinLemmaCode:4arg
 #!  <#Include Label="SuslinLemma:4arg">
 #! @Arguments row, pos_f, pos_g, j
 #! @Returns a list
