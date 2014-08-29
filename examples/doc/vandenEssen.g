@@ -1,3 +1,6 @@
+#! @System vandenEssen
+
+#! @Example
 LoadPackage( "LessGenerators" );
 
 Q := HomalgFieldOfRationalsInSingular( );
@@ -41,3 +44,4 @@ V := Patch( row, [ H1[1], H2[1] ], [ H1[2], H2[2] ] );
 y := RelativeIndeterminatesOfPolynomialRing( R )[1];;
 
 Assert( 0, row * V = Value( row, y, Zero( y ) ) );
+#! @EndExample
