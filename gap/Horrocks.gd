@@ -58,7 +58,7 @@ DeclareOperation( "SuslinLemma",
 #!  <C>TI</C> is the inverse matrix of <C>T</C>.<Br/>
 #!  <A>row</A> is a unimodular matrix with at least 3 entries
 #!  in which the <A>o</A>-th entry is monic.
-#!  <#Include Label="Horrocks">
+#!  @InsertSystem Horrocks
 #! @Arguments row, o
 #! @Returns a list
 DeclareOperation( "Horrocks",
@@ -72,7 +72,7 @@ DeclareOperation( "Horrocks",
 #!  over a localization of <M>R</M> defined by various maximal ideals of <M>B</M>.<Br/>
 #!  <A>VIs</A><M>[j]</M> is the inverse of <A>Vs</A><M>[j]</M>. The denominators of <A>Vs</A><M>[j]</M>
 #!  must generate the unit ideal of <M>B</M>.
-#!  <#Include Label="Patch">
+#!  @InsertSystem Patch
 #! @Arguments row, Vs, VIs
 #! @Returns a &homalg; matrix
 DeclareOperation( "Patch",
