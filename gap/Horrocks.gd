@@ -29,7 +29,7 @@
 #!  Returns a linear combination of <A>f</A> and <A>g</A> with
 #!  leading coefficient being the <A>j</A>-th coefficient of <A>g</A>.
 #!  <A>f</A> has to be monic.
-#!  <#Include Label="SuslinLemma:3arg">
+#!  @InsertSystem SuslinLemma:3arg
 #! @Arguments f, g, j
 #! @Returns a &homalg; ring element
 DeclareOperation( "SuslinLemma",
@@ -46,7 +46,7 @@ DeclareOperation( "SuslinLemma",
 #!  <M>f</M> has to be monic and <C>bj</C> is a unit.<Br/>
 #!  The corresponding method should make use of the three argument <Ref Oper="SuslinLemma" Label="for IsHomalgRingElement, IsHomalgRingElement, IsInt"/>.
 #!  @InsertCode SuslinLemmaCode:4arg
-#!  <#Include Label="SuslinLemma:4arg">
+#!  @InsertSystem SuslinLemma:4arg
 #! @Arguments row, pos_f, pos_g, j
 #! @Returns a list
 DeclareOperation( "SuslinLemma",

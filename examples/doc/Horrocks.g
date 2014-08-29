@@ -1,5 +1,7 @@
 #! @System Horrocks
 
+LoadPackage( "LessGenerators" );
+
 #! @Example
 Q := HomalgFieldOfRationalsInSingular( );;
 R := ( Q * "x" ) * "y";
