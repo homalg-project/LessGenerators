@@ -78,7 +78,7 @@ InstallMethod( QuillenSuslin,
     
     repeat
         
-        m := AMaximalIdealContaining(  LeftSubmodule( Delta1 ) );
+        m := AMaximalIdealContaining( LeftSubmodule( Delta1 ) );
         
         m := EntriesOfHomalgMatrix( MatrixOfSubobjectGenerators( m ) );
         
