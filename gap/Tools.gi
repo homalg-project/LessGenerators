@@ -179,7 +179,7 @@ InstallMethod( GetFirstMonicOfSmallestDegree,
 end );
 
 ##
-InstallMethod( CleanRowUsingMonics,
+InstallMethod( CleanRowUsingMonicUptoUnit,
         "for a homalg matrix and a positive integer",
         [ IsHomalgMatrix, IsPosInt ],
         
@@ -266,14 +266,14 @@ InstallMethod( CleanRowUsingMonics,
         return [ row, T, TI, o ];
     fi;
     
-    l := CleanRowUsingMonics( row, o_new );
+    l := CleanRowUsingMonicUptoUnit( row, o_new );
     
     return [ row, T * l[2], l[3] * TI, l[4] ];
     
 end );
 
 ##
-InstallMethod( CleanRowUsingMonics,
+InstallMethod( CleanRowUsingMonicUptoUnit,
         "for a matrix over fake local ring and a positive integer",
         [ IsMatrixOverHomalgFakeLocalRingRep, IsPosInt ],
         
@@ -286,7 +286,7 @@ InstallMethod( CleanRowUsingMonics,
     
     R := HomalgRing( row );
     
-    l := CleanRowUsingMonics( Eval( row ), o );
+    l := CleanRowUsingMonicUptoUnit( Eval( row ), o );
     
     if HasIsSubidentityMatrix( l[1] ) then
         bool_id := IsSubidentityMatrix( l[1] );

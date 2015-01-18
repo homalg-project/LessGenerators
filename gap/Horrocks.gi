@@ -210,7 +210,7 @@ InstallMethod( Horrocks,
     
     ## we ensure that the entry at the o-th position is the only monic
     ## and that all other entries are of lower degree
-    l := CleanRowUsingMonics( row, o );
+    l := CleanRowUsingMonicUptoUnit( row, o );
     
     row := l[1];
     T := l[2];
@@ -249,7 +249,7 @@ InstallMethod( Horrocks,
     
     ## we ensure that the entry at the o-th position is the only monic
     ## and that all other entries are of lower degree
-    l := CleanRowUsingMonics( row, o );
+    l := CleanRowUsingMonicUptoUnit( row, o );
     
     row := l[1];
     T := T * l[2];

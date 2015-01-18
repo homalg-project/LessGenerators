@@ -36,6 +36,6 @@ DeclareOperation( "EliminateAllButOneGcd1Columns",
 DeclareOperation( "GetFirstMonicOfSmallestDegree",
         [ IsHomalgMatrix, IsInt ] );
 
-DeclareOperation( "CleanRowUsingMonics",
+DeclareOperation( "CleanRowUsingMonicUptoUnit",
         [ IsHomalgMatrix, IsInt ] );
 

@@ -114,7 +114,7 @@ InstallMethod( QuillenSuslin,
         Error ( "need Noether Normalization\n" );
     fi;
     
-    T := CleanRowUsingMonics( new_row, l[2][2] );
+    T := CleanRowUsingMonicUptoUnit( new_row, l[2][2] );
     V := V * T[2];
     row := T[1];
     
