@@ -199,7 +199,7 @@ InstallMethod( CleanRowUsingMonics,
     
     a1 := MatElm( row, 1, o );
     
-    Assert( 4, IsMonic( a1 ) );
+    Assert( 4, IsMonicUptoUnit( a1 ) );
     
     s := Degree( MatElm( row, 1, o ) );
     
