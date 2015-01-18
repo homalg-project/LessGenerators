@@ -134,23 +134,23 @@ InstallMethod( QuillenSuslin,
             P := CertainColumns( P, ListPerm( (1,o), c ) );
         fi;
         
-        return [ U, V * P ];
+        u := MatElm( U, 1, 1 );
+        IsOne( u );
+        IsMinusOne( u );
+        
+        return u * V * P;
     fi;
     
     ## at least one less variable
-    UV := QuillenSuslin( row );
-    
-    U := UV[1] * U;
-    V := V * UV[2];
+    V := V * QuillenSuslin( row );
     
     if IsHomalgRingMap( noether[4] ) then
-        U := Pullback( noether[4], U );
         V := Pullback( noether[4], V );
     fi;
     
-    Assert( 4, NonZeroColumns( row * V ) = [ 1 ] );
+    Assert( 4, row * V = CertainRows( HomalgIdentityMatrix( NrColumns( row ), S ), [ 1 ] ) );
     
-    return [ U, V ];
+    return V;
     
 end );
 
@@ -160,7 +160,7 @@ InstallMethod( QuillenSuslin,
         [ IsHomalgMatrix ],
         
   function( M )
-    local R, m, n, U, V, i, UV, j, E;
+    local R, m, n, V, i, UV, j, E;
     
     if NrRows( M ) = 1 then
         TryNextMethod( );
@@ -175,35 +175,21 @@ InstallMethod( QuillenSuslin,
     m := NrRows( M );
     n := NrColumns( M );
     
-    U := [ ];
     V := [ ];
     
     for i in [ 1 .. m ] do
-        
-        U[i] := HomalgIdentityMatrix( m, R );
         
         if n = 2 then
             V[i] := RightInverse( CauchyBinetCompletion( M ) );
         elif n = 1 then
             V[i] := RightInverse( M );
         else
-            UV := QuillenSuslin( CertainRows( M, [ 1 ] ) );
-            U[i] := DiagMat( [ UV[1], HomalgIdentityMatrix( m - 1, R ) ] );
-            V[i] := UV[2];
+            V[i] := QuillenSuslin( CertainRows( M, [ 1 ] ) );
         fi;
         
         M := M * V[i];
         
-        E := HomalgInitialIdentityMatrix( m, R );
-        
-        for j in [ 2 .. m ] do
-            SetMatElm( E, j, 1, -MatElm( M, j, 1 ) );
-        od;
-        
-        U[i] := E * U[i];
-        
         E := HomalgIdentityMatrix( i - 1, R );
-        U[i] := DiagMat( [ E, U[i] ] );
         V[i] := DiagMat( [ E, V[i] ] );
         
         M := CertainRows( CertainColumns( M, [ 2 .. n ] ), [ 2 .. m ] );
@@ -213,10 +199,9 @@ InstallMethod( QuillenSuslin,
         
     od;
     
-    U := Product( Reversed( U ) );
     V := Product( V );
     
-    return [ U, V ];
+    return V;
     
 end );
 #! @EndCode
