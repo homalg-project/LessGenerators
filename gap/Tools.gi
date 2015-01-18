@@ -104,7 +104,7 @@ InstallMethod( GetAllButOneGcd1ColumnPosition,
         for i in [ 1 .. lr ] do
             r := ShallowCopy( unclean_rows );
             Remove( r, i );
-            f := CertainRows( CertainColumns( M, [ j  ] ), r );
+            f := CertainRows( CertainColumns( M, [ j ] ), r );
             h := LeftInverse( f );
             if Eval( h ) <> fail then
                 ## i = the position of the obsolete row
