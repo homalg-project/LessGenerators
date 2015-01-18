@@ -94,6 +94,8 @@ InstallMethod( QuillenSuslin,
         
         Delta1 := Denominator( H_m[1] ) / baseR;
         
+        Assert( 4, not Delta1 in I );
+        
         I := I + LeftSubmodule( Delta1 );
         
     until IsOne( I );

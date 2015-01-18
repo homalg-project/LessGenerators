@@ -30,7 +30,7 @@ Subtitle := "Find smaller generating sets for modules",
 ##  of valid version numbers. For an automatic package distribution update
 ##  you must provide a new version number even after small changes.
 Version := Maximum( [
-  "2013.08.16", ## Mohamed's version
+  "2013.08.17", ## Mohamed's version
 ## this line prevents merge conflicts
   "2013.08.12", ## Vinay's version
 ## this line prevents merge conflicts
