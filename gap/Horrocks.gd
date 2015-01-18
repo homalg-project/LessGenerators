@@ -53,7 +53,7 @@ DeclareOperation( "SuslinLemma",
                   [ IsHomalgMatrix, IsInt, IsInt, IsInt ] );
 
 #! @Description
-#!  Returns a list of 2 matrices: [ <C>T</C> and <C>TI</C> ].<Br/>
+#!  Returns a list of two matrices: [ <C>T</C>, <C>TI</C> ].<Br/>
 #!  <C>T</C> is a square transformation matrix which transforms <A>row</A> to unit row.
 #!  <C>TI</C> is the inverse matrix of <C>T</C>.<Br/>
 #!  <A>row</A> is a unimodular matrix with at least 3 entries
