@@ -332,7 +332,7 @@ InstallMethod( Patch,
     
     V := globalR * V;
     
-    Assert( 4, ForAll( EntriesOfHomalgMatrix( row * V ), e -> Degree( e ) < 1 ) );
+    Assert( 4, ForAll( EntriesOfHomalgMatrix( row * ( HomalgRing( row ) * V ) ), e -> Degree( e ) < 1 ) );
     
     return V;
     
