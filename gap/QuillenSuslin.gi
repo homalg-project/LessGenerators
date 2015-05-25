@@ -216,3 +216,34 @@ InstallMethod( QuillenSuslinUnipotent,
     
 end );
 #! @EndCode
+
+#! @Code QuillenSuslin_code:matrix
+InstallMethod( QuillenSuslin,
+        "for a homalg matrix",
+        [ IsHomalgMatrix ],
+        
+  function( M )
+    local m, n, R, V, E;
+    
+    m := NrRows( M );
+    n := NrColumns( M );
+    
+    R := HomalgRing( M );
+    
+    if m = 0 then
+        return HomalgIdentityMatrix( n, R );
+    elif m = 1 then
+        TryNextMethod( );
+    fi;
+    
+    V := QuillenSuslinUnipotent( M );
+    
+    M := M * V;
+    
+    E := HomalgIdentityMatrix( n - m, R );
+    V := V * DiagMat( [ CertainColumns( M, [ 1 .. m ] ), E ] );
+    
+    return V;
+    
+end );
+#! @EndCode
