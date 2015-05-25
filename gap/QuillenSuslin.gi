@@ -24,7 +24,7 @@ InstallMethod( QuillenSuslin,
         
   function( row )
     local S, noether, row_monic, l, monic, u, U, monic_var_index, y, R, baseR,
-          Delta1, I, o, H, m, R_m, row_m, H_m, V, new_row, T, c, P, UV;
+          Delta1, I, o, H, m, R_m, row_m, H_m, V, new_row, T, c, P;
     
     if not NrRows( row ) = 1 then
         TryNextMethod( );
@@ -156,38 +156,45 @@ InstallMethod( QuillenSuslin,
     
 end );
 
-#! @Code QuillenSuslin_code:matrix
-InstallMethod( QuillenSuslin,
+#! @Code QuillenSuslinUnipotent_code:matrix
+InstallMethod( QuillenSuslinUnipotent,
         "for a homalg matrix",
         [ IsHomalgMatrix ],
         
-  function( M )
-    local R, m, n, V, i, UV, j, E;
+  function( _M )
+    local M, m, n, R, V, i, j, E;
     
-    if NrRows( M ) = 1 then
-        TryNextMethod( );
+    M := _M;
+    
+    m := NrRows( M );
+    n := NrColumns( M );
+    
+    if m > n then
+        Error( "more rows than columns\n" );
+    fi;
+    
+    R := HomalgRing( M );
+    
+    if m = 0 then
+        return HomalgIdentityMatrix( n, R );
+    elif m = 1 then
+        if n = 1 then
+            return RightInverse( M );
+        elif n = 2 then
+            return RightInverse( CauchyBinetCompletion( M ) );
+        fi;
+        return QuillenSuslin( M );
     fi;
     
     if not IsRightInvertibleMatrix( M ) then
         Error( "the matrix is not right invertible\n" );
     fi;
     
-    R := HomalgRing( M );
-    
-    m := NrRows( M );
-    n := NrColumns( M );
-    
     V := [ ];
     
     for i in [ 1 .. m ] do
         
-        if n = 2 then
-            V[i] := RightInverse( CauchyBinetCompletion( M ) );
-        elif n = 1 then
-            V[i] := RightInverse( M );
-        else
-            V[i] := QuillenSuslin( CertainRows( M, [ 1 ] ) );
-        fi;
+        V[i] := QuillenSuslin( CertainRows( M, [ 1 ] ) );
         
         M := M * V[i];
         
@@ -202,6 +209,8 @@ InstallMethod( QuillenSuslin,
     od;
     
     V := Product( V );
+    
+    Assert( 4, IsZero( CertainColumns( _M * V, [ NrRows( _M ) + 1 .. NrRows( V ) ] ) ) );
     
     return V;
     
