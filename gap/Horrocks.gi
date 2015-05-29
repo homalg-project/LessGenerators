@@ -247,20 +247,6 @@ InstallMethod( Horrocks,
     TI := l[3] * TI;
     o := l[4];
     
-    ## we ensure that the entry at the o-th position is the only monic
-    ## and that all other entries are of lower degree
-    l := CleanRowUsingMonicUptoUnit( row, o );
-    
-    row := l[1];
-    T := T * l[2];
-    TI := l[3] * TI;
-    
-    if HasIsSubidentityMatrix( row ) and IsSubidentityMatrix( row ) then
-        return [ T, TI ];
-    fi;
-    
-    o := l[4];
-    
     H := Horrocks( row, o );
     
     return [ T * H[1], H[2] * TI ];
