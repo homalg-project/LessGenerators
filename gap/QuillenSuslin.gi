@@ -111,7 +111,11 @@ InstallMethod( QuillenSuslin,
     Assert( 4, row_new = Value( row, y, Zero( y ) ) );
     row := row_new;
     
+    u := MatElm( U, 1, 1 );
+    IsOne( u );
+    IsMinusOne( u );
     
+    V := u * V;
     
     l := GetMonicUptoUnit( row );
     
@@ -129,7 +133,6 @@ InstallMethod( QuillenSuslin,
     if HasIsSubidentityMatrix( row ) and IsSubidentityMatrix( row ) then
         
         if IsHomalgRingMap( noether[4] ) then
-            U := Pullback( noether[4], U );
             V := Pullback( noether[4], V );
         fi;
         
@@ -142,11 +145,11 @@ InstallMethod( QuillenSuslin,
             P := CertainColumns( P, ListPerm( (1,o), c ) );
         fi;
         
-        u := MatElm( U, 1, 1 );
-        IsOne( u );
-        IsMinusOne( u );
+        V := V * P;
         
-        return u * V * P;
+        Assert( 4, row_orig * V = CertainRows( HomalgIdentityMatrix( NrColumns( row ), S ), [ 1 ] ) );
+
+        return V;
     fi;
     
     ## at least one less variable
