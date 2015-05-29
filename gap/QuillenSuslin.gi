@@ -148,7 +148,11 @@ InstallMethod( QuillenSuslin,
     fi;
     
     ## at least one less variable
-    V := V * QuillenSuslin( row );
+    row_new := baseR * row;
+    Assert( 4, S * row_new = row );
+    row := row_new;
+    
+    V := V * ( S * QuillenSuslin( row ) );
     
     if IsHomalgRingMap( noether[4] ) then
         V := Pullback( noether[4], V );
