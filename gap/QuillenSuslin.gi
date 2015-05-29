@@ -99,6 +99,8 @@ InstallMethod( QuillenSuslin,
         
         I := I + LeftSubmodule( Delta1 );
         
+        OnBasisOfPresentation( I );
+        
     until IsOne( I );
     
     H := TransposedMat( H );
