@@ -24,7 +24,7 @@ InstallMethod( QuillenSuslin,
         
   function( row )
     local S, noether, l, monic, u, U, monic_var_index, y, R, baseR,
-          Delta1, I, o, H, m, R_m, row_m, H_m, V, new_row, T, c, P;
+          Delta1, I, o, H, m, R_m, row_m, H_m, V, row_new, T, c, P;
     
     if not NrRows( row ) = 1 then
         TryNextMethod( );
@@ -105,17 +105,20 @@ InstallMethod( QuillenSuslin,
     
     V := S * V;
     
-    new_row := row * V;
+    row_new := row * V;
+    Assert( 4, row_new = Value( row, y, Zero( y ) ) );
+    row := row_new;
     
-    Assert( 4, new_row = Value( row, y, Zero( y ) ) );
     
-    l := GetMonicUptoUnit( new_row );
+    
+    l := GetMonicUptoUnit( row );
     
     if l = fail then
         Error ( "need Noether Normalization\n" );
     fi;
     
-    T := CleanRowUsingMonicUptoUnit( new_row, l[2][2] );
+    T := CleanRowUsingMonicUptoUnit( row, l[2][2] );
+    
     V := V * T[2];
     row := T[1];
     
