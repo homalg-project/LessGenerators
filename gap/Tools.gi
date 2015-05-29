@@ -268,7 +268,7 @@ InstallMethod( CleanRowUsingMonicUptoUnit,
     
     l := CleanRowUsingMonicUptoUnit( row, o_new );
     
-    return [ row, T * l[2], l[3] * TI, l[4] ];
+    return [ l[1], T * l[2], l[3] * TI, l[4] ];
     
 end );
 

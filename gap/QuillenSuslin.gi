@@ -121,6 +121,8 @@ InstallMethod( QuillenSuslin,
     
     T := CleanRowUsingMonicUptoUnit( row, l[2][2] );
     
+    Assert( 4, row * T[2] = T[1] );
+    
     V := V * T[2];
     row := T[1];
     
