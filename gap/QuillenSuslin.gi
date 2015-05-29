@@ -23,8 +23,10 @@ InstallMethod( QuillenSuslin,
         [ IsHomalgMatrix ],
         
   function( row )
-    local S, noether, l, monic, u, U, monic_var_index, y, R, baseR,
+    local row_orig, S, noether, l, monic, u, U, monic_var_index, y, R, baseR,
           Delta1, I, o, H, m, R_m, row_m, H_m, V, row_new, T, c, P;
+    
+    row_orig := row;
     
     if not NrRows( row ) = 1 then
         TryNextMethod( );
@@ -152,7 +154,7 @@ InstallMethod( QuillenSuslin,
         V := Pullback( noether[4], V );
     fi;
     
-    Assert( 4, row * V = CertainRows( HomalgIdentityMatrix( NrColumns( row ), S ), [ 1 ] ) );
+    Assert( 4, row_orig * V = CertainRows( HomalgIdentityMatrix( NrColumns( row ), S ), [ 1 ] ) );
     
     return V;
     
