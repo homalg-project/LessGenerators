@@ -107,8 +107,6 @@ InstallMethod( QuillenSuslin,
     
     V := Patch( row, H[1], H[2] );
     
-    V := S * V;
-    
     row_new := row * V;
     Assert( 4, row_new = Value( row, y, Zero( y ) ) );
     row := row_new;
