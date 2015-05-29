@@ -100,7 +100,7 @@ InstallMethod( QuillenSuslin,
         
     until IsOne( I );
     
-    H := TransposedMatMutable( H );
+    H := TransposedMat( H );
     
     V := Patch( row, H[1], H[2] );
     

@@ -263,6 +263,9 @@ InstallMethod( Patch,
   function( row, Vs, VIs )
     local R, globalR, quotR, Rz, quotRz, indets, y, z, n, DeltaI, d, i, D, dinv, yy, V;
     
+    Vs := ShallowCopy( Vs );
+    VIs := ShallowCopy( VIs );
+    
     ## (k[x]_p)[y]
     R := HomalgRing( Vs[1] );
     
