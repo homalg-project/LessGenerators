@@ -23,7 +23,7 @@ InstallMethod( QuillenSuslin,
         [ IsHomalgMatrix ],
         
   function( row )
-    local S, noether, row_monic, l, monic, u, U, monic_var_index, y, R, baseR,
+    local S, noether, l, monic, u, U, monic_var_index, y, R, baseR,
           Delta1, I, o, H, m, R_m, row_m, H_m, V, new_row, T, c, P;
     
     if not NrRows( row ) = 1 then
@@ -36,7 +36,6 @@ InstallMethod( QuillenSuslin,
     
     noether := NoetherNormalization( row );
     
-    row_monic := noether[1];
     l := noether[2];
     
     monic := l[1];
@@ -59,7 +58,7 @@ InstallMethod( QuillenSuslin,
         Error( "the ring is not a polynomial ring\n" );
     fi;
     
-    row := U * row_monic;
+    row := U * noether[1];
     
     Assert( 4, IsRightInvertibleMatrix( row ) );
     SetIsRightInvertibleMatrix( row, true );
