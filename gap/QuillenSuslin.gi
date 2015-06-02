@@ -88,6 +88,7 @@ InstallMethod( QuillenSuslin,
         row_m := R_m * row;
         
         Assert( 4, IsRightInvertibleMatrix( row_m ) );
+        SetIsRightInvertibleMatrix( row_m, true );
         
         H_m := Horrocks( row_m, o );
         
