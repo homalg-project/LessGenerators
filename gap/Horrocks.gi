@@ -190,7 +190,7 @@ InstallMethod( Horrocks,
         [ IsHomalgMatrix and IsRightInvertibleMatrix, IsPosInt ],
         
   function( row, o )
-    local R, c, l, T, TI, cols, a, resR, i, coeffs, j, H;
+    local R, c, l, T, TI, pos, cols, a, resR, i, coeffs, j, H;
     
     R := HomalgRing( row );
     
@@ -216,7 +216,9 @@ InstallMethod( Horrocks,
     T := l[2];
     TI := l[3];
     
-    if HasIsSubidentityMatrix( row ) and IsSubidentityMatrix( row ) then
+    pos := NonZeroColumns( row );
+    
+    if Length( pos ) = 1 and IsOne( MatElm( row, 1, pos[1] ) ) then
         return [ T, TI ];
     fi;
     
