@@ -30,7 +30,7 @@ row4 := HomalgMatrix( "[\
 #! <A 1 x 4 matrix over an external ring>
 V4 := QuillenSuslin( row4 );
 #! <An unevaluated 4 x 4 matrix over an external ring>
-Assert( 0, row4 * V4 = CertainRows( HomalgIdentityMatrix( 4, R3 ), [ 1 ] ) );
+Assert( 0, row4 * V4 = CertainRows( HomalgIdentityMatrix( 4, R2 ), [ 1 ] ) );
 R3 := R2 * "t";
 #! Q[x,y,z][t]
 row5 := HomalgMatrix( "[ 2*t*x*z+t*y^2+1, 2*t*x*y+t^2, t*x^2 ]", 1, 3, R3 );
