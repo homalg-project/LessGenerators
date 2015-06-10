@@ -255,7 +255,7 @@ InstallMethod( QuillenSuslin,
     M := M * V;
     
     E := HomalgIdentityMatrix( n - m, R );
-    V := V * DiagMat( [ CertainColumns( M, [ 1 .. m ] ), E ] );
+    V := V * DiagMat( [ RightInverse( CertainColumns( M, [ 1 .. m ] ) ), E ] );
     
     return V;
     
