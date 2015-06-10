@@ -176,7 +176,7 @@ InstallMethod( QuillenSuslinUnipotent,
         [ IsHomalgMatrix ],
         
   function( _M )
-    local M, m, n, R, V, i, j, E;
+    local M, m, n, R, V;
     
     M := _M;
     
@@ -208,21 +208,15 @@ InstallMethod( QuillenSuslinUnipotent,
     
     V := [ ];
     
-    for i in [ 1 .. m ] do
-        
-        V[i] := QuillenSuslin( CertainRows( M, [ 1 ] ) );
-        
-        M := M * V[i];
-        
-        E := HomalgIdentityMatrix( i - 1, R );
-        V[i] := DiagMat( [ E, V[i] ] );
-        
-        M := CertainRows( CertainColumns( M, [ 2 .. n ] ), [ 2 .. m ] );
-        
-        m := NrRows( M );
-        n := NrColumns( M );
-        
-    od;
+    V[1] := QuillenSuslin( CertainRows( M, [ 1 ] ) );
+    
+    M := M * V[1];
+    
+    M := CertainRows( CertainColumns( M, [ 2 .. n ] ), [ 2 .. m ] );
+    
+    V[2] := QuillenSuslinUnipotent( M );
+    
+    V[2] := DiagMat( [ HomalgIdentityMatrix( 1, R ), V[2] ] );
     
     V := Product( V );
     
