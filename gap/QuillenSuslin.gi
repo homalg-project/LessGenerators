@@ -198,6 +198,8 @@ InstallMethod( QuillenSuslinUnipotent,
             return RightInverse( CauchyBinetCompletion( M ) );
         fi;
         return QuillenSuslin( M );
+    elif m = 2 and n = 2 then
+        return RightInverse( M );
     fi;
     
     if not IsRightInvertibleMatrix( M ) then
