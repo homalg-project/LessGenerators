@@ -121,7 +121,7 @@ InstallMethod( QuillenSuslin,
     l := GetMonicUptoUnit( row );
     
     if l = fail then
-        Error ( "need Noether Normalization\n" );
+        Error ( "need Noether normalization\n" );
     fi;
     
     T := CleanRowUsingMonicUptoUnit( row, l[2][2] );
