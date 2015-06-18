@@ -20,4 +20,6 @@ ReadPackage( "LessGenerators", "gap/Tools.gi" );
 
 ReadPackage( "LessGenerators", "gap/ToolsForRows.gi" );
 
+ReadPackage( "LessGenerators", "gap/ToolsForColumns.gi" );
+
 ReadPackage( "LessGenerators", "gap/SingularTools.gi" );

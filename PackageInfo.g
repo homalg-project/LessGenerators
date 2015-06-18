@@ -32,7 +32,7 @@ Subtitle := "Find smaller generating sets for modules",
 Version := Maximum( [
   "2015.06.03", ## Mohamed's version
 ## this line prevents merge conflicts
-  "2013.08.12", ## Vinay's version
+  "2015.06.13", ## Vinay's version
 ## this line prevents merge conflicts
   "2013.11.06", ## Sebas' version
 ] ),
