@@ -23,6 +23,8 @@ InstallMethod( SuslinLemma,
   function( f, g, j )
     local R, indets, y, s, zero, t, cf, cg, b, Y, e;
     
+    Info( InfoQuillenSuslin, 4, "Entering SuslinLemma" );
+    
     R := HomalgRing( f );
     
     if not IsIdenticalObj( R, HomalgRing( g ) ) then
@@ -54,6 +56,7 @@ InstallMethod( SuslinLemma,
     zero := Zero( R );
     
     if IsZero( g ) then
+        Info( InfoQuillenSuslin, 4, "Leaving SuslinLemma" );
         return [ g, zero, One( R ) ];
     fi;
     
@@ -64,6 +67,7 @@ InstallMethod( SuslinLemma,
     fi;
     
     if s - ( j + 1 ) = 0 then
+        Info( InfoQuillenSuslin, 4, "Leaving SuslinLemma" );
         return [ g, zero, One( R ) ];
     fi;
     
@@ -72,6 +76,7 @@ InstallMethod( SuslinLemma,
     b := MatElm( cg, 1, ( j ) + 1 );
     
     if IsZero( b ) then
+        Info( InfoQuillenSuslin, 4, "Leaving SuslinLemma" );
         return [ zero, zero, zero ];
     fi;
     
@@ -101,6 +106,8 @@ InstallMethod( SuslinLemma,
     Assert( 6, Degree( e ) = Degree( f ) - 1 );
     Assert( 6, LeadingCoefficient( e ) = b );
     
+    Info( InfoQuillenSuslin, 4, "Leaving SuslinLemma" );
+    
     return [ e, cg, cf ];
     
 end );
@@ -112,6 +119,8 @@ InstallMethod( SuslinLemma,
         
   function( row, pos_f, pos_g, j )
     local c, bool_inv, f, g, bj, pos_h, h, deg_h, e, af, ag, lc, a, R, T, TI;
+    
+    Info( InfoQuillenSuslin, 4, "Entering SuslinLemma for row" );
     
     if not NrRows( row ) = 1 then
         Error( "Number of rows should be 1\n" );
@@ -179,6 +188,8 @@ InstallMethod( SuslinLemma,
         SetIsRightInvertibleMatrix( row, bool_inv );
     fi;
     
+    Info( InfoQuillenSuslin, 4, "Leaving SuslinLemma for row" );
+    
     return [ row, T, TI, pos_h, bj ];
     
 end );
@@ -191,6 +202,8 @@ InstallMethod( Horrocks,
         
   function( row, o )
     local R, c, l, T, TI, pos, cols, a, resR, i, coeffs, j, H;
+    
+    Info( InfoQuillenSuslin, 4, "Entering Horrocks" );
     
     R := HomalgRing( row );
     
@@ -219,6 +232,8 @@ InstallMethod( Horrocks,
     pos := NonZeroColumns( row );
     
     if Length( pos ) = 1 and IsOne( MatElm( row, 1, pos[1] ) ) then
+        Info( InfoQuillenSuslin, 4, "Subidentity row achieved" );
+        Info( InfoQuillenSuslin, 4, "Leaving Horrocks" );
         return [ T, TI ];
     fi;
     
@@ -250,6 +265,7 @@ InstallMethod( Horrocks,
     o := l[4];
     
     H := Horrocks( row, o );
+    Info( InfoQuillenSuslin, 4, "Leaving Horrocks" );
     
     return [ T * H[1], H[2] * TI ];
     
@@ -265,6 +281,8 @@ InstallMethod( Patch,
   function( row, Vs, VIs )
     local R, globalR, quotR, Rz, quotRz, indets, y, z, n, DeltaI, d, i, D, dinv, yy, V;
     
+    Info( InfoQuillenSuslin, 4, "Entering Patch" );
+
     Vs := ShallowCopy( Vs );
     VIs := ShallowCopy( VIs );
     
@@ -325,6 +343,8 @@ InstallMethod( Patch,
     
     Assert( 4, ForAll( EntriesOfHomalgMatrix( ( globalR * row ) * V ), e -> Degree( e ) < 1 ) );
     
+    Info( InfoQuillenSuslin, 4, "Leaving Patch" );
+
     return HomalgRing( row ) * V;
     
 end );

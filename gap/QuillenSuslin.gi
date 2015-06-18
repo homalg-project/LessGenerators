@@ -26,6 +26,8 @@ InstallMethod( QuillenSuslin,
     local row_orig, S, noether, l, monic, u, U, monic_var_index, y, R, baseR,
           Delta1, I, o, H, m, R_m, row_m, H_m, V, row_new, T, c, P;
     
+    Info( InfoQuillenSuslin, 4, "Entering QuillenSuslin for row" );
+    
     row_orig := row;
     
     if not NrRows( row ) = 1 then
@@ -150,6 +152,8 @@ InstallMethod( QuillenSuslin,
         
         Assert( 4, row_orig * V = CertainRows( HomalgIdentityMatrix( NrColumns( row ), S ), [ 1 ] ) );
         
+        Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin row" );
+        
         return V;
     fi;
     
@@ -166,6 +170,8 @@ InstallMethod( QuillenSuslin,
     
     Assert( 4, row_orig * V = CertainRows( HomalgIdentityMatrix( NrColumns( row ), S ), [ 1 ] ) );
     
+    Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin for row" );
+    
     return V;
     
 end );
@@ -177,6 +183,8 @@ InstallMethod( QuillenSuslinUnipotent,
         
   function( _M )
     local M, m, n, R, V;
+    
+    Info( InfoQuillenSuslin, 4, "Entering QuillenSuslin-unipotent" );
     
     M := _M;
     
@@ -190,13 +198,17 @@ InstallMethod( QuillenSuslinUnipotent,
     R := HomalgRing( M );
     
     if m = 0 then
+        Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
         return HomalgIdentityMatrix( n, R );
     elif m = 1 then
         if n = 1 then
+            Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
             return RightInverse( M );
         elif n = 2 then
+            Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
             return RightInverse( CauchyBinetCompletion( M ) );
         fi;
+        Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
         return QuillenSuslin( M );
     elif m = 2 and n = 2 then
         return RightInverse( M );
@@ -222,6 +234,8 @@ InstallMethod( QuillenSuslinUnipotent,
     
     Assert( 4, IsZero( CertainColumns( _M * V, [ NrRows( _M ) + 1 .. NrRows( V ) ] ) ) );
     
+    Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
+    
     return V;
     
 end );
@@ -235,12 +249,15 @@ InstallMethod( QuillenSuslin,
   function( M )
     local m, n, R, V, E;
     
+    Info( InfoQuillenSuslin, 4, "Entering QuillenSuslin for matrix" );
+    
     m := NrRows( M );
     n := NrColumns( M );
     
     R := HomalgRing( M );
     
     if m = 0 then
+        Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin for matrix" );
         return HomalgIdentityMatrix( n, R );
     elif m = 1 then
         TryNextMethod( );
@@ -252,6 +269,8 @@ InstallMethod( QuillenSuslin,
     
     E := HomalgIdentityMatrix( n - m, R );
     V := V * DiagMat( [ RightInverse( CertainColumns( M, [ 1 .. m ] ) ), E ] );
+    
+    Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin for matrix" );
     
     return V;
     

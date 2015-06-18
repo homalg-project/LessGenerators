@@ -10,6 +10,9 @@
 ##
 #############################################################################
 
+DeclareInfoClass( "InfoQuillenSuslin" );
+SetInfoLevel( InfoQuillenSuslin, 1 );
+
 #! @Chapter Quillen-Suslin
 
 ####################################
