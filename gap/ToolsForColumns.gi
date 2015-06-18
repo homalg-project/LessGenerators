@@ -356,3 +356,102 @@ InstallMethod( EliminateAllButOneGcd1Rows,
     return [ V, VI ];
     
 end );
+
+##
+InstallMethod( GetPairOfGcd1PositionPerColumn,
+        "for a homalg Column matrix",
+        [ IsHomalgMatrix ],
+  function( col )
+    local n, i, j, l, R, W, WI;
+    
+    Info( InfoQuillenSuslin, 4, "Entering Get-Pair-Of-Gcd-1-Position-Per-Column" );
+    
+    if not NrColumns( col ) = 1 then 
+        TryNextMethod( );
+    fi;
+    
+    n := NrRows( col );
+    
+    for i in IteratorOfCombinations( [ 1 .. n ], 2 ) do
+        l := LeftInverse( CertainRows( col, i ) );
+        if not l = fail then
+            break;
+        fi;
+    od;
+    
+    if l = fail then
+        Info( InfoQuillenSuslin, 4, "None of the pairs are coprime" );
+        Info( InfoQuillenSuslin, 4, "Leaving Get-Pair-Of-Gcd-1-Position-Per-Column" );
+        return fail;
+    fi;
+    
+    Info( InfoQuillenSuslin, 4, "Coprime pair found" );
+    Info( InfoQuillenSuslin, 4, "Leaving Get-Pair-Of-Gcd-1-Position-Per-Column" );
+    
+    return [ l, i ];
+    
+end );
+
+##
+InstallMethod( EliminatePairOfGcd1PositionPerColumn,
+        "for a homalg column matrix",
+        [ IsHomalgMatrix ],
+  function( col )
+    local l, i, j, R, n, W, WI, T, P, V, VI;
+    
+    Info( InfoQuillenSuslin, 4, "Entering Eliminate-Pair-Of-Gcd-1-Position-Per-Column" );
+    
+    l := GetPairOfGcd1PositionPerColumn( col );
+    
+    if l = fail then
+        Info( InfoQuillenSuslin, 4, "Leaving Eliminate-Pair-Of-Gcd-1-Position-Per-Column" );
+        return fail;
+    fi;
+    
+    i := l[2][1];
+    j := l[2][2];
+    
+    l := l[1];
+    
+    R := HomalgRing( col );
+    n := NrRows( col );
+    
+    W := HomalgInitialIdentityMatrix( n, R );
+    WI := HomalgInitialIdentityMatrix( n, R );
+    
+    SetMatElm( W, i, i, MatElm( l, 1, 1 ) );
+    SetMatElm( W, i, j, MatElm( l, 1, 2 ) );
+    SetMatElm( W, j, i, -MatElm( col, j, 1 ) );
+    SetMatElm( W, j, j, MatElm( col, i, 1 ) );
+    
+    SetMatElm( WI, i, i, MatElm( col, i, 1 ) );
+    SetMatElm( WI, i, j, -MatElm( l, 1, 2 ) );
+    SetMatElm( WI, j, i, MatElm( col, j, 1 ) );
+    SetMatElm( WI, j, j, MatElm( l, 1, 1 ) );
+    
+    MakeImmutable( W );
+    MakeImmutable( WI );
+    
+    col := W * col;
+    
+    Assert( 4, IsOne( MatElm( col, i, 1 ) ) );
+    Assert( 4, IsZero( MatElm( col, j, 1 ) ) );
+    
+    T := CleanColumnUsingMonicUptoUnit( col, i );
+    
+    P := HomalgIdentityMatrix( n, R );
+    if not i = 1 then
+        P := CertainColumns( P, ListPerm( ( 1, i ), n ) );
+    fi;
+    
+    col := P * T[2] * col;
+    Assert( 4, IsOne( MatElm( col, 1, 1 ) ) );
+    Assert( 4, ZeroRows( col ) = [ 2 .. n ] );
+    
+    V := P * T[2] * W;
+    VI := WI * T[3] * P;
+    
+    Info( InfoQuillenSuslin, 4, "Leaving Eliminate-Pair-Of-Gcd-1-Position-Per-Row" );
+    return [ V, VI ];
+    
+end );

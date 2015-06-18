@@ -92,3 +92,26 @@ DeclareOperation( "GetAllButOneGcd1RowPosition",
 #! @Returns a list
 DeclareOperation( "EliminateAllButOneGcd1Rows",
         [ IsHomalgMatrix ] );
+
+#! @Description
+#!   Checks whether any two elements of <A>col</A> are coprime.
+#!   It returns a list [ <C>l</C>, [ <C>i</C>, <C>j</C> ] ] where
+#!   * <C>i</C> and  <C>j</C>-th elements are coprime with each other
+#!   * <C>l</C> is the syzygy of these two elements.
+#! @Arguments col
+#! @Returns a list
+DeclareOperation( "GetPairOfGcd1PositionPerColumn",
+        [ IsHomalgMatrix ] );
+
+#! @Description
+#!   If any two elements of <A>col</A> are coprime, then this function
+#!   cleans the <A>col</A> and returns the transformation matrix and
+#!   its inverse.
+#!   It returns a list of two matrices <C>U</C> and <C>UI</C> such that
+#!   <C>U</C> * <A>col</A> = Column( [ 1 0 0 ... 0 ] ) and the first column
+#!   of <C>UI</C> is the given column.
+#! @InsertSystem Eliminate-Pair-Of-Gcd-1-Position-Per-Column
+#! @Arguments col
+#! @Returns a list
+DeclareOperation( "EliminatePairOfGcd1PositionPerColumn",
+        [ IsHomalgMatrix ] );
