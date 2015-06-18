@@ -23,19 +23,3 @@ DeclareOperation( "CauchyBinetBaseChange",
 
 DeclareOperation( "CauchyBinetCompletion",
         [ IsHomalgMatrix ] );
-
-DeclareOperation( "GetAllButOneGcd1ColumnPosition",
-        [ IsHomalgMatrix, IsList, IsList ] );
-
-DeclareOperation( "GetAllButOneGcd1ColumnPosition",
-        [ IsHomalgMatrix ] );
-
-DeclareOperation( "EliminateAllButOneGcd1Columns",
-        [ IsHomalgMatrix, IsList, IsList ] );
-
-DeclareOperation( "GetFirstMonicOfSmallestDegree",
-        [ IsHomalgMatrix, IsInt ] );
-
-DeclareOperation( "CleanRowUsingMonicUptoUnit",
-        [ IsHomalgMatrix, IsInt ] );
-
