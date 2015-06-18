@@ -149,7 +149,7 @@ InstallMethod( QuillenSuslin,
         V := V * P;
         
         Assert( 4, row_orig * V = CertainRows( HomalgIdentityMatrix( NrColumns( row ), S ), [ 1 ] ) );
-
+        
         return V;
     fi;
     
