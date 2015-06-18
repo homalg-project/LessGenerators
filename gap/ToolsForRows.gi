@@ -16,104 +16,6 @@
 ####################################
 
 ##
-## Given row, and given list of n positions, checks whether any 
-## (n-1) elements of row at these positions generate unit ideal.
-##
-InstallMethod( GetAllButOneGcd1ColumnPosition,
-        "for homalg row matrices",
-        [ IsHomalgMatrix, IsList ],
-        
-  function( row, unclean_cols )
-    local lc, j, r, f, h;
-    
-    if not NrRows( row ) = 1 then 
-        TryNextMethod( );
-    fi;
-    
-    lc := Length( unclean_cols );
-    
-    for j in [ 1 .. lc ] do
-        r := ShallowCopy( unclean_cols );
-        Remove( r, j );
-        f := CertainColumns( row, r );
-        h := RightInverse( f );
-        
-        ## Eval(h) throws an error, if h = fail.
-        if not h = fail then
-            ## j = Except j-th entry, all other elements generate 1
-            ## r = list of positions of entries that generate 1
-            ## h = the right inverse of r-column
-            return [ j, r, h ];
-        fi;
-    od;
-
-    return fail;
-    
-end );
-
-##
-InstallMethod( GetAllButOneGcd1ColumnPosition,
-        "for homalg matrices",
-        [ IsHomalgMatrix ],
-        
-  function( row )
-    
-    if not NrRows( row ) = 1 then
-        TryNextMethod( );
-    fi;
-    
-    return GetAllButOneGcd1ColumnPosition( row, [ 1 .. NrColumns( row ) ] );
-    
-end );
-
-##
-InstallMethod( GetAllButOneGcd1ColumnPosition,
-        "for homalg matrices",
-        [ IsHomalgMatrix and IsZero ],
-        
-  function( M )
-    
-    return fail;
-    
-end );
-
-##
-InstallMethod( GetFirstMonicOfSmallestDegreeInRow,
-        "for a homalg row matrix and positive integer",
-        [ IsHomalgMatrix, IsInt ],
-  function( row, o )
-    local c, cols, deg_h, l, min;
-    
-    if NrRows( row ) > 1 then
-        Error( "only for row matrices\n" );
-    fi;
-    
-    c := NrColumns( row );
-    cols := [ 1 .. c ];
-    
-    deg_h := Degree( MatElm( row, 1, o ) );
-
-    l := List( cols, function( i )
-        local a, deg_a;
-        a := MatElm( row, 1, i );
-        deg_a := Degree( a );
-        
-        if deg_a < deg_h and IsMonic( a ) then
-            return deg_a;
-        fi;
-        return deg_h;
-    end );
-    
-    min := Minimum( l );
-    if min < deg_h then
-        o := Position( l, min );
-    fi;
-    
-    return o;
-    
-end );
-
-##
 InstallMethod( CleanRowUsingMonicUptoUnit,
         "for a homalg matrix and a positive integer",
         [ IsHomalgMatrix, IsPosInt ],
@@ -236,5 +138,103 @@ InstallMethod( CleanRowUsingMonicUptoUnit,
     fi;
     
     return [ row, R * l[2], R * l[3], l[4] ];
+    
+end );
+
+##
+## Given row, and given list of n positions, checks whether any 
+## (n-1) elements of row at these positions generate unit ideal.
+##
+InstallMethod( GetAllButOneGcd1ColumnPosition,
+        "for homalg row matrices",
+        [ IsHomalgMatrix, IsList ],
+        
+  function( row, unclean_cols )
+    local lc, j, r, f, h;
+    
+    if not NrRows( row ) = 1 then 
+        TryNextMethod( );
+    fi;
+    
+    lc := Length( unclean_cols );
+    
+    for j in [ 1 .. lc ] do
+        r := ShallowCopy( unclean_cols );
+        Remove( r, j );
+        f := CertainColumns( row, r );
+        h := RightInverse( f );
+        
+        ## Eval(h) throws an error, if h = fail.
+        if not h = fail then
+            ## j = Except j-th entry, all other elements generate 1
+            ## r = list of positions of entries that generate 1
+            ## h = the right inverse of r-column
+            return [ j, r, h ];
+        fi;
+    od;
+
+    return fail;
+    
+end );
+
+##
+InstallMethod( GetAllButOneGcd1ColumnPosition,
+        "for homalg matrices",
+        [ IsHomalgMatrix ],
+        
+  function( row )
+    
+    if not NrRows( row ) = 1 then
+        TryNextMethod( );
+    fi;
+    
+    return GetAllButOneGcd1ColumnPosition( row, [ 1 .. NrColumns( row ) ] );
+    
+end );
+
+##
+InstallMethod( GetAllButOneGcd1ColumnPosition,
+        "for homalg matrices",
+        [ IsHomalgMatrix and IsZero ],
+        
+  function( M )
+    
+    return fail;
+    
+end );
+
+##
+InstallMethod( GetFirstMonicOfSmallestDegreeInRow,
+        "for a homalg row matrix and positive integer",
+        [ IsHomalgMatrix, IsInt ],
+  function( row, o )
+    local c, cols, deg_h, l, min;
+    
+    if NrRows( row ) > 1 then
+        Error( "only for row matrices\n" );
+    fi;
+    
+    c := NrColumns( row );
+    cols := [ 1 .. c ];
+    
+    deg_h := Degree( MatElm( row, 1, o ) );
+
+    l := List( cols, function( i )
+        local a, deg_a;
+        a := MatElm( row, 1, i );
+        deg_a := Degree( a );
+        
+        if deg_a < deg_h and IsMonic( a ) then
+            return deg_a;
+        fi;
+        return deg_h;
+    end );
+    
+    min := Minimum( l );
+    if min < deg_h then
+        o := Position( l, min );
+    fi;
+    
+    return o;
     
 end );

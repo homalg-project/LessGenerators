@@ -22,6 +22,24 @@
 ##
 
 #! @Description
+#!   Checks whether there is any other monic of smaller degree than
+#!   <A>o</A>-th position element. If found, returns the position of
+#!   new monic, else returns <A>o</A>.
+#!   It returns the position of the monic.
+#! @Arguments col, o
+#! @Returns a positive integer
+DeclareOperation( "GetFirstMonicOfSmallestDegreeInColumn",
+        [ IsHomalgMatrix, IsInt ] );
+
+#! @Description
+#!   Cleans <A>col</A> using a monic at <A>o</A>-th position.
+#!   It returns a list with the modified column and transformation matrices.
+#! @Arguments col, o
+#! @Returns a list
+DeclareOperation( "CleanColumnUsingMonicUptoUnit",
+        [ IsHomalgMatrix, IsInt ] );
+
+#! @Description
 #!   Checks whether any $(n-1)$ elements among the $n$ <A>unclean_rows</A>
 #!   positions of <A>col</A> generate a unit ideal.
 #!   It returns a list [ <C>j</C>, <C>r</C>, <C>h</C> ] where
@@ -46,21 +64,3 @@ DeclareOperation( "GetAllButOneGcd1RowPosition",
 #! @Returns a list
 DeclareOperation( "GetAllButOneGcd1RowPosition",
         [ IsHomalgMatrix ] );
-
-#! @Description
-#!   Checks whether there is any other monic of smaller degree than
-#!   <A>o</A>-th position element. If found, returns the position of
-#!   new monic, else returns <A>o</A>.
-#!   It returns the position of the monic.
-#! @Arguments col, o
-#! @Returns a positive integer
-DeclareOperation( "GetFirstMonicOfSmallestDegreeInColumn",
-        [ IsHomalgMatrix, IsInt ] );
-
-#! @Description
-#!   Cleans <A>col</A> using a monic at <A>o</A>-th position.
-#!   It returns a list with the modified column and transformation matrices.
-#! @Arguments col, o
-#! @Returns a list
-DeclareOperation( "CleanColumnUsingMonicUptoUnit",
-        [ IsHomalgMatrix, IsInt ] );
