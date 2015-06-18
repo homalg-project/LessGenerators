@@ -178,6 +178,57 @@ InstallMethod( GetAllButOneGcd1ColumnPosition,
 end );
 
 ##
+## For each row in unclean_rows, apply GetAllButOneGcd1ColumnPosition
+##
+InstallMethod( GetAllButOneGcd1ColumnPosition,
+        "for homalg matrices",
+        [ IsHomalgMatrix, IsList, IsList ],
+        
+  function( M, unclean_rows, unclean_cols )
+    local l, i;
+    
+    if Length( unclean_rows ) = 1 then
+        l := GetAllButOneGcd1ColumnPosition( CertainRows( M, unclean_rows ), unclean_cols );
+        if not l = fail then
+            return [ l[1], l[2], l[3], unclean_rows[1] ];
+        fi;
+    fi;
+    
+    if Length( unclean_cols ) = 1 then
+        l := GetAllButOneGcd1RowPosition( CertainColumns( M, unclean_cols ), unclean_rows );
+        if not l = fail then
+            return [ l[1], l[2], l[3], unclean_cols[1] ];
+        fi;
+    fi;
+    
+    for i in unclean_rows do
+        l := GetAllButOneGcd1ColumnPosition( CertainRows( M, [ i ] ), unclean_cols );
+        
+        if not l = fail then            
+            ## i = the position of the row
+            ## j = Excet j-th entry, all other elements generate 1
+            ## r = list of positions of entries that generate 1
+            ## h = the right inverse of r-column of the i-th row
+            return [ l[1], l[2], l[3], i ];            
+        fi;
+    od;
+    
+    return fail;
+    
+end );
+
+##
+InstallMethod( GetAllButOneGcd1ColumnPosition,
+        "for homalg matrices",
+        [ IsHomalgMatrix ],
+        
+  function( M )
+    
+    return GetAllButOneGcd1ColumnPosition( M, [ 1 .. NrRows( M ) ], [ 1 .. NrColumns( M ) ] );
+    
+end );
+
+##
 InstallMethod( GetAllButOneGcd1ColumnPosition,
         "for homalg matrices",
         [ IsHomalgMatrix ],

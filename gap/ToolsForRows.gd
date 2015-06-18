@@ -52,6 +52,21 @@ DeclareOperation( "GetAllButOneGcd1ColumnPosition",
         [ IsHomalgMatrix, IsList ] );
 
 #! @Description
+#!   Checks whether any $(n-1)$ elements among the $n$ <A>unclean_cols</A>
+#!   positions of one of the rows among <A>unclean_rows</A> generate a
+#!   unit ideal.
+#!   It returns a list [ <C>j</C>, <C>r</C>, <C>h</C>, <C>i</C> ] where
+#!   * <C>j</C> = Except <C>j</C>-th entry, all other elements of the <C>i</C>-th
+#!                row generate $1$
+#!   * <C>r</C> = list of positions of entries that generate $1$
+#!   * <C>h</C> = the right inverse of <C>r</C>-subrow
+#!   * <C>i</C> = <C>i</C>-th row
+#! @Arguments M, unclean_rows, unclean_cols
+#! @Returns a list
+DeclareOperation( "GetAllButOneGcd1ColumnPosition",
+        [ IsHomalgMatrix, IsList, IsList ] );
+
+#! @Description
 #!   Checks whether any $(n-1)$ elements of some row of <A>M</A>
 #!   generate a unit ideal.
 #!   It returns a list [ <C>j</C>, <C>r</C>, <C>h</C>, <C>i</C> ] where
