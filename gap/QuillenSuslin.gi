@@ -16,7 +16,6 @@
 #
 ####################################
 
-
 ##
 InstallMethod( QuillenSuslin,
         "for a homalg matrix",
@@ -173,6 +172,90 @@ InstallMethod( QuillenSuslin,
     Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin for row" );
     
     return V;
+    
+end );
+
+##
+InstallMethod( QuillenSuslin,
+        "for a homalg matrix",
+        [ IsHomalgMatrix ],
+        
+  function( row )
+    local n, i, cols, l;
+    
+    Info( InfoQuillenSuslin, 4, "Entering QuillenSuslin-found-unit" );
+    
+    if not NrRows( row ) = 1 then
+        TryNextMethod( );
+    fi;
+    
+    n := NrColumns( row );
+    cols := [ 1 .. n ];
+    
+    ## Check whether the row contains a unit
+    i := First( [ 1 .. n ], i -> IsUnit( MatElm( row, 1, i ) ) );
+    
+    if i = fail then
+        TryNextMethod( );
+    fi;
+    
+    l := CleanRowUsingMonicUptoUnit( row, i );
+    
+    Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-found-unit" );
+    
+    return l[1];
+    
+end );
+
+##
+InstallMethod( QuillenSuslin,
+        "for a homalg matrix",
+        [ IsHomalgMatrix ],
+        
+  function( row )
+    local l;
+    
+    Info( InfoQuillenSuslin, 4, "Entering QuillenSuslin-GCD-pair" );
+    
+    if not NrRows( row ) = 1 then
+        TryNextMethod( );
+    fi;
+    
+    l := EliminatePairOfGcd1PositionPerRow( row );
+    
+    if l = fail then
+        TryNextMethod( );
+    fi;
+    
+    Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-GCD-pair" );
+    
+    return l[1];
+    
+end );
+
+##
+InstallMethod( QuillenSuslin,
+        "for a homalg matrix",
+        [ IsHomalgMatrix ],
+        
+  function( row )
+    local l;
+    
+    Info( InfoQuillenSuslin, 4, "Entering QuillenSuslin-GCD-all-but-1" );
+    
+    if not NrRows( row ) = 1 then
+        TryNextMethod( );
+    fi;
+    
+    l := EliminateAllButOneGcd1Columns( row );
+    
+    if l = fail then
+        TryNextMethod( );
+    fi;
+    
+    Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-GCD-all-but-1" );
+
+    return l[1];
     
 end );
 
