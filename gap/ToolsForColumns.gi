@@ -289,3 +289,70 @@ InstallMethod( GetFirstMonicOfSmallestDegreeInColumn,
     return o;
     
 end );
+
+##
+InstallMethod( EliminateAllButOneGcd1Rows,
+        "for homalg matrices",
+        [ IsHomalgMatrix ],
+        
+  function( col )
+    local l, R, n, W, WI, fj, colinv, i, gi, T, P, V, VI;
+    
+    Info( InfoQuillenSuslin, 4, "Entering Eliminate-All-But-1-Gcd-1-Row" );
+    
+    if not NrColumns( col ) = 1 then 
+        TryNextMethod( );
+    fi;
+    
+    l := GetAllButOneGcd1RowPosition( col );
+    
+    if l = fail then
+        return fail;
+    fi;
+    
+    R := HomalgRing( col );
+    
+    n := NrRows( col );
+    
+    W := HomalgInitialIdentityMatrix( n, R );
+    WI := HomalgInitialIdentityMatrix( n, R );
+    
+    fj := MatElm( col, l[1], 1 );
+    colinv := l[3];
+    
+    for i in [ 1 .. n ] do
+        if i < l[1] then
+            gi := (1 - fj) * MatElm( colinv, 1, i );
+            SetMatElm( W, l[1], i, gi );
+            SetMatElm( WI, l[1], i, -gi );
+        elif i > l[1] then
+            gi := (1 - fj) * MatElm( colinv, 1, i - 1 );
+            SetMatElm( W, l[1], i, gi );
+            SetMatElm( WI, l[1], i, -gi );
+        fi;
+    od;
+    MakeImmutable( W );
+    MakeImmutable( WI );
+    
+    col := W * col;
+    Assert( 4, IsOne( MatElm( col, l[1], 1 ) ) );
+    
+    T := CleanColumnUsingMonicUptoUnit( col, l[1] );
+    
+    P := HomalgIdentityMatrix( n, R );
+    if not l[1] = 1 then
+        P := CertainColumns( P, ListPerm( ( 1, l[1] ), n ) );
+    fi;
+    
+    col := P * T[2] * col;
+    Assert( 4, IsOne( MatElm( col, 1, 1 ) ) );
+    Assert( 4, ZeroRows( col ) = [ 2 .. n ] );
+    
+    V := P * T[2] * W;
+    VI := WI * T[3] * P;
+    
+    Info( InfoQuillenSuslin, 4, "Leaving Eliminate-All-But-1-Gcd-1-Row" );
+    
+    return [ V, VI ];
+    
+end );

@@ -79,3 +79,16 @@ DeclareOperation( "GetAllButOneGcd1RowPosition",
 #! @Returns a list
 DeclareOperation( "GetAllButOneGcd1RowPosition",
         [ IsHomalgMatrix ] );
+
+#! @Description
+#!   If any $(n-1)$ elements of the column generate $1$, then this function
+#!   cleans the <A>col</A> and returns the transformation matrix and its
+#!   inverse.
+#!   It returns a list of two matrices <C>U</C> and <C>UI</C> such that
+#!   <C>U</C> * <A>col</A> = Column( [ 1 0 0 ... 0 ] ) and the first column
+#!   of <C>UI</C> is the given column.
+#! @InsertSystem Eliminate-All-But-One-Gcd-1-Rows
+#! @Arguments col
+#! @Returns a list
+DeclareOperation( "EliminateAllButOneGcd1Rows",
+        [ IsHomalgMatrix ] );
