@@ -89,3 +89,40 @@ InstallMethod( CauchyBinetCompletion,
     return LeftInverseLazy( CauchyBinetBaseChange( M ) );
     
 end );
+
+##
+InstallGlobalFunction( InstallHeuristicForRightInverseOfARow,
+  function( heuristic )
+    local name;
+    
+    name := NameFunction( heuristic );
+    name := Concatenation( name, "AsRightInverse" );
+    
+    DeclareOperation( name, [ IsHomalgMatrix ] );
+    
+    InstallMethod( ValueGlobal( name ),
+            "for rows",
+            [ IsHomalgMatrix ],
+            
+      function( row )
+        local RI, U, V, l;
+        
+        RI := RightInverse( row );
+        
+        U := heuristic( RI );
+        
+        V := U[2];
+        U := U[1];
+        
+        row := row * V;
+        
+        l := CleanRowUsingMonicUptoUnit( row, 1 );
+        
+        Assert( 4, IsOne( MatElm( l[1], 1, 1 ) ) );
+        Assert( 4, ZeroRows( l[1] ) = [ 2 .. NrColumns( row ) ] );
+        
+        return [ V * l[2], l[3] * U ];
+        
+    end );
+    
+end );

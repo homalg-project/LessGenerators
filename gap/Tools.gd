@@ -23,3 +23,5 @@ DeclareOperation( "CauchyBinetBaseChange",
 
 DeclareOperation( "CauchyBinetCompletion",
         [ IsHomalgMatrix ] );
+
+DeclareGlobalFunction( "InstallHeuristicForRightInverseOfARow" );
