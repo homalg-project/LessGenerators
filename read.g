@@ -12,10 +12,6 @@
 
 ReadPackage( "LessGenerators", "gap/LessGenerators.gi" );
 
-ReadPackage( "LessGenerators", "gap/Horrocks.gi" );
-
-ReadPackage( "LessGenerators", "gap/QuillenSuslin.gi" );
-
 ReadPackage( "LessGenerators", "gap/Tools.gi" );
 
 ReadPackage( "LessGenerators", "gap/ToolsForRows.gi" );
@@ -23,3 +19,7 @@ ReadPackage( "LessGenerators", "gap/ToolsForRows.gi" );
 ReadPackage( "LessGenerators", "gap/ToolsForColumns.gi" );
 
 ReadPackage( "LessGenerators", "gap/SingularTools.gi" );
+
+ReadPackage( "LessGenerators", "gap/Horrocks.gi" );
+
+ReadPackage( "LessGenerators", "gap/QuillenSuslin.gi" );
