@@ -175,6 +175,62 @@ InstallMethod( QuillenSuslin,
     
 end );
 
+InstallHeuristicForRightInverseOfARow( EliminateAllButOneGcd1Rows );
+
+InstallHeuristicForRightInverseOfARow( EliminatePairOfGcd1PositionPerColumn );
+
+##
+InstallMethod( QuillenSuslin,
+        "for a homalg matrix",
+        [ IsHomalgMatrix ],
+        
+  function( row )
+    local l;
+    
+    Info( InfoQuillenSuslin, 4, "Entering QuillenSuslin-GCD-all-but-1-for-right-inverse" );
+    
+    if not NrRows( row ) = 1 then
+        TryNextMethod( );
+    fi;
+    
+    l := EliminateAllButOneGcd1RowsAsRightInverse( row );
+    
+    if l = fail then
+        TryNextMethod( );
+    fi;
+    
+    Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-GCD-all-but-1-for-right-inverse" );
+    
+    return l[1];
+    
+end );
+
+##
+InstallMethod( QuillenSuslin,
+        "for a homalg matrix",
+        [ IsHomalgMatrix ],
+        
+  function( row )
+    local l;
+    
+    Info( InfoQuillenSuslin, 4, "Entering QuillenSuslin-GCD-pair-for-right-inverse" );
+    
+    if not NrRows( row ) = 1 then
+        TryNextMethod( );
+    fi;
+    
+    l := EliminatePairOfGcd1PositionPerColumnAsRightInverse( row );
+    
+    if l = fail then
+        TryNextMethod( );
+    fi;
+    
+    Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-GCD-pair-for-right-inverse" );
+    
+    return l[1];
+    
+end );
+
 ##
 InstallMethod( QuillenSuslin,
         "for a homalg matrix",
