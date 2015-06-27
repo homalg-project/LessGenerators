@@ -115,3 +115,15 @@ DeclareOperation( "GetPairOfGcd1PositionPerRow",
 #! @Returns a list
 DeclareOperation( "EliminatePairOfGcd1PositionPerRow",
         [ IsHomalgMatrix ] );
+
+#! @Description
+#!   The <A>row</A> contains a unit, then this function cleans 
+#!   the <A>row</A> using this unit and return the transformation
+#!   matrices.
+#!   It returns a list of two matrices <C>V</C> and <C>VI</C> such that
+#!   <A>row</A> * <C>V</C> = [ 1 0 0 ... 0 ] and the first row
+#!   of <C>VI</C> is the given row.
+#! @Arguments row
+#! @Returns a list
+DeclareOperation( "EliminateUnitInARow",
+        [ IsHomalgMatrix ] );

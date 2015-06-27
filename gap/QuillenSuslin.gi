@@ -179,6 +179,8 @@ InstallHeuristicForRightInverseOfARow( EliminateAllButOneGcd1Rows );
 
 InstallHeuristicForRightInverseOfARow( EliminatePairOfGcd1PositionPerColumn );
 
+InstallHeuristicForRightInverseOfARow( EliminateUnitInAColumn );
+
 ##
 InstallMethod( QuillenSuslin,
         "for a homalg matrix",
@@ -230,6 +232,31 @@ InstallMethod( QuillenSuslin,
     return l[1];
     
 end );
+##
+InstallMethod( QuillenSuslin,
+        "for a homalg matrix",
+        [ IsHomalgMatrix ],
+        
+  function( row )
+    local l;
+    
+    Info( InfoQuillenSuslin, 4, "Entering QuillenSuslin-found-unit-in-right-inverse" );
+    
+    if not NrRows( row ) = 1 then
+        TryNextMethod( );
+    fi;
+    
+    l := EliminateUnitInAColumnAsRightInverse( row );
+    
+    if l = fail then
+        TryNextMethod( );
+    fi;
+    
+    Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-found-unit-in--right-inverse" );
+    
+    return l[1];
+    
+end );
 
 ##
 InstallMethod( QuillenSuslin,
@@ -245,17 +272,11 @@ InstallMethod( QuillenSuslin,
         TryNextMethod( );
     fi;
     
-    n := NrColumns( row );
-    cols := [ 1 .. n ];
+    l := EliminatePairOfGcd1PositionPerRow( row );
     
-    ## Check whether the row contains a unit
-    i := First( [ 1 .. n ], i -> IsUnit( MatElm( row, 1, i ) ) );
-    
-    if i = fail then
+    if l = fail then
         TryNextMethod( );
     fi;
-    
-    l := CleanRowUsingMonicUptoUnit( row, i );
     
     Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-found-unit" );
     

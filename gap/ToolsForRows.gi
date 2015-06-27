@@ -455,3 +455,29 @@ InstallMethod( EliminatePairOfGcd1PositionPerRow,
     return [ V, VI ];
     
 end );
+
+##
+InstallMethod( EliminateUnitInARow,
+        "for a homalg row matrix",
+        [ IsHomalgMatrix ],
+  function( row )
+    local l, i, j, R, n, W, WI, T, P, V, VI;
+    
+    Info( InfoQuillenSuslin, 4, "Entering Eliminate-unit-in-a-Row" );
+    
+    n := NrColumns( row );
+    cols := [ 1 .. n ];
+    
+    ## Check whether the row contains a unit
+    i := First( [ 1 .. n ], i -> IsUnit( MatElm( row, 1, i ) ) );
+    
+    if i = fail then
+        TryNextMethod( );
+    fi;
+    
+    l := CleanRowUsingMonicUptoUnit( row, i );
+    
+    Info( InfoQuillenSuslin, 4, "Leaving Eliminate-unit-in-a-Row" );
+    return [ l[2], l[2] ];
+    
+end );
