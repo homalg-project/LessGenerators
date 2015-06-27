@@ -461,7 +461,7 @@ InstallMethod( EliminateUnitInAColumn,
         "for a homalg column matrix",
         [ IsHomalgMatrix ],
   function( col )
-    local l, i, j, R, n, W, WI, T, P, V, VI;
+    local n, rows, i, l;
     
     Info( InfoQuillenSuslin, 4, "Entering Eliminate-unit-in-a-Column" );
     
@@ -469,7 +469,7 @@ InstallMethod( EliminateUnitInAColumn,
     rows := [ 1 .. n ];
     
     ## Check whether the col contains a unit
-    i := First( [ 1 .. n ], i -> IsUnit( MatElm( row, i, 1 ) ) );
+    i := First( [ 1 .. n ], i -> IsUnit( MatElm( col, i, 1 ) ) );
     
     if i = fail then
         TryNextMethod( );

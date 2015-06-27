@@ -461,7 +461,7 @@ InstallMethod( EliminateUnitInARow,
         "for a homalg row matrix",
         [ IsHomalgMatrix ],
   function( row )
-    local l, i, j, R, n, W, WI, T, P, V, VI;
+    local n, cols, i, l;
     
     Info( InfoQuillenSuslin, 4, "Entering Eliminate-unit-in-a-Row" );
     

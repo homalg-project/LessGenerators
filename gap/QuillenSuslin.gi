@@ -181,160 +181,18 @@ InstallHeuristicForRightInverseOfARow( EliminatePairOfGcd1PositionPerColumn );
 
 InstallHeuristicForRightInverseOfARow( EliminateUnitInAColumn );
 
-##
-InstallMethod( QuillenSuslin,
-        "for a homalg matrix",
-        [ IsHomalgMatrix ],
-        
-  function( row )
-    local l;
+InstallQuillenSuslinHeuristic( EliminateAllButOneGcd1Columns );
     
-    Info( InfoQuillenSuslin, 4, "Entering QuillenSuslin-GCD-all-but-1-for-right-inverse" );
-    
-    if not NrRows( row ) = 1 then
-        TryNextMethod( );
-    fi;
-    
-    l := EliminateAllButOneGcd1RowsAsRightInverse( row );
-    
-    if l = fail then
-        TryNextMethod( );
-    fi;
-    
-    Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-GCD-all-but-1-for-right-inverse" );
-    
-    return l[1];
-    
-end );
+InstallQuillenSuslinHeuristic( EliminateAllButOneGcd1RowsAsRightInverse );
 
-##
-InstallMethod( QuillenSuslin,
-        "for a homalg matrix",
-        [ IsHomalgMatrix ],
-        
-  function( row )
-    local l;
-    
-    Info( InfoQuillenSuslin, 4, "Entering QuillenSuslin-GCD-pair-for-right-inverse" );
-    
-    if not NrRows( row ) = 1 then
-        TryNextMethod( );
-    fi;
-    
-    l := EliminatePairOfGcd1PositionPerColumnAsRightInverse( row );
-    
-    if l = fail then
-        TryNextMethod( );
-    fi;
-    
-    Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-GCD-pair-for-right-inverse" );
-    
-    return l[1];
-    
-end );
-##
-InstallMethod( QuillenSuslin,
-        "for a homalg matrix",
-        [ IsHomalgMatrix ],
-        
-  function( row )
-    local l;
-    
-    Info( InfoQuillenSuslin, 4, "Entering QuillenSuslin-found-unit-in-right-inverse" );
-    
-    if not NrRows( row ) = 1 then
-        TryNextMethod( );
-    fi;
-    
-    l := EliminateUnitInAColumnAsRightInverse( row );
-    
-    if l = fail then
-        TryNextMethod( );
-    fi;
-    
-    Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-found-unit-in--right-inverse" );
-    
-    return l[1];
-    
-end );
+InstallQuillenSuslinHeuristic( EliminateUnitInARow );
 
-##
-InstallMethod( QuillenSuslin,
-        "for a homalg matrix",
-        [ IsHomalgMatrix ],
-        
-  function( row )
-    local n, i, cols, l;
-    
-    Info( InfoQuillenSuslin, 4, "Entering QuillenSuslin-found-unit" );
-    
-    if not NrRows( row ) = 1 then
-        TryNextMethod( );
-    fi;
-    
-    l := EliminatePairOfGcd1PositionPerRow( row );
-    
-    if l = fail then
-        TryNextMethod( );
-    fi;
-    
-    Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-found-unit" );
-    
-    return l[1];
-    
-end );
+InstallQuillenSuslinHeuristic( EliminateUnitInAColumnAsRightInverse );
 
-##
-InstallMethod( QuillenSuslin,
-        "for a homalg matrix",
-        [ IsHomalgMatrix ],
-        
-  function( row )
-    local l;
-    
-    Info( InfoQuillenSuslin, 4, "Entering QuillenSuslin-GCD-pair" );
-    
-    if not NrRows( row ) = 1 then
-        TryNextMethod( );
-    fi;
-    
-    l := EliminatePairOfGcd1PositionPerRow( row );
-    
-    if l = fail then
-        TryNextMethod( );
-    fi;
-    
-    Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-GCD-pair" );
-    
-    return l[1];
-    
-end );
+InstallQuillenSuslinHeuristic( EliminatePairOfGcd1PositionPerRow );
 
-##
-InstallMethod( QuillenSuslin,
-        "for a homalg matrix",
-        [ IsHomalgMatrix ],
-        
-  function( row )
-    local l;
-    
-    Info( InfoQuillenSuslin, 4, "Entering QuillenSuslin-GCD-all-but-1" );
-    
-    if not NrRows( row ) = 1 then
-        TryNextMethod( );
-    fi;
-    
-    l := EliminateAllButOneGcd1Columns( row );
-    
-    if l = fail then
-        TryNextMethod( );
-    fi;
-    
-    Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-GCD-all-but-1" );
+InstallQuillenSuslinHeuristic( EliminatePairOfGcd1PositionPerColumnAsRightInverse );
 
-    return l[1];
-    
-end );
 
 #! @Code QuillenSuslinUnipotent_code:matrix
 InstallMethod( QuillenSuslinUnipotent,
