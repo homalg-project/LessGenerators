@@ -115,3 +115,15 @@ DeclareOperation( "GetPairOfGcd1PositionPerColumn",
 #! @Returns a list
 DeclareOperation( "EliminatePairOfGcd1PositionPerColumn",
         [ IsHomalgMatrix ] );
+
+#! @Description
+#!   The <A>col</A> contains a unit, then this function cleans 
+#!   the <A>col</A> using this unit and return the transformation
+#!   matrices.
+#!   It returns a list of two matrices <C>U</C> and <C>UI</C> such that
+#!   <C>U</C> * <A>col</A> = Column( [ 1 0 0 ... 0 ] ) and the first column
+#!   of <C>UI</C> is the given column.
+#! @Arguments col
+#! @Returns a list
+DeclareOperation( "EliminateUnitInAColumn",
+        [ IsHomalgMatrix ] );

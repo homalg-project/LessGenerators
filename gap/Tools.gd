@@ -25,3 +25,5 @@ DeclareOperation( "CauchyBinetCompletion",
         [ IsHomalgMatrix ] );
 
 DeclareGlobalFunction( "InstallHeuristicForRightInverseOfARow" );
+
+DeclareGlobalFunction( "InstallQuillenSuslinHeuristic" );

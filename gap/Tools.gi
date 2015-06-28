@@ -126,3 +126,31 @@ InstallGlobalFunction( InstallHeuristicForRightInverseOfARow,
     end );
     
 end );
+##
+InstallGlobalFunction( InstallQuillenSuslinHeuristic,
+  function( heuristic )
+    local name;
+    
+    name := NameFunction( heuristic );
+    
+    InstallMethod( QuillenSuslin,
+            "for a homalg matrix",
+            [ IsHomalgMatrix ],
+            
+      function( row )
+        local l;
+        
+        Info( InfoQuillenSuslin, 4, Concatenation( "Entering ", name ) );
+        
+        l := heuristic( row );
+        
+        if l = fail then
+            TryNextMethod( );
+        fi;
+        
+        Info( InfoQuillenSuslin, 4, Concatenation( "Leaving ", name ) );
+        return l[1];
+        
+    end );
+    
+end );
