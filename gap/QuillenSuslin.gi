@@ -2,7 +2,7 @@
 ##
 ##  QuillenSuslin.gi                                  LessGenerators package
 ##
-##  Copyright 2007-2012, Mohamed Barakat, University of Kaiserslautern
+##  Copyright 2007-2015, Mohamed Barakat, University of Kaiserslautern
 ##                       Anna Fabiańska, RWTH-Aachen University
 ##                       Vinay Wagh, Indian Institute of Technology Guwahati
 ##
@@ -31,8 +31,6 @@ InstallMethod( QuillenSuslin,
     
     if not NrRows( row ) = 1 then
         TryNextMethod( );
-    elif not IsRightInvertibleMatrix( row ) then
-        Error( "the matrix is not right invertible\n" );
     fi;
     
     S := HomalgRing( row );
@@ -215,25 +213,22 @@ InstallMethod( QuillenSuslinUnipotent,
     
     R := HomalgRing( M );
     
-    if m = 0 then
-        Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
-        return HomalgIdentityMatrix( n, R );
-    elif m = 1 then
-        if n = 1 then
-            Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
-            return RightInverse( M );
-        elif n = 2 then
-            Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
-            return RightInverse( CauchyBinetCompletion( M ) );
-        fi;
-        Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
-        return QuillenSuslin( M );
-    elif m = 2 and n = 2 then
-        return RightInverse( M );
-    fi;
-    
     if not IsRightInvertibleMatrix( M ) then
         Error( "the matrix is not right invertible\n" );
+    fi;
+    
+    if m = 0 then
+        Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin for matrix" );
+        return HomalgIdentityMatrix( n, R );
+    elif m = n then
+        Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
+        return RightInverse( M );
+    elif m = n - 1 then
+        Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
+        return RightInverse( CauchyBinetCompletion( M ) );
+    elif m = 1 then
+        Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
+        return QuillenSuslin( M );
     fi;
     
     V := [ ];
@@ -273,6 +268,10 @@ InstallMethod( QuillenSuslin,
     n := NrColumns( M );
     
     R := HomalgRing( M );
+    
+    if not IsRightInvertibleMatrix( M ) then
+        Error( "the matrix is not right invertible\n" );
+    fi;
     
     if m = 0 then
         Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin for matrix" );

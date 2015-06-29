@@ -2,7 +2,7 @@
 ##
 ##  SingularTools.gi                                  LessGenerators package
 ##
-##  Copyright 2012, Mohamed Barakat, University of Kaiserslautern
+##  Copyright 2015, Mohamed Barakat, University of Kaiserslautern
 ##                  Vinay Wagh, Indian Institute of Technology Guwahati
 ##
 ##  Implementations for the rings provided by Singular.

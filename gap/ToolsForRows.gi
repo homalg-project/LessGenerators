@@ -2,7 +2,7 @@
 ##
 ##  ToolsForRows.gi                                   LessGenerators package
 ##
-##  Copyright 2012-2015, Mohamed Barakat, University of Kaiserslautern
+##  Copyright 2015-2015, Mohamed Barakat, University of Kaiserslautern
 ##                  Vinay Wagh, Indian Institute of Technology Guwahati
 ##
 ##  Implementations for tools for rows.

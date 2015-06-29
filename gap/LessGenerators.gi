@@ -2,7 +2,7 @@
 ##
 ##  LessGenerators.gi                                 LessGenerators package
 ##
-##  Copyright 2007-2012, Mohamed Barakat, University of Kaiserslautern
+##  Copyright 2007-2015, Mohamed Barakat, University of Kaiserslautern
 ##                       Anna Fabiańska, RWTH-Aachen University
 ##                       Vinay Wagh, Indian Institute of Technology Guwahati
 ##
