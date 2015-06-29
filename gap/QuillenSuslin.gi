@@ -31,8 +31,6 @@ InstallMethod( QuillenSuslin,
     
     if not NrRows( row ) = 1 then
         TryNextMethod( );
-    elif not IsRightInvertibleMatrix( row ) then
-        Error( "the matrix is not right invertible\n" );
     fi;
     
     S := HomalgRing( row );
@@ -273,6 +271,10 @@ InstallMethod( QuillenSuslin,
     n := NrColumns( M );
     
     R := HomalgRing( M );
+    
+    if not IsRightInvertibleMatrix( M ) then
+        Error( "the matrix is not right invertible\n" );
+    fi;
     
     if m = 0 then
         Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin for matrix" );
