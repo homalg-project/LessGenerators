@@ -213,25 +213,22 @@ InstallMethod( QuillenSuslinUnipotent,
     
     R := HomalgRing( M );
     
-    if m = 0 then
-        Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
-        return HomalgIdentityMatrix( n, R );
-    elif m = 1 then
-        if n = 1 then
-            Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
-            return RightInverse( M );
-        elif n = 2 then
-            Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
-            return RightInverse( CauchyBinetCompletion( M ) );
-        fi;
-        Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
-        return QuillenSuslin( M );
-    elif m = 2 and n = 2 then
-        return RightInverse( M );
-    fi;
-    
     if not IsRightInvertibleMatrix( M ) then
         Error( "the matrix is not right invertible\n" );
+    fi;
+    
+    if m = 0 then
+        Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin for matrix" );
+        return HomalgIdentityMatrix( n, R );
+    elif m = n then
+        Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
+        return RightInverse( M );
+    elif m = n - 1 then
+        Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
+        return RightInverse( CauchyBinetCompletion( M ) );
+    elif m = 1 then
+        Info( InfoQuillenSuslin, 4, "Leaving QuillenSuslin-unipotent" );
+        return QuillenSuslin( M );
     fi;
     
     V := [ ];
