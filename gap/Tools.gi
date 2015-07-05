@@ -98,7 +98,8 @@ InstallGlobalFunction( InstallHeuristicForRightInverseOfARow,
     name := NameFunction( heuristic );
     name := Concatenation( name, "AsRightInverse" );
     
-    DeclareOperation( name, [ IsHomalgMatrix ] );
+    # Declaration moved to QuillenSuslin.gd
+    # DeclareOperation( name, [ IsHomalgMatrix ] );
     
     InstallMethod( ValueGlobal( name ),
             "for rows",
