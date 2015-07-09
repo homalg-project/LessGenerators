@@ -279,7 +279,7 @@ InstallMethod( Patch,
         # The list of V's obtained by Horrocks
         # The list of VI's obtained by Horrocks
   function( row, Vs, VIs )
-    local R, globalR, quotR, Rz, quotRz, indets, y, z, n, DeltaI, d, i, D, dinv, yy, V;
+    local R, globalR, fracR, Rz, fracRz, indets, y, z, n, DeltaI, d, i, D, dinv, yy, V;
     
     Info( InfoQuillenSuslin, 4, "Entering Patch" );
 
@@ -293,16 +293,16 @@ InstallMethod( Patch,
     globalR := AssociatedGlobalRing( R );
     
     ## k(x)[y]
-    quotR := AssociatedComputationRing( R );
+    fracR := AssociatedComputationRing( R );
     
     ## (k[x]_<x>)[y,z]
     Rz := R * "z__";
     
     ## k(x)[y,z]
-    quotRz := AssociatedComputationRing( Rz );
+    fracRz := AssociatedComputationRing( Rz );
     
     ## [y,z]
-    indets := Indeterminates( quotRz );
+    indets := Indeterminates( fracRz );
     
     Assert( 0, Length( indets ) = 2 );
     
@@ -316,18 +316,18 @@ InstallMethod( Patch,
     
     for i in [ 1 .. n ] do
         
-        Vs[i] := quotRz * Vs[i];
-        VIs[i] := quotRz * VIs[i];
+        Vs[i] := fracRz * Vs[i];
+        VIs[i] := fracRz * VIs[i];
         
         DeltaI[i] := Vs[i] * Value( VIs[i], y, y + z );
         d[i] := Denominator( Rz * DeltaI[i] );
-        d[i] := d[i] / quotRz;
+        d[i] := d[i] / fracRz;
         
     od;
     
-    D := HomalgMatrix( d, 1, Length( d ), quotRz );
+    D := HomalgMatrix( d, 1, Length( d ), fracRz );
     
-    dinv := quotRz * RightInverse( globalR * D );
+    dinv := fracRz * RightInverse( globalR * D );
     dinv := EntriesOfHomalgMatrix( dinv );
     
     yy := y;
