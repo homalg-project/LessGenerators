@@ -112,6 +112,10 @@ InstallGlobalFunction( InstallHeuristicForRightInverseOfARow,
         
         U := heuristic( RI );
         
+        if U = fail then
+            return fail;
+        fi;
+        
         V := U[2];
         U := U[1];
         
