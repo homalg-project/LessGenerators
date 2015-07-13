@@ -472,7 +472,7 @@ InstallMethod( EliminateUnitInAColumn,
     i := First( [ 1 .. n ], i -> IsUnit( MatElm( col, i, 1 ) ) );
     
     if i = fail then
-        TryNextMethod( );
+        return fail;
     fi;
     
     l := CleanColumnUsingMonicUptoUnit( col, i );

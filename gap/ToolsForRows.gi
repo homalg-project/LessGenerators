@@ -472,7 +472,7 @@ InstallMethod( EliminateUnitInARow,
     i := First( [ 1 .. n ], i -> IsUnit( MatElm( row, 1, i ) ) );
     
     if i = fail then
-        TryNextMethod( );
+        return fail;
     fi;
     
     l := CleanRowUsingMonicUptoUnit( row, i );
