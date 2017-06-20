@@ -32,7 +32,7 @@ Subtitle := "Find smaller generating sets for modules",
 Version := Maximum( [
   "2015.07.03", ## Mohamed's version
 ## this line prevents merge conflicts
-  "2015.06.28", ## Vinay's version
+  "2017.06.21", ## Vinay's version
 ## this line prevents merge conflicts
   "2013.11.06", ## Sebas' version
 ] ),
@@ -285,11 +285,11 @@ Dependencies := rec(
   # without these, the package will not load
   NeededOtherPackages := [
                       [ "AutoDoc", ">= 2013.08.07" ],
-                      [ "Modules", ">= 2013.07.05" ],
+                      [ "Modules", ">= 2017.06.19" ],
                       [ "homalg", ">= 2012.05.18" ],
-                      [ "RingsForHomalg", ">= 2013.07.16" ],
+                      [ "RingsForHomalg", ">= 2017.06.21" ],
                       [ "LocalizeRingForHomalg", ">= 2013.07.15" ],
-                      [ "MatricesForHomalg", ">= 2013.07.21" ],
+                      [ "MatricesForHomalg", ">= 2017.06.21" ],
                       [ "GAPDoc", ">= 1.1" ]
                       ],
   # without these the package will issue a warning while loading
