@@ -60,3 +60,9 @@ DeclareOperation( "EliminateUnitInAColumnAsRightInverse",
 #! @Returns a list
 DeclareOperation( "EliminatePairOfGcd1PositionPerColumnAsRightInverse",
                   [ IsHomalgMatrix ] );
+
+DeclareOperation( "IsOneInLocalizationZxReturnUnit",
+        [ IsHomalgModule ] );
+
+DeclareOperation( "IsZeroInLocalizationZx",
+        [ IsHomalgModule ] );

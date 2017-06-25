@@ -159,3 +159,75 @@ InstallGlobalFunction( InstallQuillenSuslinHeuristic,
     end );
     
 end );
+
+## Reurns a monic generator of the given ideal I or false
+##
+InstallMethod( IsOneInLocalizationZxReturnUnit,
+        "for homalg ideals",
+        [ IsFinitelyPresentedSubmoduleRep and ConstructedAsAnIdeal ],
+        
+  function( I )
+    local R, A, indets, S, gen;
+    
+    R := HomalgRing( I );
+    
+    if IsZero( I ) then
+        return false;
+    fi;
+    
+    if IsOne( I ) then
+        return One( R );
+    fi;
+    
+    if not ( IsPolynomialRing( R ) or HasIndeterminatesOfPolynomialRing( R ) or HasCoefficientsRing( R ) ) then
+        TryNextMethod();
+    fi;
+    
+    A := CoefficientsRing( R );
+    
+    if not ( HasIsIntegersForHomalg( A ) and IsIntegersForHomalg( A ) ) then
+        TryNextMethod( );
+    fi;
+    
+    indets := Indeterminates( R );
+    
+    S := A * indets;
+    
+    for gen in EntriesOfHomalgMatrix( S * MatrixOfSubobjectGenerators( I ) ) do
+        if IsUnit( LeadingCoefficient( gen ) )  then
+            return gen / R;
+        fi;
+    od;
+    
+    return false;
+    
+ end );
+
+## Reurns true if the module is zero in the localization Z(X), otherwise false
+##
+InstallMethod( IsZeroInLocalizationZx,
+        "for homalg modules",
+        [ IsHomalgModule ],
+        
+  function( M )
+    local R, A;
+    
+    R := HomalgRing( M );
+    
+    if not ( IsPolynomialRing( R ) or HasIndeterminatesOfPolynomialRing( R ) or HasCoefficientsRing( R ) ) then
+        TryNextMethod();
+    fi;
+    
+    A := CoefficientsRing( R );
+    
+    if not ( HasIsIntegersForHomalg( A ) and IsIntegersForHomalg( A ) ) then
+        TryNextMethod( );
+    fi;
+    
+    if IsZero( M ) then
+        return true;
+    fi;
+    
+    return not IsBool( IsOneInLocalizationZxReturnUnit( Annihilator( M ) ) );
+    
+end );
