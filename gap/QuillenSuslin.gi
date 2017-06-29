@@ -192,7 +192,7 @@ InstallQuillenSuslinHeuristic( EliminatePairOfGcd1PositionPerRow );
 InstallQuillenSuslinHeuristic( EliminatePairOfGcd1PositionPerColumnAsRightInverse );
 
 
-#! @Code QuillenSuslinUnipotent_code:matrix
+#! @BeginCode QuillenSuslinUnipotent_code:matrix
 InstallMethod( QuillenSuslinUnipotent,
         "for a homalg matrix",
         [ IsHomalgMatrix ],
@@ -254,7 +254,7 @@ InstallMethod( QuillenSuslinUnipotent,
 end );
 #! @EndCode
 
-#! @Code QuillenSuslin_code:matrix
+#! @BeginCode QuillenSuslin_code:matrix
 InstallMethod( QuillenSuslin,
         "for a homalg matrix",
         [ IsHomalgMatrix ],
