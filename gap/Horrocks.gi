@@ -112,7 +112,7 @@ InstallMethod( SuslinLemma,
     
 end );
 
-#! @Code SuslinLemmaCode:4arg
+#! @BeginCode SuslinLemmaCode:4arg
 InstallMethod( SuslinLemma,
         "for a homalg matrix and three integers",
         [ IsHomalgMatrix, IsInt, IsInt, IsInt ],
