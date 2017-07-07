@@ -66,7 +66,12 @@ InstallMethod( QuillenSuslin,
     
     # l[1] is the monic (upto a unit) element in a univariate polynomial ring over a base ring
     R := HomalgRing( monic );
-    baseR := BaseRing( R );
+    
+    if HasBaseRing( R ) then
+        baseR := BaseRing( R );
+    else
+        baseR := CoefficientsRing( R );
+    fi;
     
     Delta1 := Zero( baseR );
     
