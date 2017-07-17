@@ -36,7 +36,7 @@ DeclareGlobalFunction( "InstallQuillenSuslinHeuristic" );
 #!   of <C>VI</C> is the given row.
 #! @Arguments row
 #! @Returns a list
-DeclareOperation( "EliminateAllButOneGcd1RowsAsRightInverse",
+DeclareOperation( "EliminateIfRowObsoleteForUnimodularityAsRightInverse",
                   [ IsHomalgMatrix ] );
 
 #! @Description
@@ -58,7 +58,7 @@ DeclareOperation( "EliminateUnitInAColumnAsRightInverse",
 #!   of <C>VI</C> is the given row.
 #! @Arguments row
 #! @Returns a list
-DeclareOperation( "EliminatePairOfGcd1PositionPerColumnAsRightInverse",
+DeclareOperation( "EliminateUnimodularPairPositionPerColumnAsRightInverse",
                   [ IsHomalgMatrix ] );
 
 DeclareOperation( "IsOneInLocalizationZxReturnUnit",

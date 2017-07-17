@@ -178,23 +178,23 @@ InstallMethod( QuillenSuslin,
     
 end );
 
-InstallHeuristicForRightInverseOfARow( EliminateAllButOneGcd1Rows );
+InstallHeuristicForRightInverseOfARow( EliminateIfRowObsoleteForUnimodularity );
 
-InstallHeuristicForRightInverseOfARow( EliminatePairOfGcd1PositionPerColumn );
+InstallHeuristicForRightInverseOfARow( EliminateUnimodularPairPositionPerColumn );
 
 InstallHeuristicForRightInverseOfARow( EliminateUnitInAColumn );
 
-InstallQuillenSuslinHeuristic( EliminateAllButOneGcd1Columns );
+InstallQuillenSuslinHeuristic( EliminateIfColumnObsoleteForUnimodularity );
     
-InstallQuillenSuslinHeuristic( EliminateAllButOneGcd1RowsAsRightInverse );
+InstallQuillenSuslinHeuristic( EliminateIfRowObsoleteForUnimodularityAsRightInverse );
 
 InstallQuillenSuslinHeuristic( EliminateUnitInARow );
 
 InstallQuillenSuslinHeuristic( EliminateUnitInAColumnAsRightInverse );
 
-InstallQuillenSuslinHeuristic( EliminatePairOfGcd1PositionPerRow );
+InstallQuillenSuslinHeuristic( EliminateUnimodularPairPositionPerRow );
 
-InstallQuillenSuslinHeuristic( EliminatePairOfGcd1PositionPerColumnAsRightInverse );
+InstallQuillenSuslinHeuristic( EliminateUnimodularPairPositionPerColumnAsRightInverse );
 
 
 #! @BeginCode QuillenSuslinUnipotent_code:matrix

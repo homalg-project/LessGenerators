@@ -1,4 +1,4 @@
-#! @System Eliminate-All-But-One-Gcd-1-Columns
+#! @System Eliminate-If-Obsolete-For-Unimodularity-Columns
 
 LoadPackage( "LessGenerators" );
 
@@ -24,7 +24,7 @@ row := HomalgMatrix( "[ \
   ]", 1, 5, R );
 #! <A 1 x 5 matrix over an external ring>
 
-EliminateAllButOneGcd1Columns( row );
+EliminateIfColumnObsoleteForUnimodularity( row );
 #! [ <An unevaluated 5 x 5 matrix over an external ring>, 
 #!   <An unevaluated 5 x 5 matrix over an external ring> ]
 
@@ -35,7 +35,7 @@ Assert( 4, CertainRows( l[2], [ 1 ] ) = row );
 #! @EndExample
 
 
-#! @System Eliminate-All-But-One-Gcd-1-Rows
+#! @System Eliminate-If-Obsolete-For-Unimodularity-Rows
 
 LoadPackage( "LessGenerators" );
 
@@ -61,7 +61,7 @@ col := HomalgMatrix( "[ \
   ]", 5, 1, R );
 #! <A 5 x 1 matrix over an external ring>
 
-l := EliminateAllButOneGcd1Rows( col );
+l := EliminateIfRowObsoleteForUnimodularity( col );
 #! [ <An unevaluated 5 x 5 matrix over an external ring>, 
 #!   <An unevaluated 5 x 5 matrix over an external ring> ]
 

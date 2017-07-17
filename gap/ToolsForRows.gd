@@ -48,7 +48,7 @@ DeclareOperation( "CleanRowUsingMonicUptoUnit",
 #!   * <C>h</C> = the right inverse of <C>r</C>-subrow
 #! @Arguments row, unclean_cols
 #! @Returns a list
-DeclareOperation( "GetAllButOneGcd1ColumnPosition",
+DeclareOperation( "GetObsoleteColumnForUnimodularity",
         [ IsHomalgMatrix, IsList ] );
 
 #! @Description
@@ -63,7 +63,7 @@ DeclareOperation( "GetAllButOneGcd1ColumnPosition",
 #!   * <C>i</C> = <C>i</C>-th row
 #! @Arguments M, unclean_rows, unclean_cols
 #! @Returns a list
-DeclareOperation( "GetAllButOneGcd1ColumnPosition",
+DeclareOperation( "GetObsoleteColumnForUnimodularity",
         [ IsHomalgMatrix, IsList, IsList ] );
 
 #! @Description
@@ -77,7 +77,7 @@ DeclareOperation( "GetAllButOneGcd1ColumnPosition",
 #!   * <C>i</C> = <C>i</C>-th row
 #! @Arguments M
 #! @Returns a list
-DeclareOperation( "GetAllButOneGcd1ColumnPosition",
+DeclareOperation( "GetObsoleteColumnForUnimodularity",
         [ IsHomalgMatrix ] );
 
 #! @Description
@@ -87,10 +87,10 @@ DeclareOperation( "GetAllButOneGcd1ColumnPosition",
 #!   It returns a list of two matrices <C>V</C> and <C>VI</C> such that
 #!   <A>row</A> * <C>V</C> = [ 1 0 0 ... 0 ] and the first row
 #!   of <C>VI</C> is the given row.
-#! @InsertSystem Eliminate-All-But-One-Gcd-1-Columns
+#! @InsertSystem Eliminate-If-Obsolete-For-Unimodularity-Columns
 #! @Arguments row
 #! @Returns a list
-DeclareOperation( "EliminateAllButOneGcd1Columns",
+DeclareOperation( "EliminateIfColumnObsoleteForUnimodularity",
         [ IsHomalgMatrix ] );
 
 #! @Description
@@ -100,7 +100,7 @@ DeclareOperation( "EliminateAllButOneGcd1Columns",
 #!   * <C>l</C> is the syzygy of these two elements.
 #! @Arguments row
 #! @Returns a list
-DeclareOperation( "GetPairOfGcd1PositionPerRow",
+DeclareOperation( "GetUnimodularPairPositionPerRow",
         [ IsHomalgMatrix ] );
 
 #! @Description
@@ -110,10 +110,10 @@ DeclareOperation( "GetPairOfGcd1PositionPerRow",
 #!   It returns a list of two matrices <C>V</C> and <C>VI</C> such that
 #!   <A>row</A> * <C>V</C> = [ 1 0 0 ... 0 ] and the first row
 #!   of <C>VI</C> is the given row.
-#! @InsertSystem Eliminate-Pair-Of-Gcd-1-Position-Per-Row
+#! @InsertSystem Eliminate-Unimodular-Pair-Position-Per-Row
 #! @Arguments row
 #! @Returns a list
-DeclareOperation( "EliminatePairOfGcd1PositionPerRow",
+DeclareOperation( "EliminateUnimodularPairPositionPerRow",
         [ IsHomalgMatrix ] );
 
 #! @Description

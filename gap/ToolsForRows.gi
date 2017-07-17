@@ -145,7 +145,7 @@ end );
 ## Given row, and given list of n positions, checks whether any 
 ## (n-1) elements of row at these positions generate unit ideal.
 ##
-InstallMethod( GetAllButOneGcd1ColumnPosition,
+InstallMethod( GetObsoleteColumnForUnimodularity,
         "for homalg row matrices",
         [ IsHomalgMatrix, IsList ],
         
@@ -178,9 +178,9 @@ InstallMethod( GetAllButOneGcd1ColumnPosition,
 end );
 
 ##
-## For each row in unclean_rows, apply GetAllButOneGcd1ColumnPosition
+## For each row in unclean_rows, apply GetObsoleteColumnForUnimodularity
 ##
-InstallMethod( GetAllButOneGcd1ColumnPosition,
+InstallMethod( GetObsoleteColumnForUnimodularity,
         "for homalg matrices",
         [ IsHomalgMatrix, IsList, IsList ],
         
@@ -188,21 +188,21 @@ InstallMethod( GetAllButOneGcd1ColumnPosition,
     local l, i;
     
     if Length( unclean_rows ) = 1 then
-        l := GetAllButOneGcd1ColumnPosition( CertainRows( M, unclean_rows ), unclean_cols );
+        l := GetObsoleteColumnForUnimodularity( CertainRows( M, unclean_rows ), unclean_cols );
         if not l = fail then
             return [ l[1], l[2], l[3], unclean_rows[1] ];
         fi;
     fi;
     
     if Length( unclean_cols ) = 1 then
-        l := GetAllButOneGcd1RowPosition( CertainColumns( M, unclean_cols ), unclean_rows );
+        l := GetObsoleteRowForUnimodularity( CertainColumns( M, unclean_cols ), unclean_rows );
         if not l = fail then
             return [ l[1], l[2], l[3], unclean_cols[1] ];
         fi;
     fi;
     
     for i in unclean_rows do
-        l := GetAllButOneGcd1ColumnPosition( CertainRows( M, [ i ] ), unclean_cols );
+        l := GetObsoleteColumnForUnimodularity( CertainRows( M, [ i ] ), unclean_cols );
         
         if not l = fail then            
             ## i = the position of the row
@@ -218,18 +218,18 @@ InstallMethod( GetAllButOneGcd1ColumnPosition,
 end );
 
 ##
-InstallMethod( GetAllButOneGcd1ColumnPosition,
+InstallMethod( GetObsoleteColumnForUnimodularity,
         "for homalg matrices",
         [ IsHomalgMatrix ],
         
   function( M )
     
-    return GetAllButOneGcd1ColumnPosition( M, [ 1 .. NrRows( M ) ], [ 1 .. NrColumns( M ) ] );
+    return GetObsoleteColumnForUnimodularity( M, [ 1 .. NrRows( M ) ], [ 1 .. NrColumns( M ) ] );
     
 end );
 
 ##
-InstallMethod( GetAllButOneGcd1ColumnPosition,
+InstallMethod( GetObsoleteColumnForUnimodularity,
         "for homalg matrices",
         [ IsHomalgMatrix ],
         
@@ -239,12 +239,12 @@ InstallMethod( GetAllButOneGcd1ColumnPosition,
         TryNextMethod( );
     fi;
     
-    return GetAllButOneGcd1ColumnPosition( row, [ 1 .. NrColumns( row ) ] );
+    return GetObsoleteColumnForUnimodularity( row, [ 1 .. NrColumns( row ) ] );
     
 end );
 
 ##
-InstallMethod( GetAllButOneGcd1ColumnPosition,
+InstallMethod( GetObsoleteColumnForUnimodularity,
         "for homalg matrices",
         [ IsHomalgMatrix and IsZero ],
         
@@ -291,20 +291,20 @@ InstallMethod( GetFirstMonicOfSmallestDegreeInRow,
 end );
 
 ##
-InstallMethod( EliminateAllButOneGcd1Columns,
+InstallMethod( EliminateIfColumnObsoleteForUnimodularity,
         "for homalg matrices",
         [ IsHomalgMatrix ],
         
   function( row )
     local l, R, n, W, WI, fj, rowinv, i, gi, T, P, V, VI;
     
-    Info( InfoQuillenSuslin, 4, "Entering Eliminate-All-But-1-Gcd-1-Column" );
+    Info( InfoQuillenSuslin, 4, "Entering Eliminate-If-Obsolete-For-Unimodularity-Column" );
     
     if not NrRows( row ) = 1 then 
         TryNextMethod( );
     fi;
     
-    l := GetAllButOneGcd1ColumnPosition( row );
+    l := GetObsoleteColumnForUnimodularity( row );
     
     if l = fail then
         return fail;
@@ -351,20 +351,20 @@ InstallMethod( EliminateAllButOneGcd1Columns,
     V := W * T[2] * P;
     VI := P * T[3] * WI;
     
-    Info( InfoQuillenSuslin, 4, "Leaving Eliminate-All-But-1-Gcd-1-Column" );
+    Info( InfoQuillenSuslin, 4, "Leaving Eliminate-If-Obsolete-For-Unimodularity-Column" );
     
     return [ V, VI ];
     
 end );
 
 ##
-InstallMethod( GetPairOfGcd1PositionPerRow,
+InstallMethod( GetUnimodularPairPositionPerRow,
         "for a homalg row matrix",
         [ IsHomalgMatrix ],
   function( row )
     local n, i, j, l, R, W, WI;
     
-    Info( InfoQuillenSuslin, 4, "Entering Get-Pair-Of-Gcd-1-Position-Per-Row" );
+    Info( InfoQuillenSuslin, 4, "Entering Get-Unimodular-Pair-Position-Per-Row" );
     
     if not NrRows( row ) = 1 then 
         TryNextMethod( );
@@ -381,30 +381,30 @@ InstallMethod( GetPairOfGcd1PositionPerRow,
     
     if l = fail then
         Info( InfoQuillenSuslin, 4, "None of the pairs are coprime" );
-        Info( InfoQuillenSuslin, 4, "Leaving Get-Pair-Of-Gcd-1-Position-Per-Row" );
+        Info( InfoQuillenSuslin, 4, "Leaving Get-Unimodular-Pair-Position-Per-Row" );
         return fail;
     fi;
     
     Info( InfoQuillenSuslin, 4, "Coprime pair found" );
-    Info( InfoQuillenSuslin, 4, "Leaving Get-Pair-Of-Gcd-1-Position-Per-Row" );
+    Info( InfoQuillenSuslin, 4, "Leaving Get-Unimodular-Pair-Position-Per-Row" );
     
     return [ l, i ];
     
 end );
 
 ##
-InstallMethod( EliminatePairOfGcd1PositionPerRow,
+InstallMethod( EliminateUnimodularPairPositionPerRow,
         "for a homalg row matrix",
         [ IsHomalgMatrix ],
   function( row )
     local l, i, j, R, n, W, WI, T, P, V, VI;
     
-    Info( InfoQuillenSuslin, 4, "Entering Eliminate-Pair-Of-Gcd-1-Position-Per-Row" );
+    Info( InfoQuillenSuslin, 4, "Entering Eliminate-Unimodular-Pair-Position-Per-Row" );
     
-    l := GetPairOfGcd1PositionPerRow( row );
+    l := GetUnimodularPairPositionPerRow( row );
     
     if l = fail then
-        Info( InfoQuillenSuslin, 4, "Leaving Eliminate-Pair-Of-Gcd-1-Position-Per-Row" );
+        Info( InfoQuillenSuslin, 4, "Leaving Eliminate-Unimodular-Pair-Position-Per-Row" );
         return fail;
     fi;
     
@@ -451,7 +451,7 @@ InstallMethod( EliminatePairOfGcd1PositionPerRow,
     V := W * T[2] * P;
     VI := P * T[3] * WI;
     
-    Info( InfoQuillenSuslin, 4, "Leaving Eliminate-Pair-Of-Gcd-1-Position-Per-Row" );
+    Info( InfoQuillenSuslin, 4, "Leaving Eliminate-Unimodular-Pair-Position-Per-Row" );
     return [ V, VI ];
     
 end );

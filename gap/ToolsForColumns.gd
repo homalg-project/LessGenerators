@@ -48,7 +48,7 @@ DeclareOperation( "CleanColumnUsingMonicUptoUnit",
 #!   * <C>h</C> = the left inverse of <C>r</C>-subcolumn
 #! @Arguments col, unclean_rows
 #! @Returns a list
-DeclareOperation( "GetAllButOneGcd1RowPosition",
+DeclareOperation( "GetObsoleteRowForUnimodularity",
         [ IsHomalgMatrix, IsList ] );
 
 #! @Description
@@ -63,7 +63,7 @@ DeclareOperation( "GetAllButOneGcd1RowPosition",
 #!   * <C>i</C> = <C>i</C>-th column
 #! @Arguments M, unclean_cols, unclean_rows
 #! @Returns a list
-DeclareOperation( "GetAllButOneGcd1RowPosition",
+DeclareOperation( "GetObsoleteRowForUnimodularity",
         [ IsHomalgMatrix, IsList, IsList ] );
 
 #! @Description
@@ -77,7 +77,7 @@ DeclareOperation( "GetAllButOneGcd1RowPosition",
 #!   * <C>i</C> = <C>i</C>-th column
 #! @Arguments M
 #! @Returns a list
-DeclareOperation( "GetAllButOneGcd1RowPosition",
+DeclareOperation( "GetObsoleteRowForUnimodularity",
         [ IsHomalgMatrix ] );
 
 #! @Description
@@ -87,10 +87,10 @@ DeclareOperation( "GetAllButOneGcd1RowPosition",
 #!   It returns a list of two matrices <C>U</C> and <C>UI</C> such that
 #!   <C>U</C> * <A>col</A> = Column( [ 1 0 0 ... 0 ] ) and the first column
 #!   of <C>UI</C> is the given column.
-#! @InsertSystem Eliminate-All-But-One-Gcd-1-Rows
+#! @InsertSystem Eliminate-If-Obsolete-For-Unimodularity-Rows
 #! @Arguments col
 #! @Returns a list
-DeclareOperation( "EliminateAllButOneGcd1Rows",
+DeclareOperation( "EliminateIfRowObsoleteForUnimodularity",
         [ IsHomalgMatrix ] );
 
 #! @Description
@@ -100,7 +100,7 @@ DeclareOperation( "EliminateAllButOneGcd1Rows",
 #!   * <C>l</C> is the syzygy of these two elements.
 #! @Arguments col
 #! @Returns a list
-DeclareOperation( "GetPairOfGcd1PositionPerColumn",
+DeclareOperation( "GetUnimodularPairPositionPerColumn",
         [ IsHomalgMatrix ] );
 
 #! @Description
@@ -110,10 +110,10 @@ DeclareOperation( "GetPairOfGcd1PositionPerColumn",
 #!   It returns a list of two matrices <C>U</C> and <C>UI</C> such that
 #!   <C>U</C> * <A>col</A> = Column( [ 1 0 0 ... 0 ] ) and the first column
 #!   of <C>UI</C> is the given column.
-#! @InsertSystem Eliminate-Pair-Of-Gcd-1-Position-Per-Column
+#! @InsertSystem Eliminate-Unimodular-Pair-Position-Per-Column
 #! @Arguments col
 #! @Returns a list
-DeclareOperation( "EliminatePairOfGcd1PositionPerColumn",
+DeclareOperation( "EliminateUnimodularPairPositionPerColumn",
         [ IsHomalgMatrix ] );
 
 #! @Description

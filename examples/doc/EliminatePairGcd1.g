@@ -1,4 +1,4 @@
-#! @System Eliminate-Pair-Of-Gcd-1-Position-Per-Row
+#! @System Eliminate-Unimodular-Pair-Position-Per-Row
 
 LoadPackage( "LessGenerators" );
 
@@ -14,7 +14,7 @@ row := HomalgMatrix( "[ \
            ]", 1, 5, R );
 #! <A 1 x 5 matrix over an external ring>
 
-l := EliminatePairOfGcd1PositionPerRow( row );
+l := EliminateUnimodularPairPositionPerRow( row );
 #! [ <An unevaluated 5 x 5 matrix over an external ring>, 
 #!   <An unevaluated 5 x 5 matrix over an external ring> ]
 
@@ -25,7 +25,7 @@ Assert( 4, CertainRows( l[2], [ 1 ] ) = row );
 #! @EndExample
 
 
-#! @System Eliminate-Pair-Of-Gcd-1-Position-Per-Column
+#! @System Eliminate-Unimodular-Pair-Position-Per-Column
 
 LoadPackage( "LessGenerators" );
 
@@ -41,7 +41,7 @@ col := HomalgMatrix( "[ \
            ]", 5, 1, R );
 #! <A 5 x 1 matrix over an external ring>
 
-l := EliminatePairOfGcd1PositionPerColumn( col );
+l := EliminateUnimodularPairPositionPerColumn( col );
 #! [ <An unevaluated 5 x 5 matrix over an external ring>, 
 #!   <An unevaluated 5 x 5 matrix over an external ring> ]
 
