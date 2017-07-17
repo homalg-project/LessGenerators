@@ -96,6 +96,8 @@ InstallMethod( QuillenSuslin,
         
         H_m := Horrocks( row_m, o );
         
+        Assert( 4, row_m * H_m[1] = CertainRows( HomalgIdentityMatrix( NrColumns( row_m ), R_m ), NonZeroColumns( row_m * H_m[1] ) ) );
+        
         Add( H, H_m );
         
         Delta1 := Denominator( H_m[1] ) / baseR;
