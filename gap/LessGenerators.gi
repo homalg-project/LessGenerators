@@ -104,16 +104,16 @@ InstallGlobalFunction( OnLessGenerators_UsingParametrization,
 end );
 
 ##
-#InstallMethod( OnLessGenerators,
-#        "for stably free modules of rank 1",
-#        [ IsFinitelyPresentedModuleRep and
-#          IsStablyFree and FiniteFreeResolutionExists ],
-#        
-#  OnLessGenerators_ForStablyFreeRank1OverCommutative );
-#
+InstallMethod( OnLessGenerators,
+        "for stably free modules of rank 1",
+        [ IsFinitelyPresentedModuleRep and
+          IsStablyFree and FiniteFreeResolutionExists ],
+        
+  OnLessGenerators_ForStablyFreeRank1OverCommutative );
+
 ##
-#InstallMethod( OnLessGenerators,
-#        "for modules",
-#        [ IsFinitelyPresentedModuleRep  ], 101,
-#        
-#  OnLessGenerators_UsingParametrization );
+InstallMethod( OnLessGenerators,
+        "for modules",
+        [ IsFinitelyPresentedModuleRep  ], 101,
+        
+  OnLessGenerators_UsingParametrization );
