@@ -30,7 +30,7 @@ EntriesOfHomalgMatrix( H1[2] );
 #! [ (x^2), y+1/2, (x^5)*y^2+y, 0, 1, (x^5)*y+(-x^5+2)/2, 
 #!   (4*x^2-4)/(x^5-2), 0, 1 ]
 Delta1 := Denominator( H1[1] ) / BaseRing( R );
-#! -16*x^5+32
+#! x^5-2
 m2 := AMaximalIdealContaining( LeftSubmodule( [ Delta1 ] ) );;
 m2 := EntriesOfHomalgMatrix( MatrixOfSubobjectGenerators( m2 ) );;
 S2 := LocalizeBaseRingAtPrime( R, m2 );
@@ -49,7 +49,7 @@ EntriesOfHomalgMatrix( H2[2] );
 #! [ 1, 0, (x^5-6)/(4*x^2), 0, 1, (x^5)*y+(-x^5+2)/2, (x^2), y+1/2, 
 #!   (x^5)*y^2+y ]
 Delta2 := Denominator( H2[1] ) / BaseRing( R );
-#! -4096*x^2
+#! 4*x^2
 I := LeftSubmodule( [ Delta1, Delta2 ] );;
 IsOne( I );
 #! true
