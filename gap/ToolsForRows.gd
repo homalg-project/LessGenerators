@@ -87,7 +87,7 @@ DeclareOperation( "GetObsoleteColumnForUnimodularity",
 #!   It returns a list of two matrices <C>V</C> and <C>VI</C> such that
 #!   <A>row</A> * <C>V</C> = [ 1 0 0 ... 0 ] and the first row
 #!   of <C>VI</C> is the given row.
-#! @InsertSystem Eliminate-If-Obsolete-For-Unimodularity-Columns
+#! @InsertChunk Eliminate-If-Obsolete-For-Unimodularity-Columns
 #! @Arguments row
 #! @Returns a list
 DeclareOperation( "EliminateIfColumnObsoleteForUnimodularity",
@@ -110,7 +110,7 @@ DeclareOperation( "GetUnimodularPairPositionPerRow",
 #!   It returns a list of two matrices <C>V</C> and <C>VI</C> such that
 #!   <A>row</A> * <C>V</C> = [ 1 0 0 ... 0 ] and the first row
 #!   of <C>VI</C> is the given row.
-#! @InsertSystem Eliminate-Unimodular-Pair-Position-Per-Row
+#! @InsertChunk Eliminate-Unimodular-Pair-Position-Per-Row
 #! @Arguments row
 #! @Returns a list
 DeclareOperation( "EliminateUnimodularPairPositionPerRow",
