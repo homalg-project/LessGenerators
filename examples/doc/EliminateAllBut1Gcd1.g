@@ -1,4 +1,4 @@
-#! @System Eliminate-If-Obsolete-For-Unimodularity-Columns
+#! @Chunk Eliminate-If-Obsolete-For-Unimodularity-Columns
 
 LoadPackage( "LessGenerators" );
 
@@ -35,7 +35,7 @@ Assert( 4, CertainRows( l[2], [ 1 ] ) = row );
 #! @EndExample
 
 
-#! @System Eliminate-If-Obsolete-For-Unimodularity-Rows
+#! @Chunk Eliminate-If-Obsolete-For-Unimodularity-Rows
 
 LoadPackage( "LessGenerators" );
 

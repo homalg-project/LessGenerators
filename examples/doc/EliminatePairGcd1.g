@@ -1,4 +1,4 @@
-#! @System Eliminate-Unimodular-Pair-Position-Per-Row
+#! @Chunk Eliminate-Unimodular-Pair-Position-Per-Row
 
 LoadPackage( "LessGenerators" );
 
@@ -25,7 +25,7 @@ Assert( 4, CertainRows( l[2], [ 1 ] ) = row );
 #! @EndExample
 
 
-#! @System Eliminate-Unimodular-Pair-Position-Per-Column
+#! @Chunk Eliminate-Unimodular-Pair-Position-Per-Column
 
 LoadPackage( "LessGenerators" );
 

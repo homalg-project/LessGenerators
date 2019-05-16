@@ -1,4 +1,4 @@
-#! @System Laubenbacker-Woodburn
+#! @Chunk Laubenbacker-Woodburn
 
 LoadPackage( "LessGenerators" );
 

@@ -1,4 +1,4 @@
-#! @System QuillenSuslin
+#! @Chunk QuillenSuslin
 
 LoadPackage( "LessGenerators" );
 

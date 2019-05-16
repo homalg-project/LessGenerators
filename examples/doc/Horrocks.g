@@ -1,4 +1,4 @@
-#! @System Horrocks
+#! @Chunk Horrocks
 
 LoadPackage( "LessGenerators" );
 
@@ -55,7 +55,7 @@ IsOne( I );
 #! true
 #! @EndExample
 
-#! @System Patch
+#! @Chunk Patch
 
 #! @Example
 V := Patch( row, [ H1[1], H2[1] ], [ H1[2], H2[2] ] );

@@ -1,4 +1,4 @@
-#! @System vandenEssen
+#! @Chunk vandenEssen
 
 #! @Example
 LoadPackage( "LessGenerators" );

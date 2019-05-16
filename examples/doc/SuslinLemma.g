@@ -1,4 +1,4 @@
-#! @System SuslinLemma:3arg
+#! @Chunk SuslinLemma:3arg
 
 LoadPackage( "LessGenerators" );
 
@@ -45,7 +45,7 @@ SuslinLemma( f, G, 1 );
 #! @EndExample
 
 
-#! @System SuslinLemma:4arg
+#! @Chunk SuslinLemma:4arg
 
 #! @Example
 #! Continuing of the previous example:

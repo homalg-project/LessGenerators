@@ -1,4 +1,4 @@
-#! @System CauchyBinetRow:example
+#! @Chunk CauchyBinetRow:example
 
 LoadPackage( "LessGenerators" );
 
