@@ -118,7 +118,7 @@ InstallMethod( QuillenSuslin,
     Assert( 4, row_new = Value( row, y, Zero( y ) ) );
     row := row_new;
     
-    u := MatElm( U, 1, 1 );
+    u := U[ 1, 1 ];
     IsOne( u );
     IsMinusOne( u );
     

@@ -123,7 +123,7 @@ InstallGlobalFunction( InstallHeuristicForRightInverseOfARow,
         
         l := CleanRowUsingMonicUptoUnit( row, 1 );
         
-        Assert( 4, IsOne( MatElm( l[1], 1, 1 ) ) );
+        Assert( 4, IsOne( l[1][ 1, 1 ] ) );
         Assert( 4, ZeroColumns( l[1] ) = [ 2 .. NrColumns( row ) ] );
         
         return [ V * l[2], l[3] * U ];

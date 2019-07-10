@@ -73,7 +73,7 @@ InstallMethod( SuslinLemma,
     
     cg := CoefficientsOfUnivariatePolynomial( g );
     
-    b := MatElm( cg, 1, ( j ) + 1 );
+    b := cg[ 1, j + 1 ];
     
     if IsZero( b ) then
         Info( InfoQuillenSuslin, 4, "Leaving SuslinLemma" );
@@ -89,7 +89,8 @@ InstallMethod( SuslinLemma,
     Y := Concatenation( "[", JoinStringsWithSeparator( Y ), "]" );
     Y := HomalgMatrix( Y, s - j, 1, R );
     
-    cf := MatElm( cf * Y, 1, 1 );
+    cf := cf * Y;
+    cf := cf[ 1, 1 ];
     
     if t - j = 0 then
         cg := zero;
@@ -98,7 +99,8 @@ InstallMethod( SuslinLemma,
         Y := Concatenation( "[", JoinStringsWithSeparator( Y ), "]" );
         Y := HomalgMatrix( Y, t - j, 1, R );
         
-        cg := -MatElm( cg * Y, 1, 1 );
+        cg := cg * Y;
+        cg := -cg[ 1, 1 ];
     fi;
     
     e := cg * f + cf * g;
@@ -136,15 +138,15 @@ InstallMethod( SuslinLemma,
         bool_inv := IsRightInvertibleMatrix( row );
     fi;
     
-    f := MatElm( row, 1, pos_f );
-    g := MatElm( row, 1, pos_g );
+    f := row[ 1, pos_f ];
+    g := row[ 1, pos_g ];
     
     bj := CoefficientOfUnivariatePolynomial( g, j );
     
     Assert( 4, IsUnit( bj ) );	## in the local base ring
     
     pos_h := First( [ 1 .. c ], i -> not i in [ pos_f, pos_g ] );
-    h := MatElm( row, 1, pos_h );
+    h := row[ 1, pos_h ];
     
     deg_h := Degree( h );
     
@@ -169,11 +171,11 @@ InstallMethod( SuslinLemma,
     T := HomalgInitialIdentityMatrix( c, R );
     TI := HomalgInitialIdentityMatrix( c, R );
     
-    SetMatElm( T, pos_f, pos_h, a * af );
-    SetMatElm( T, pos_g, pos_h, a * ag );
+    T[ pos_f, pos_h ] := a * af;
+    T[ pos_g, pos_h ] := a * ag;
     
-    SetMatElm( TI, pos_f, pos_h, -a * af );
-    SetMatElm( TI, pos_g, pos_h, -a * ag );
+    TI[ pos_f, pos_h ] := -a * af;
+    TI[ pos_g, pos_h ] := -a * ag;
     
     MakeImmutable( T );
     MakeImmutable( TI );
@@ -231,7 +233,7 @@ InstallMethod( Horrocks,
     
     pos := NonZeroColumns( row );
     
-    if Length( pos ) = 1 and IsOne( MatElm( row, 1, pos[1] ) ) then
+    if Length( pos ) = 1 and IsOne( row[ 1, pos[1] ] ) then
         Info( InfoQuillenSuslin, 4, "Subidentity row achieved" );
         Info( InfoQuillenSuslin, 4, "Leaving Horrocks" );
         return [ T, TI ];

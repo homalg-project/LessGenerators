@@ -34,22 +34,22 @@ InstallMethod( CleanRowUsingMonicUptoUnit,
     cols := [ 1 .. c ];
     Remove( cols, o );
     
-    a1 := MatElm( row, 1, o );
+    a1 := row[ 1, o ];
     
     Assert( 4, IsMonicUptoUnit( a1 ) );
     
-    s := Degree( MatElm( row, 1, o ) );
+    s := Degree( row[ 1, o ] );
     
     if s = 0 then
         
         T := HomalgInitialIdentityMatrix( c, R );
-        Perform( cols, function( j ) SetMatElm( T, o, j, -MatElm( row, 1, j ) / a1 ); end );
-        SetMatElm( T, o, o, 1 / a1 );
+        Perform( cols, function( j ) T[ o, j ] := -row[ 1, j ] / a1; end );
+        T[ o, o ] := 1 / a1;
         MakeImmutable( T );
         
         TI := HomalgInitialIdentityMatrix( c, R );
-        Perform( cols, function( j ) SetMatElm( TI, o, j, MatElm( row, 1, j ) / a1 ); end );
-        SetMatElm( TI, o, o, 1 / a1 );
+        Perform( cols, function( j ) TI[ o, j ] := row[ 1, j ] / a1; end );
+        TI[ o, o ] := 1 / a1;
         MakeImmutable( TI );
         
         row := row * T;
@@ -88,11 +88,11 @@ InstallMethod( CleanRowUsingMonicUptoUnit,
     Remove( cols, o );
     
     T := HomalgInitialIdentityMatrix( c, R );
-    Perform( cols, function( j ) SetMatElm( T, o, j, MatElm( t, 1, j ) ); end );
+    Perform( cols, function( j ) T[ o, j ] := t[ 1, j ]; end );
     MakeImmutable( T );
     
     TI := HomalgInitialIdentityMatrix( c, R );
-    Perform( cols, function( j ) SetMatElm( TI, o, j, -MatElm( t, 1, j ) ); end );
+    Perform( cols, function( j ) TI[ o, j ] := -t[ 1, j ]; end );
     MakeImmutable( TI );
     
     Assert( 4, row = row_old * T );
@@ -268,11 +268,11 @@ InstallMethod( GetFirstMonicOfSmallestDegreeInRow,
     c := NrColumns( row );
     cols := [ 1 .. c ];
     
-    deg_h := Degree( MatElm( row, 1, o ) );
+    deg_h := Degree( row[ 1, o ] );
 
     l := List( cols, function( i )
         local a, deg_a;
-        a := MatElm( row, 1, i );
+        a := row[ 1, i ];
         deg_a := Degree( a );
         
         if deg_a < deg_h and IsMonic( a ) then
@@ -317,25 +317,25 @@ InstallMethod( EliminateIfColumnObsoleteForUnimodularity,
     W := HomalgInitialIdentityMatrix( n, R );
     WI := HomalgInitialIdentityMatrix( n, R );
     
-    fj := MatElm( row, 1, l[1] );
+    fj := row[ 1, l[1] ];
     rowinv := l[3];
     
     for i in [ 1 .. n ] do
         if i < l[1] then
-            gi := MatElm( rowinv, i, 1 ) * (1 - fj);
-            SetMatElm( W, i, l[1], gi );
-            SetMatElm( WI, i, l[1], -gi );
+            gi := rowinv[ i, 1 ] * (1 - fj);
+            W[ i, l[1] ] := gi;
+            WI[ i, l[1] ] := -gi;
         elif i > l[1] then
-            gi := MatElm( rowinv, i - 1, 1 ) * (1 - fj);
-            SetMatElm( W, i, l[1], gi );
-            SetMatElm( WI, i, l[1], -gi );
+            gi := rowinv[ i - 1, 1 ] * (1 - fj);
+            W[ i, l[1] ] := gi;
+            WI[ i, l[1] ] := -gi;
         fi;
     od;
     MakeImmutable( W );
     MakeImmutable( WI );
     
     row := row * W;
-    Assert( 4, IsOne( MatElm( row, 1, l[1] ) ) );
+    Assert( 4, IsOne( row[ 1, l[1] ] ) );
     
     T := CleanRowUsingMonicUptoUnit( row, l[1] );
     
@@ -345,7 +345,7 @@ InstallMethod( EliminateIfColumnObsoleteForUnimodularity,
     fi;
     
     row := row * T[2] * P;
-    Assert( 4, IsOne( MatElm( row, 1, 1 ) ) );
+    Assert( 4, IsOne( row[ 1, 1 ] ) );
     Assert( 4, ZeroColumns( row ) = [ 2 .. n ] );
     
     V := W * T[2] * P;
@@ -419,23 +419,23 @@ InstallMethod( EliminateUnimodularPairPositionPerRow,
     W := HomalgInitialIdentityMatrix( n, R );
     WI := HomalgInitialIdentityMatrix( n, R );
     
-    SetMatElm( W, i, i, MatElm( l, 1, 1 ) );
-    SetMatElm( W, j, i, MatElm( l, 2, 1 ) );
-    SetMatElm( W, i, j, -MatElm( row, 1, j ) );
-    SetMatElm( W, j, j, MatElm( row, 1, i ) );
+    W[ i, i ] := l[ 1, 1 ];
+    W[ j, i ] := l[ 2, 1 ];
+    W[ i, j ] := -row[ 1, j ];
+    W[ j, j ] := row[ 1, i ];
     
-    SetMatElm( WI, i, i, MatElm( row, 1, i ) );
-    SetMatElm( WI, j, i, -MatElm( l, 2, 1 ) );
-    SetMatElm( WI, i, j, MatElm( row, 1, j ) );
-    SetMatElm( WI, j, j, MatElm( l, 1, 1 ) );
+    WI[ i, i ] := row[ 1, i ];
+    WI[ j, i ] := -l[ 2, 1 ];
+    WI[ i, j ] := row[ 1, j ];
+    WI[ j, j ] := l[ 1, 1 ];
     
     MakeImmutable( W );
     MakeImmutable( WI );
     
     row := row * W;
     
-    Assert( 4, IsOne( MatElm( row, 1, i ) ) );
-    Assert( 4, IsZero( MatElm( row, 1, j ) ) );
+    Assert( 4, IsOne( row[ 1, i ] ) );
+    Assert( 4, IsZero( row[ 1, j ] ) );
     
     T := CleanRowUsingMonicUptoUnit( row, i );
     
@@ -445,7 +445,7 @@ InstallMethod( EliminateUnimodularPairPositionPerRow,
     fi;
     
     row := row * T[2] * P;
-    Assert( 4, IsOne( MatElm( row, 1, 1 ) ) );
+    Assert( 4, IsOne( row[ 1, 1 ] ) );
     Assert( 4, ZeroColumns( row ) = [ 2 .. n ] );
     
     V := W * T[2] * P;
@@ -469,7 +469,7 @@ InstallMethod( EliminateUnitInARow,
     cols := [ 1 .. n ];
     
     ## Check whether the row contains a unit
-    i := First( [ 1 .. n ], i -> IsUnit( MatElm( row, 1, i ) ) );
+    i := First( [ 1 .. n ], i -> IsUnit( row[ 1, i ] ) );
     
     if i = fail then
         return fail;
