@@ -2,33 +2,33 @@
   
   [1XIndex[101X
   
-  [2XCleanColumnUsingMonicUptoUnit[102X, for IsHomalgMatrix, IsInt 5.1-2 
-  [2XCleanRowUsingMonicUptoUnit[102X, for IsHomalgMatrix, IsInt 5.2-2 
-  [2XEliminateIfColumnObsoleteForUnimodularity[102X, for IsHomalgMatrix 5.2-6 
-  [2XEliminateIfRowObsoleteForUnimodularity[102X, for IsHomalgMatrix 5.1-6 
-  [2XEliminateIfRowObsoleteForUnimodularityAsRightInverse[102X, for IsHomalgMatrix 4.1-1 
-  [2XEliminateUnimodularPairPositionPerColumn[102X, for IsHomalgMatrix 5.1-8 
-  [2XEliminateUnimodularPairPositionPerColumnAsRightInverse[102X, for IsHomalgMatrix 4.1-3 
-  [2XEliminateUnimodularPairPositionPerRow[102X, for IsHomalgMatrix 5.2-8 
-  [2XEliminateUnitInAColumn[102X, for IsHomalgMatrix 5.1-9 
-  [2XEliminateUnitInAColumnAsRightInverse[102X, for IsHomalgMatrix 4.1-2 
-  [2XEliminateUnitInARow[102X, for IsHomalgMatrix 5.2-9 
-  [2XGetFirstMonicOfSmallestDegreeInColumn[102X, for IsHomalgMatrix, IsInt 5.1-1 
-  [2XGetFirstMonicOfSmallestDegreeInRow[102X, for IsHomalgMatrix, IsInt 5.2-1 
-  [2XGetObsoleteColumnForUnimodularity[102X, for IsHomalgMatrix 5.2-5 
-      for IsHomalgMatrix, IsList 5.2-3 
-      for IsHomalgMatrix, IsList, IsList 5.2-4 
-  [2XGetObsoleteRowForUnimodularity[102X, for IsHomalgMatrix 5.1-5 
-      for IsHomalgMatrix, IsList 5.1-3 
-      for IsHomalgMatrix, IsList, IsList 5.1-4 
-  [2XGetUnimodularPairPositionPerColumn[102X, for IsHomalgMatrix 5.1-7 
-  [2XGetUnimodularPairPositionPerRow[102X, for IsHomalgMatrix 5.2-7 
-  [2XHorrocks[102X, for IsHomalgMatrix, IsInt 3.1-3 
-  [2XPatch[102X, for IsHomalgMatrix, IsList, IsList 3.1-4 
-  [2XQuillenSuslin[102X, for IsHomalgMatrix 3.2-2 
-  [2XQuillenSuslinUnipotent[102X, for IsHomalgMatrix 3.2-1 
-  [2XSuslinLemma[102X, for IsHomalgMatrix, IsInt, IsInt, IsInt 3.1-2 
-      for IsHomalgRingElement, IsHomalgRingElement, IsInt 3.1-1 
+  [2XCleanColumnUsingMonicUptoUnit[102X, for IsHomalgMatrix, IsInt 2.3-2 
+  [2XCleanRowUsingMonicUptoUnit[102X, for IsHomalgMatrix, IsInt 2.2-2 
+  [2XEliminateIfColumnObsoleteForUnimodularity[102X, for IsHomalgMatrix 2.2-6 
+  [2XEliminateIfRowObsoleteForUnimodularity[102X, for IsHomalgMatrix 2.3-6 
+  [2XEliminateIfRowObsoleteForUnimodularityAsRightInverse[102X, for IsHomalgMatrix 2.1-1 
+  [2XEliminateUnimodularPairPositionPerColumn[102X, for IsHomalgMatrix 2.3-8 
+  [2XEliminateUnimodularPairPositionPerColumnAsRightInverse[102X, for IsHomalgMatrix 2.1-3 
+  [2XEliminateUnimodularPairPositionPerRow[102X, for IsHomalgMatrix 2.2-8 
+  [2XEliminateUnitInAColumn[102X, for IsHomalgMatrix 2.3-9 
+  [2XEliminateUnitInAColumnAsRightInverse[102X, for IsHomalgMatrix 2.1-2 
+  [2XEliminateUnitInARow[102X, for IsHomalgMatrix 2.2-9 
+  [2XGetFirstMonicOfSmallestDegreeInColumn[102X, for IsHomalgMatrix, IsInt 2.3-1 
+  [2XGetFirstMonicOfSmallestDegreeInRow[102X, for IsHomalgMatrix, IsInt 2.2-1 
+  [2XGetObsoleteColumnForUnimodularity[102X, for IsHomalgMatrix 2.2-5 
+      for IsHomalgMatrix, IsList 2.2-3 
+      for IsHomalgMatrix, IsList, IsList 2.2-4 
+  [2XGetObsoleteRowForUnimodularity[102X, for IsHomalgMatrix 2.3-5 
+      for IsHomalgMatrix, IsList 2.3-3 
+      for IsHomalgMatrix, IsList, IsList 2.3-4 
+  [2XGetUnimodularPairPositionPerColumn[102X, for IsHomalgMatrix 2.3-7 
+  [2XGetUnimodularPairPositionPerRow[102X, for IsHomalgMatrix 2.2-7 
+  [2XHorrocks[102X, for IsHomalgMatrix, IsInt 1.1-3 
+  [2XPatch[102X, for IsHomalgMatrix, IsList, IsList 1.1-4 
+  [2XQuillenSuslin[102X, for IsHomalgMatrix 1.2-2 
+  [2XQuillenSuslinUnipotent[102X, for IsHomalgMatrix 1.2-1 
+  [2XSuslinLemma[102X, for IsHomalgMatrix, IsInt, IsInt, IsInt 1.1-2 
+      for IsHomalgRingElement, IsHomalgRingElement, IsInt 1.1-1 
   
   
   -------------------------------------------------------

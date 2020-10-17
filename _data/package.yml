@@ -1,5 +1,5 @@
 name: LessGenerators
-version: "2020.10-01"
+version: "2020.10-02"
 license: "GPL-2.0-or-later"
 date: 2020-10-17
 description: |
@@ -48,11 +48,11 @@ packageinfo: https://homalg-project.github.io/LessGenerators/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/homalg-project/LessGenerators/releases/download/v2020.10-01/LessGenerators-2020.10-01.tar.gz
+      url: https://github.com/homalg-project/LessGenerators/releases/download/v2020.10-02/LessGenerators-2020.10-02.tar.gz
     - name: .zip
-      url: https://github.com/homalg-project/LessGenerators/releases/download/v2020.10-01/LessGenerators-2020.10-01.zip
+      url: https://github.com/homalg-project/LessGenerators/releases/download/v2020.10-02/LessGenerators-2020.10-02.zip
 
-pdf: https://github.com/homalg-project/LessGenerators/releases/download/v2020.10-01/LessGenerators-2020.10-01.pdf
+pdf: https://github.com/homalg-project/LessGenerators/releases/download/v2020.10-02/LessGenerators-2020.10-02.pdf
 
 abstract: |
 
@@ -65,7 +65,7 @@ citeas: |
     <p class='BibEntry'>
     [<span class='BibKey'>BFW20</span>]   <b class='BibAuthor'>Barakat, M., Fabiańska, A. and Wagh, V.</b>,
      <i class='BibTitle'>LessGenerators, Find smaller generating sets for modules,
-             Version 2020.10-01</i>
+             Version 2020.10-02</i>
      (<span class='BibYear'>2020</span>)<br />
     (<span class='BibNote'>GAP package</span>),
     <span class='BibHowpublished'><a href="https://homalg-project.github.io/LessGenerators">https://homalg-project.github.io/LessGenerators</a></span>.
@@ -73,10 +73,10 @@ citeas: |
     
 
 bibtex: |
-    @misc{ LessGenerators2020.10-01,
+    @misc{ LessGenerators2020.10-02,
       author =           {Barakat, M. and Fabia{\a'n}ska, A. and Wagh, V.},
       title =            {{LessGenerators},  Find  smaller  generating  sets for
-                          modules, {V}ersion 2020.10-01},
+                          modules, {V}ersion 2020.10-02},
       month =            {Oct},
       year =             {2020},
       note =             {GAP package},
