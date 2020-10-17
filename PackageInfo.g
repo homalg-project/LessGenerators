@@ -11,7 +11,7 @@ SetPackageInfo( rec(
 PackageName := "LessGenerators",
 Subtitle := "Find smaller generating sets for modules",
 Version := Maximum( [
-                   "2019.01.05", ## Mohamed's version
+                   "2019.01.06", ## Mohamed's version
                    ## this line prevents merge conflicts
                    "2017.06.21", ## Vinay's version
                    ## this line prevents merge conflicts
