@@ -1,1 +1,95 @@
-Placeholder
+  
+  
+                                [1X LessGenerators [101X
+  
+  
+                   [1X Find smaller generating sets for modules [101X
+  
+  
+                                   2020.10-01
+  
+  
+                                17 October 2020
+  
+  
+                                Mohamed Barakat
+  
+                                 Anna Fabiańska
+  
+                                   Vinay Wagh
+  
+  
+  
+  Mohamed Barakat
+      Email:    [7Xmailto:mohamed.barakat@uni-siegen.de[107X
+      Homepage: [7Xhttps://mohamed-barakat.github.io/[107X
+      Address:  [33X[0;14YWalter-Flex-Str. 3[133X
+                [33X[0;14Y57068 Siegen[133X
+                [33X[0;14YGermany[133X
+  
+  
+  Anna Fabiańska
+      Email:    [7Xmailto:fabianska@momo.math.rwth-aachen.de[107X
+      Homepage: [7Xhttp://wwwb.math.rwth-aachen.de/~fabianska/[107X
+      Address:  [33X[0;14YLehrstuhl B fuer Mathematik, RWTH Aachen[133X
+                [33X[0;14YTemplergraben 64[133X
+                [33X[0;14Y52062 Aachen[133X
+                [33X[0;14YGermany[133X
+  
+  
+  Vinay Wagh
+      Email:    [7Xmailto:waghoba@gmail.com[107X
+      Homepage: [7Xhttp://www.iitg.ernet.in/vinay.wagh/[107X
+      Address:  [33X[0;14YE-102, Department of Mathematics,[133X
+                [33X[0;14YIndian Institute of Technology Guwahati,[133X
+                [33X[0;14YGuwahati, Assam, India.[133X
+                [33X[0;14YPIN: 781 039.[133X
+                [33X[0;14YIndia[133X
+  
+  
+  
+  -------------------------------------------------------
+  
+  
+  [1XContents (LessGenerators)[101X
+  
+  1 [33X[0;0YIntroduction[133X
+  2 [33X[0;0YFunctionality[133X
+  3 [33X[0;0YQuillen-Suslin[133X
+    3.1 [33X[0;0YTool procedures[133X
+      3.1-1 SuslinLemma
+      3.1-2 SuslinLemma
+      3.1-3 Horrocks
+      3.1-4 Patch
+    3.2 [33X[0;0YMain procedures[133X
+      3.2-1 QuillenSuslinUnipotent
+      3.2-2 QuillenSuslin
+  4 [33X[0;0YLessGenerators automatic generated documentation[133X
+    4.1 [33X[0;0YLessGenerators automatic generated documentation of methods[133X
+      4.1-1 EliminateIfRowObsoleteForUnimodularityAsRightInverse
+      4.1-2 EliminateUnitInAColumnAsRightInverse
+      4.1-3 EliminateUnimodularPairPositionPerColumnAsRightInverse
+  5 [33X[0;0YTools[133X
+    5.1 [33X[0;0YTools for columns[133X
+      5.1-1 GetFirstMonicOfSmallestDegreeInColumn
+      5.1-2 CleanColumnUsingMonicUptoUnit
+      5.1-3 GetObsoleteRowForUnimodularity
+      5.1-4 GetObsoleteRowForUnimodularity
+      5.1-5 GetObsoleteRowForUnimodularity
+      5.1-6 EliminateIfRowObsoleteForUnimodularity
+      5.1-7 GetUnimodularPairPositionPerColumn
+      5.1-8 EliminateUnimodularPairPositionPerColumn
+      5.1-9 EliminateUnitInAColumn
+    5.2 [33X[0;0YTools for rows[133X
+      5.2-1 GetFirstMonicOfSmallestDegreeInRow
+      5.2-2 CleanRowUsingMonicUptoUnit
+      5.2-3 GetObsoleteColumnForUnimodularity
+      5.2-4 GetObsoleteColumnForUnimodularity
+      5.2-5 GetObsoleteColumnForUnimodularity
+      5.2-6 EliminateIfColumnObsoleteForUnimodularity
+      5.2-7 GetUnimodularPairPositionPerRow
+      5.2-8 EliminateUnimodularPairPositionPerRow
+      5.2-9 EliminateUnitInARow
+  
+  
+  [32X

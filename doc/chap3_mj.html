@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<title>GAP (LessGenerators) - Chapter 3: Quillen-Suslin</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap3"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chap3_mj.html">3</a>  <a href="chap4_mj.html">4</a>  <a href="chap5_mj.html">5</a>  <a href="chapBib_mj.html">Bib</a>  <a href="chapInd_mj.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap2_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap4_mj.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap3.html">[MathJax off]</a></p>
+<p><a id="X782B081F832A7AB9" name="X782B081F832A7AB9"></a></p>
+<div class="ChapSects"><a href="chap3_mj.html#X782B081F832A7AB9">3 <span class="Heading">Quillen-Suslin</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3_mj.html#X790C1D1C7C565CCB">3.1 <span class="Heading">Tool procedures</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X7E02824A7DCB3CFC">3.1-1 SuslinLemma</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X8503E2A68497D3D9">3.1-2 SuslinLemma</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X85E4896486F0D6EB">3.1-3 Horrocks</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X791E9176797B5A71">3.1-4 Patch</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3_mj.html#X825944D279109FDC">3.2 <span class="Heading">Main procedures</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X87B6E0427A6FD26A">3.2-1 QuillenSuslinUnipotent</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3_mj.html#X87EC99F87EDDC4C9">3.2-2 QuillenSuslin</a></span>
+</div></div>
+</div>
+
+<h3>3 <span class="Heading">Quillen-Suslin</span></h3>
+
+<p>Intro for the chapter ...</p>
+
+<p><a id="X790C1D1C7C565CCB" name="X790C1D1C7C565CCB"></a></p>
+
+<h4>3.1 <span class="Heading">Tool procedures</span></h4>
+
+<p>Intro for the section ...</p>
+
+<p><a id="X7E02824A7DCB3CFC" name="X7E02824A7DCB3CFC"></a></p>
+
+<h5>3.1-1 SuslinLemma</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SuslinLemma</code>( <var class="Arg">f</var>, <var class="Arg">g</var>, <var class="Arg">j</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<p>Returns: a <strong class="pkg">homalg</strong> ring element</p>
+
+<p>Returns a linear combination of <var class="Arg">f</var> and <var class="Arg">g</var> with leading coefficient being the <var class="Arg">j</var>-th coefficient of <var class="Arg">g</var>. <var class="Arg">f</var> has to be monic.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Q := HomalgFieldOfRationalsInSingular( );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">R := ( Q * "x" ) * "y";</span>
+Q[x][y]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AssignGeneratorVariables( R );</span>
+#I  Assigned the global variables [ x, y ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">f := x^2*y^4+23*x*y^5+y^6+7*x-y^2;;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g := (4*x*y^2+x^2+x^2*y-x*y^3);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">h := y^2 * g;;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := (4*x*y^2+x^2+2*y-x*y^3);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SuslinLemma( f, g, 3 );</span>
+[ -x^3*y^3-23*x^2*y^4-x*y^5+x^4*y+27*x^3*y^2+93*x^2*y^3+4*x*y^4+x^4+23*x^3*y+
+  x^2*y^2, 0, x^2+23*x*y+y^2 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SuslinLemma( f, g, 2 );</span>
+[ x^4*y^2+27*x^3*y^3+93*x^2*y^4+4*x*y^5+x^4*y+23*x^3*y^2+x^2*y^3-x*y^2+7*x^2,
+  x, x^2*y+23*x*y^2+y^3 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SuslinLemma( f, g, 1 );</span>
+[ x^4*y^3+23*x^3*y^4+x^2*y^5+x^4*y^2+23*x^3*y^3+x^2*y^4+6*x^2*y-29*x^2,
+  x*y-4*x, x^2*y^2+23*x*y^3+y^4-1 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SuslinLemma( f, g, 0 );</span>
+[ x^4*y^3+23*x^3*y^4+x^2*y^5+7*x^2*y^2-7*x^3-29*x^2*y, x*y^2-x^2-4*x*y,
+  x^2*y^3+23*x*y^4+y^5-y ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SuslinLemma( f, h, 5 );</span>
+[ -x*y^5+x^2*y^3+4*x*y^4+x^2*y^2, 0, 1]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SuslinLemma( f, h, 4 );</span>
+[ x^3*y^4+23*x^3*y^3+93*x^2*y^4+4*x*y^5+23*x^3*y^2+x^2*y^3-x*y^2+7*x^2, x,
+  23*x+y ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SuslinLemma( f, h, 3 );</span>
+[ x^4*y^3+23*x^3*y^4+x^2*y^5+x^4*y^2+23*x^3*y^3+x^2*y^4-x*y^3+7*x^2*y+
+  4*x*y^2-28*x^2, x*y-4*x, x^2+23*x*y+y^2 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SuslinLemma( f, h, 2 );</span>
+[ x^4*y^3+23*x^3*y^4+x^2*y^5-x*y^4+8*x^2*y^2+4*x*y^3-7*x^3-28*x^2*y,
+  x*y^2-x^2-4*x*y, x^2*y+23*x*y^2+y^3 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SuslinLemma( f, h, 1 );</span>
+[ 0, 0, 0 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SuslinLemma( f, h, 0 );</span>
+[ 0, 0, 0 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SuslinLemma( f, G, 1 );</span>
+[ x^4*y^2+23*x^3*y^3+x^2*y^4+2*x^2*y^3+46*x*y^4+2*y^5+7*x^2*y-29*x^2-2*y,
+  x*y-4*x, x^2*y^2+23*x*y^3+y^4-1 ]
+</pre></div>
+
+<p><a id="X8503E2A68497D3D9" name="X8503E2A68497D3D9"></a></p>
+
+<h5>3.1-2 SuslinLemma</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SuslinLemma</code>( <var class="Arg">row</var>, <var class="Arg">pos_f</var>, <var class="Arg">pos_g</var>, <var class="Arg">j</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<p>Returns: a list</p>
+
+<p>Returns a list of 5 objects: [ <var class="Arg">row</var> * <code class="code">T</code>, <code class="code">T</code>, <code class="code">TI</code>, <code class="code">pos_h</code>, <code class="code">bj</code> ].<br /> <code class="code">T</code> is a square transformation matrix which transforms <code class="code">pos_h</code>-th entry of the <var class="Arg">row</var> to the linear combination of the monic entry <span class="SimpleMath">\(f\)</span> and <span class="SimpleMath">\(g\)</span> (at <var class="Arg">pos_f</var> and <var class="Arg">pos_g</var>-th positions, respectively) with leading coefficient being the <var class="Arg">j</var>-th coefficient <code class="code">bj</code> of <span class="SimpleMath">\(g\)</span> and <code class="code">TI</code> is the inverse matrix of <code class="code">T</code>.<br /> <span class="SimpleMath">\(f\)</span> has to be monic and <code class="code">bj</code> is a unit.<br /> The corresponding method should make use of the three argument <code class="func">SuslinLemma</code> (<a href="chap3_mj.html#X7E02824A7DCB3CFC"><span class="RefLink">3.1-1</span></a>).</p>
+
+
+<div class="example"><pre>
+InstallMethod( SuslinLemma,
+        "for a homalg matrix and three integers",
+        [ IsHomalgMatrix, IsInt, IsInt, IsInt ],
+&lt;P/&gt;
+  function( row, pos_f, pos_g, j )
+    local c, bool_inv, f, g, bj, pos_h, h, deg_h, e, af, ag, lc, a, R, T, TI;
+&lt;P/&gt;
+    Info( InfoQuillenSuslin, 4, "Entering SuslinLemma for row" );
+&lt;P/&gt;
+    if not NrRows( row ) = 1 then
+        Error( "Number of rows should be 1\n" );
+    fi;
+&lt;P/&gt;
+    c := NrColumns( row );
+&lt;P/&gt;
+    if c &lt; 3 then
+        Error( "the row has less than three columns\n" );
+    fi;
+&lt;P/&gt;
+    if HasIsRightInvertibleMatrix( row ) then
+        bool_inv := IsRightInvertibleMatrix( row );
+    fi;
+&lt;P/&gt;
+    f := row[ 1, pos_f ];
+    g := row[ 1, pos_g ];
+&lt;P/&gt;
+    bj := CoefficientOfUnivariatePolynomial( g, j );
+&lt;P/&gt;
+    Assert( 4, IsUnit( bj ) ); ## in the local base ring
+&lt;P/&gt;
+    pos_h := First( [ 1 .. c ], i -&gt; not i in [ pos_f, pos_g ] );
+    h := row[ 1, pos_h ];
+&lt;P/&gt;
+    deg_h := Degree( h );
+&lt;P/&gt;
+    Assert( 0, deg_h &lt; Degree( f ) and not IsMonic( h ) );
+&lt;P/&gt;
+    e := SuslinLemma( f, g, j );
+&lt;P/&gt;
+    af := e[2];
+    ag := e[3];
+    e := e[1];
+&lt;P/&gt;
+    Assert( 4, LeadingCoefficient( e ) = bj );
+&lt;P/&gt;
+    if deg_h &lt; Degree( f ) - 1 then
+        a := bj^-1;
+    else
+        lc := LeadingCoefficient( h );
+        a := ( 1 - lc ) * bj^-1;
+    fi;
+&lt;P/&gt;
+    R := HomalgRing( row );
+    T := HomalgInitialIdentityMatrix( c, R );
+    TI := HomalgInitialIdentityMatrix( c, R );
+&lt;P/&gt;
+    T[ pos_f, pos_h ] := a * af;
+    T[ pos_g, pos_h ] := a * ag;
+&lt;P/&gt;
+    TI[ pos_f, pos_h ] := -a * af;
+    TI[ pos_g, pos_h ] := -a * ag;
+&lt;P/&gt;
+    MakeImmutable( T );
+    MakeImmutable( TI );
+&lt;P/&gt;
+    Assert( 4, IsOne( T * TI ) );
+&lt;P/&gt;
+    row := row * T;
+&lt;P/&gt;
+    if IsBound( bool_inv ) then
+        ## We cannot algorithmically verify the line below.
+        ## TODO: should become obsolete with ToDo-lists in MatricesForHomalg.
+        SetIsRightInvertibleMatrix( row, bool_inv );
+    fi;
+&lt;P/&gt;
+    Info( InfoQuillenSuslin, 4, "Leaving SuslinLemma for row" );
+&lt;P/&gt;
+    return [ row, T, TI, pos_h, bj ];
+&lt;P/&gt;
+end );
+</pre></div>
+
+<p>Continuing of the previous example:</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">row := HomalgMatrix( [ h, G, f, g + h ], 1, 4, R );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sus := SuslinLemma( row, 3, 2, 1 );</span>
+[ &lt;An unevaluated 1 x 4 matrix over an external ring&gt;,
+  &lt;A 4 x 4 matrix over an external ring&gt;, &lt;A 4 x 4 matrix over an external ring&gt;,
+  1, 2 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">EntriesOfHomalgMatrix( sus[1] );</span>
+[ 1/2*x^5*y^2+23/2*x^4*y^3+1/2*x^3*y^4+1/2*x^4*y^2+25/2*x^3*y^3+47/2*x^2*y^4+
+  2*x^2*y^3+27*x*y^4+y^5+7/2*x^3*y+x^2*y^2-29/2*x^3+7/2*x^2*y-29/2*x^2-x*y-y, 
+  -x*y^3+4*x*y^2+x^2+2*y, x^2*y^4+23*x*y^5+y^6-y^2+7*x, -x*y^5+x^2*y^3+4*x*y^4+
+  x^2*y^2-x*y^3+x^2*y+4*x*y^2+x^2 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">EntriesOfHomalgMatrix( sus[2] );</span>
+[ 1, 0, 0, 0, 1/2*x^3*y^2+23/2*x^2*y^3+1/2*x*y^4+1/2*x^2*y^2+23/2*x*y^3+
+  1/2*y^4-1/2*x-1/2, 1, 0, 0, 1/2*x^2*y-2*x^2+1/2*x*y-2*x, 0, 1, 0, 0, 0, 0, 1 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">EntriesOfHomalgMatrix( sus[3] );</span>
+[ 1, 0, 0, 0, -1/2*x^3*y^2-23/2*x^2*y^3-1/2*x*y^4-1/2*x^2*y^2-23/2*x*y^3-1/2*y^4+
+  1/2*x+1/2, 1, 0, 0, -1/2*x^2*y+2*x^2-1/2*x*y+2*x, 0, 1, 0, 0, 0, 0, 1 ]
+</pre></div>
+
+<p><a id="X85E4896486F0D6EB" name="X85E4896486F0D6EB"></a></p>
+
+<h5>3.1-3 Horrocks</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Horrocks</code>( <var class="Arg">row</var>, <var class="Arg">o</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<p>Returns: a list</p>
+
+<p>Returns a list of two matrices: [ <code class="code">T</code>, <code class="code">TI</code> ].<br /> <code class="code">T</code> is a square transformation matrix which transforms <var class="Arg">row</var> to unit row. <code class="code">TI</code> is the inverse matrix of <code class="code">T</code>.<br /> <var class="Arg">row</var> is a unimodular matrix with at least 3 entries in which the <var class="Arg">o</var>-th entry is monic.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Q := HomalgFieldOfRationalsInSingular( );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">R := ( Q * "x" ) * "y";</span>
+Q[x][y]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">row := HomalgMatrix( "[ x^2, y+1/2, x^5*y^2+y ]", 1, 3, R );</span>
+&lt;A 1 x 3 matrix over an external ring&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsRightInvertibleMatrix( row );</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m1 := AMaximalIdealContaining( ZeroLeftSubmodule( BaseRing( R ) ) );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m1 := EntriesOfHomalgMatrix( MatrixOfSubobjectGenerators( m1 ) );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">S1 := LocalizeBaseRingAtPrime( R, m1 );</span>
+( Q[x]_&lt; x &gt; )[y]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">row1 := S1 * row;</span>
+&lt;A 1 x 3 matrix over a (fake) local ring&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsRightInvertibleMatrix( row1 );</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">H1 := Horrocks( row1, 2 );</span>
+[ &lt;An unevaluated 3 x 3 matrix over a (fake) local ring&gt;,
+  &lt;An unevaluated 3 x 3 matrix over a (fake) local ring&gt; ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">EntriesOfHomalgMatrix( H1[1] );</span>
+[ 1, -y-1/2, (-x^5+2)/4, (4*x^7-4*x^5)/(x^5-2)*y+(-2*x^2+2), 
+  (-4*x^7+4*x^5)/(x^5-2)*y^2+(-4*x^2+4)/(x^5-2)*y+(x^2), 
+  (-x^7)*y+(x^7-2*x^2)/2, (-4*x^2+4)/(x^5-2), 
+  (4*x^2-4)/(x^5-2)*y+(2*x^2-2)/(x^5-2), (x^2) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">EntriesOfHomalgMatrix( H1[2] );</span>
+[ (x^2), y+1/2, (x^5)*y^2+y, 0, 1, (x^5)*y+(-x^5+2)/2, 
+  (4*x^2-4)/(x^5-2), 0, 1 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Delta1 := Denominator( H1[1] ) / BaseRing( R );</span>
+x^5-2
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m2 := AMaximalIdealContaining( LeftSubmodule( [ Delta1 ] ) );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m2 := EntriesOfHomalgMatrix( MatrixOfSubobjectGenerators( m2 ) );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">S2 := LocalizeBaseRingAtPrime( R, m2 );</span>
+( Q[x]_&lt; x^5-2 &gt; )[y]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">row2 := S2 * row;;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsRightInvertibleMatrix( row2 );</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">H2 := Horrocks( row2, 2 );</span>
+[ &lt;An unevaluated 3 x 3 matrix over a (fake) local ring&gt;,
+  &lt;An unevaluated 3 x 3 matrix over a (fake) local ring&gt; ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">EntriesOfHomalgMatrix( H2[1] );</span>
+[ (x^5-2)/4, (x^5-6)/(4*x^2)*y+(x^5-6)/(8*x^2), (-x^5+6)/(4*x^2), 
+  (x^7)*y+(-x^7+2*x^2)/2, (x^5)*y^2+y+(-x^5+6)/4, (-x^5)*y+(x^5-2)/2, 
+  (-x^2), -y-1/2, 1 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">EntriesOfHomalgMatrix( H2[2] );</span>
+[ 1, 0, (x^5-6)/(4*x^2), 0, 1, (x^5)*y+(-x^5+2)/2, (x^2), y+1/2, 
+  (x^5)*y^2+y ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Delta2 := Denominator( H2[1] ) / BaseRing( R );</span>
+4*x^2
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">I := LeftSubmodule( [ Delta1, Delta2 ] );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsOne( I );</span>
+true
+</pre></div>
+
+<p><a id="X791E9176797B5A71" name="X791E9176797B5A71"></a></p>
+
+<h5>3.1-4 Patch</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Patch</code>( <var class="Arg">row</var>, <var class="Arg">Vs</var>, <var class="Arg">VIs</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<p>Returns: a <strong class="pkg">homalg</strong> matrix</p>
+
+<p>Returns a square matrix <var class="Arg">V</var> over a univariate polynomial ring <span class="SimpleMath">\(R=B[y]\)</span> over a (polynomial) base ring <span class="SimpleMath">\(B\)</span>, such that <var class="Arg">row</var>*<code class="code">V</code> is equal to <var class="Arg">row</var> with <span class="SimpleMath">\(y\)</span> set to <span class="SimpleMath">\(0\)</span>.<br /> The arguments <var class="Arg">Vs</var> and <var class="Arg">VIs</var> are lists of matrices obtained from <code class="code">Horrocks</code> over a localization of <span class="SimpleMath">\(R\)</span> defined by various maximal ideals of <span class="SimpleMath">\(B\)</span>.<br /> <var class="Arg">VIs</var><span class="SimpleMath">\([j]\)</span> is the inverse of <var class="Arg">Vs</var><span class="SimpleMath">\([j]\)</span>. The denominators of <var class="Arg">Vs</var><span class="SimpleMath">\([j]\)</span> must generate the unit ideal of <span class="SimpleMath">\(B\)</span>.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">V := Patch( row, [ H1[1], H2[1] ], [ H1[2], H2[2] ] );</span>
+&lt;A 3 x 3 matrix over an external ring&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">EntriesOfHomalgMatrix( V );</span>
+[ 1, 1/8*x^8*y+1/2*x^5*y-3/4*x^3*y-y, 
+  -1/16*x^13*y-1/4*x^10*y+1/2*x^8*y+x^5*y-3/4*x^3*y-y, 0, 
+  1/2*x^10*y^2-1/4*x^10*y+2*x^7*y^2-x^7*y-2*x^5*y^2+3/2*x^5*y+2*x^2*y-\
+2*y+1, 
+  -1/4*x^15*y^2+1/8*x^15*y-x^12*y^2+1/2*x^12*y+3/2*x^10*y^2-x^10*y+2*x\
+^7*y^2-2*x^7*y-2*x^5*y^2+3/2*x^5*y+2*x^2*y-2*y, 0, 
+  -1/2*x^5*y-2*x^2*y+2*y, 1/4*x^10*y+x^7*y-3/2*x^5*y-2*x^2*y+2*y+1 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">EntriesOfHomalgMatrix( row * V );</span>
+[ x^2, 1/2, 0 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">y := RelativeIndeterminatesOfPolynomialRing( R )[1];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">row * V = Value( row, y, Zero( y ) );</span>
+true
+</pre></div>
+
+<p><a id="X825944D279109FDC" name="X825944D279109FDC"></a></p>
+
+<h4>3.2 <span class="Heading">Main procedures</span></h4>
+
+<p>Intro for the section ...</p>
+
+<p><a id="X87B6E0427A6FD26A" name="X87B6E0427A6FD26A"></a></p>
+
+<h5>3.2-1 QuillenSuslinUnipotent</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; QuillenSuslinUnipotent</code>( <var class="Arg">mat</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<p>Returns: a list of two <strong class="pkg">homalg</strong> matrices</p>
+
+<p>Compute for the <span class="SimpleMath">\(r \times c\)</span>-matrix <var class="Arg">mat</var> a square matrix <span class="SimpleMath">\(V\)</span> such that <var class="Arg">mat</var> <span class="SimpleMath">\(* V\)</span> is a lower unipotent matrix.</p>
+
+<p><a id="X87EC99F87EDDC4C9" name="X87EC99F87EDDC4C9"></a></p>
+
+<h5>3.2-2 QuillenSuslin</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; QuillenSuslin</code>( <var class="Arg">mat</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<p>Returns: a <strong class="pkg">homalg</strong> matrix</p>
+
+<p>For the given <span class="SimpleMath">\(r \times c\)</span>-matrix <var class="Arg">mat</var>, compute a square matrix <span class="SimpleMath">\(V\)</span> such that <var class="Arg">mat</var> <span class="SimpleMath">\(* V\)</span> is equal to the first <span class="SimpleMath">\(r\)</span> rows of the <span class="SimpleMath">\(c \times c\)</span> identity matrix.</p>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap2_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap4_mj.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chap3_mj.html">3</a>  <a href="chap4_mj.html">4</a>  <a href="chap5_mj.html">5</a>  <a href="chapBib_mj.html">Bib</a>  <a href="chapInd_mj.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

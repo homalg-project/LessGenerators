@@ -1,0 +1,32 @@
+  
+  
+  [1XReferences[101X
+  
+  [[20XBLH11[120X]  [16XBarakat,  M.  and  Lange-Hegermann,  M.[116X,  [17XAn  axiomatic  setup  for
+  algorithmic homological algebra and an alternative approach to localization[117X,
+  [18XJ.       Algebra       Appl.[118X,       [19X10[119X,       2       (2011),      269--293,
+  (((http://arxiv.org/abs/1003.1943))).
+  
+  [[20XCLO05[120X]  [16XCox,  D.  A.,  Little, J. and O'Shea, D.[116X, [17XUsing algebraic geometry[117X,
+  Springer,  Second  edition,  Graduate  Texts  in  Mathematics, [19X185[119X, New York
+  (2005), xii+572 pages.
+  
+  [[20XFab08[120X] [16XFabianska, A.[116X, [17XmathttQuillenSuslin: A mathsfMaple package to compute
+  a  free  basis  of a projective module over the polynomial ring[117X (2006-2008),
+  (((http://wwwb.math.rwth-aachen.de/QuillenSuslin))).
+  
+  [[20XFQ07[120X]  [16XFabianska,  A.  and  Quadrat, A.[116X, [17XApplications of the Quillen-Suslin
+  Theorem  in  multidimensional  systems theory[117X, in H. Park et G. Regensburger
+  (eds.),  Gröbner  Bases in Control Theory and Signal Processing, de Gruyter,
+  Radon Series on Computational and Applied Mathematics 3 (2007), 23-106.
+  
+  [[20Xhpa13[120X]   [16XThe   homalg  project  authors,  [116X,  [17XThe  mathtthomalg  project  --
+  Algorithmic            Homological           Algebra[117X           (2003--2013),
+  (http://homalg.math.rwth-aachen.de/).
+  
+  [[20XLW00[120X]  [16XLaubenbacher,  R.  C.  and  Woodburn, C. J.[116X, [17XA new algorithm for the
+  Quillen-Suslin theorem[117X, [18XBeiträge Algebra Geom.[118X, [19X41[119X, 1 (2000), 23--31.
+  
+  
+  
+  [32X

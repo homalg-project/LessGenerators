@@ -1,0 +1,8 @@
+  
+  [1X1 [33X[0;0YIntroduction[133X[101X
+  
+  [33X[0;0YThis package is about how to reduce the number of generators of a module. To
+  be written further.[133X
+  
+  [33X[0;0YThe used references are [BLH11], [CLO05], [Fab08], [FQ07], [hpa13], [LW00].[133X
+  

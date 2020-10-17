@@ -1,76 +1,91 @@
-name: GitHubPagesForGAP
-version: "0.2"
-license: "0BSD"
-date: 2017-02-04
+name: LessGenerators
+version: "2020.10-01"
+license: "GPL-2.0-or-later"
+date: 2020-10-17
 description: |
-    A GitHub Pages generator for GAP packages
+    Find smaller generating sets for modules
 
 authors:
-    - name: Max Horn
-      url: http://www.quendi.de/math
-    - name: A. U. Thor
+    - name: Mohamed Barakat
+      url: https://mohamed-barakat.github.io/
+    - name: Anna Fabiańska
+      url: http://wwwb.math.rwth-aachen.de/~fabianska/
+    - name: Vinay Wagh
+      url: http://www.iitg.ernet.in/vinay.wagh/
 
 maintainers:
-    - name: Max Horn
-      url: http://www.quendi.de/math
-    - name: Jan Itor
+    - name: Mohamed Barakat
+      url: https://mohamed-barakat.github.io/
 
-GAP: ">=4.8.1"
+GAP: ">= 4.9.1"
 
 needed-pkgs:
+    - name: "AutoDoc"
+      version: ">= 2013.08.07"
+      url: "https://gap-packages.github.io/AutoDoc"
+    - name: "Modules"
+      version: ">= 2017.06.19"
+      url: "https://homalg-project.github.io/homalg_project/Modules"
+    - name: "homalg"
+      version: ">= 2012.05.18"
+      url: "https://homalg-project.github.io/homalg_project/homalg"
+    - name: "RingsForHomalg"
+      version: ">= 2017.06.21"
+      url: "https://homalg-project.github.io/homalg_project/RingsForHomalg"
+    - name: "LocalizeRingForHomalg"
+      version: ">= 2013.07.15"
+      url: "https://homalg-project.github.io/homalg_project/LocalizeRingForHomalg"
+    - name: "MatricesForHomalg"
+      version: ">= 2019.01.04"
+      url: "https://homalg-project.github.io/homalg_project/MatricesForHomalg"
     - name: "GAPDoc"
-      version: ">= 1.2"
+      version: ">= 1.1"
       url: "http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc"
-    - name: "IO"
-      version: ">= 4.1"
-      url: "https://gap-packages.github.io/io"
 
-suggested-pkgs:
-    - name: "orb"
-      version: ">= 4.2"
-      url: "https://gap-packages.github.io/orb"
-
-www: https://gap-system.github.io/GitHubPagesForGAP/
+www: https://homalg-project.github.io/LessGenerators
 readme: README.md
-packageinfo: https://gap-system.github.io/GitHubPagesForGAP/PackageInfo.g
-github: https://github.com/gap-system/GitHubPagesForGAP
+packageinfo: https://homalg-project.github.io/LessGenerators/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-system/GitHubPagesForGAP/releases/download/v0.2/GitHubPagesForGAP-0.2.tar.gz
-    - name: .tar.bz2
-      url: https://github.com/gap-system/GitHubPagesForGAP/releases/download/v0.2/GitHubPagesForGAP-0.2.tar.bz2
+      url: https://github.com/homalg-project/LessGenerators/releases/download/v2020.10-01/LessGenerators-2020.10-01.tar.gz
+    - name: .zip
+      url: https://github.com/homalg-project/LessGenerators/releases/download/v2020.10-01/LessGenerators-2020.10-01.zip
+
+pdf: https://github.com/homalg-project/LessGenerators/releases/download/v2020.10-01/LessGenerators-2020.10-01.pdf
 
 abstract: |
-    This is a pseudo package that contains no actual  <span class="pkgname">GAP</span> code. Instead, it is a template for other  GAP packages that allows to quickly setup GitHub Pages.
 
-status: other
+status: dev
 doc-html: doc/chap0.html
 doc-pdf: doc/manual.pdf
 keywords: |
-    GitHub Pages, GAP.
+    generators, minimal set of generators, heuristics, Quillen-Suslin.
 citeas: |
     <p class='BibEntry'>
-    [<span class='BibKey'>HTI17</span>]   <b class='BibAuthor'>Horn, M., Thor, A. U. and Itor, J.</b>,
-     <i class='BibTitle'>GitHubPagesForGAP, A GitHub Pages generator for GAP packages,
-             Version 0.2</i>
-     (<span class='BibYear'>2017</span>)<br />
+    [<span class='BibKey'>BFW20</span>]   <b class='BibAuthor'>Barakat, M., Fabiańska, A. and Wagh, V.</b>,
+     <i class='BibTitle'>LessGenerators, Find smaller generating sets for modules,
+             Version 2020.10-01</i>
+     (<span class='BibYear'>2020</span>)<br />
     (<span class='BibNote'>GAP package</span>),
-    <span class='BibHowpublished'><a href="https://gap-system.github.io/GitHubPagesForGAP/">https://gap-system.github.io/GitHubPagesForGAP/</a></span>.
+    <span class='BibHowpublished'><a href="https://homalg-project.github.io/LessGenerators">https://homalg-project.github.io/LessGenerators</a></span>.
     </p>
     
 
 bibtex: |
-    @misc{ GitHubPagesForGAP0.2,
-      author =           {Horn, M. and Thor, A. U. and Itor, J.},
-      title =            {{GitHubPagesForGAP}, A GitHub Pages generator for GAP packages, {V}ersion 0.2},
-      month =            {Feb},
-      year =             {2017},
+    @misc{ LessGenerators2020.10-01,
+      author =           {Barakat, M. and Fabia{\a'n}ska, A. and Wagh, V.},
+      title =            {{LessGenerators},  Find  smaller  generating  sets for
+                          modules, {V}ersion 2020.10-01},
+      month =            {Oct},
+      year =             {2020},
       note =             {GAP package},
-      howpublished =     {\href                              {https://gap-system.github.io/GitHubPagesForGAP/}
-                          {\texttt{https://gap-system.github.io/}\discretionary
-                          {}{}{}\texttt{GitHubPagesForGAP/}}},
-      keywords =         {GitHub Pages; GAP},
-      printedkey =       {HTI17}
+      howpublished =     {\href
+                          {https://homalg-project.github.io/LessGenerators}
+                          {\texttt{https://homalg-project.github.io/}\discretionary
+                          {}{}{}\texttt{LessGenerators}}},
+      keywords =         {generators;  minimal  set  of  generators; heuristics;
+                          Quillen-Suslin},
+      printedkey =       {BFW20}
     }
 
