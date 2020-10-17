@@ -1,14 +1,8 @@
-#############################################################################
-##
-##  Horrocks.gi                                       LessGenerators package
-##
-##  Copyright 2007-2015, Mohamed Barakat, University of Kaiserslautern
-##                       Anna Fabiańska, RWTH-Aachen University
-##                       Vinay Wagh, Indian Institute of Technology Guwahati
-##
-##  Implementations for core procedures for Quillen-Suslin.
-##
-#############################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# LessGenerators: Find smaller generating sets for modules
+#
+# Implementations
+#
 
 ####################################
 #
@@ -143,7 +137,7 @@ InstallMethod( SuslinLemma,
     
     bj := CoefficientOfUnivariatePolynomial( g, j );
     
-    Assert( 4, IsUnit( bj ) );	## in the local base ring
+    Assert( 4, IsUnit( bj ) ); ## in the local base ring
     
     pos_h := First( [ 1 .. c ], i -> not i in [ pos_f, pos_g ] );
     h := row[ 1, pos_h ];

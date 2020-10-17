@@ -1,13 +1,8 @@
-#############################################################################
-##
-##  SingularTools.gi                                  LessGenerators package
-##
-##  Copyright 2015, Mohamed Barakat, University of Kaiserslautern
-##                  Vinay Wagh, Indian Institute of Technology Guwahati
-##
-##  Implementations for the rings provided by Singular.
-##
-#############################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# LessGenerators: Find smaller generating sets for modules
+#
+# Implementations
+#
 
 ####################################
 #

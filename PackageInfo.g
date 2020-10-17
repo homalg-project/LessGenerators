@@ -1,4 +1,4 @@
-#
+# SPDX-License-Identifier: GPL-2.0-or-later
 # LessGenerators: Find smaller generating sets for modules
 #
 # This file contains package meta data. For additional information on
@@ -11,7 +11,7 @@ SetPackageInfo( rec(
 PackageName := "LessGenerators",
 Subtitle := "Find smaller generating sets for modules",
 Version := Maximum( [
-                   "2019.01.06", ## Mohamed's version
+                   "2020.10-01", ## Mohamed's version
                    ## this line prevents merge conflicts
                    "2017.06.21", ## Vinay's version
                    ## this line prevents merge conflicts
@@ -19,7 +19,8 @@ Version := Maximum( [
                    ] ),
 
 Date := ~.Version{[ 1 .. 10 ]},
-Date := Concatenation( ~.Date{[ 9, 10 ]}, "/", ~.Date{[ 6, 7 ]}, "/", ~.Date{[ 1 .. 4 ]} ),
+Date := Concatenation( "01/", ~.Version{[ 6, 7 ]}, "/", ~.Version{[ 1 .. 4 ]} ),
+License := "GPL-2.0-or-later",
 
 Persons := [
   rec(
@@ -27,7 +28,7 @@ Persons := [
     IsMaintainer := true,
     FirstNames := "Mohamed",
     LastName := "Barakat",
-    WWWHome := "https://mohamed-barakat.github.io",
+    WWWHome := "https://mohamed-barakat.github.io/",
     Email := "mohamed.barakat@uni-siegen.de",
     PostalAddress := Concatenation(
                "Walter-Flex-Str. 3\n",
@@ -69,20 +70,19 @@ Persons := [
   ),
 ],
 
+# BEGIN URLS
 SourceRepository := rec(
     Type := "git",
-    URL := Concatenation( "https://github.com/homalg-project/", ~.PackageName ),
+    URL := "https://github.com/homalg-project/LessGenerators",
 ),
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
-#SupportEmail   := "TODO",
-PackageWWWHome  := Concatenation( "https://github.com/homalg-project/", ~.PackageName ),
-PackageInfoURL  := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
-README_URL      := Concatenation( ~.PackageWWWHome, "README.md" ),
-ArchiveURL      := Concatenation( ~.SourceRepository.URL,
-                                 "/releases/download/v", ~.Version,
-                                 "/", ~.PackageName, "-", ~.Version ),
+PackageWWWHome  := "https://homalg-project.github.io/LessGenerators",
+PackageInfoURL  := "https://homalg-project.github.io/LessGenerators/PackageInfo.g",
+README_URL      := "https://homalg-project.github.io/LessGenerators/README.md",
+ArchiveURL      := Concatenation( "https://github.com/homalg-project/LessGenerators/releases/download/v", ~.Version, "/LessGenerators-", ~.Version ),
+# END URLS
 
-ArchiveFormats := ".tar.gz",
+ArchiveFormats := ".tar.gz .zip",
 
 ##  Status information. Currently the following cases are recognized:
 ##    "accepted"      for successfully refereed packages

@@ -1,8 +1,8 @@
-#############################################################################
-##
-##  init.g                                            LessGenerators package
-##
-##  Copyright 2007-2012, Mohamed Barakat, University of Kaiserslautern
+# SPDX-License-Identifier: GPL-2.0-or-later
+# LessGenerators: Find smaller generating sets for modules
+#
+# Reading the declaration part of the package.
+#
 ##                       Anna Fabiańska, RWTH-Aachen University
 ##                       Vinay Wagh, Indian Institute of Technology Guwahati
 ##
