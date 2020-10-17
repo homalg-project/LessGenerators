@@ -4,6 +4,10 @@
 # Declarations
 #
 
+#! @Chapter Tools
+
+#! @Section Tools for matrices
+
 ####################################
 #
 # global functions and operations:

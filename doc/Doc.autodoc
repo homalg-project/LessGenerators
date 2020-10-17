@@ -1,5 +1,17 @@
-@Chapter Introduction
+@Chapter Quillen-Suslin
 
-@Chapter Functionality
+The algorithms below can be used to reduce the number of generators of a module over a polynomial ring.
+In particular, it can be used to find a free basis of a free finitely presented module.
+The used references are <Cite Key="BL"/>, <Cite Key="CLO5"/>, <Cite Key="Fab"/>, <Cite Key="FQ"/>, <Cite Key="homalg-project"/>, <Cite Key="LW"/>.
 
-@Section Example Methods
+@Section Tool procedures
+
+@Section Main procedures
+
+@Chapter Tools
+
+@Section Tools for matrices
+
+@Section Tools for rows
+
+@Section Tools for columns
