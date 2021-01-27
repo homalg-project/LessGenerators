@@ -76,7 +76,7 @@ SourceRepository := rec(
     URL := "https://github.com/homalg-project/LessGenerators",
 ),
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
-PackageWWWHome  := "https://homalg-project.github.io/LessGenerators",
+PackageWWWHome  := "https://homalg-project.github.io/pkg/LessGenerators",
 PackageInfoURL  := "https://homalg-project.github.io/LessGenerators/PackageInfo.g",
 README_URL      := "https://homalg-project.github.io/LessGenerators/README.md",
 ArchiveURL      := Concatenation( "https://github.com/homalg-project/LessGenerators/releases/download/v", ~.Version, "/LessGenerators-", ~.Version ),
