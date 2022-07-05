@@ -10,16 +10,10 @@ SetPackageInfo( rec(
 
 PackageName := "LessGenerators",
 Subtitle := "Find smaller generating sets for modules",
-Version := Maximum( [
-                   "2020.10-02", ## Mohamed's version
-                   ## this line prevents merge conflicts
-                   "2017.06.21", ## Vinay's version
-                   ## this line prevents merge conflicts
-                   "2013.11.06", ## Sebas' version
-                   ] ),
+Version := "2022.07-01",
 
-Date := "17/10/2020",
-Date := "17/10/2020",
+Date := "05/07/2022",
+Date := "05/07/2022",
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -76,7 +70,7 @@ SourceRepository := rec(
     URL := "https://github.com/homalg-project/LessGenerators",
 ),
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
-PackageWWWHome  := "https://homalg-project.github.io/LessGenerators",
+PackageWWWHome  := "https://homalg-project.github.io/pkg/LessGenerators",
 PackageInfoURL  := "https://homalg-project.github.io/LessGenerators/PackageInfo.g",
 README_URL      := "https://homalg-project.github.io/LessGenerators/README.md",
 ArchiveURL      := Concatenation( "https://github.com/homalg-project/LessGenerators/releases/download/v", ~.Version, "/LessGenerators-", ~.Version ),
@@ -106,7 +100,7 @@ PackageDoc := rec(
 ),
 
 Dependencies := rec(
-  GAP := ">= 4.9.1",
+  GAP := ">= 4.11.1",
   NeededOtherPackages := [
                    [ "AutoDoc", ">= 2013.08.07" ],
                    [ "Modules", ">= 2017.06.19" ],
