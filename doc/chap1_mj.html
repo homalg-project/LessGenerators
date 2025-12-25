@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <script type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 <title>GAP (LessGenerators) - Chapter 1: Quillen-Suslin</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -43,7 +43,7 @@
 
 <h3>1 <span class="Heading">Quillen-Suslin</span></h3>
 
-<p>The algorithms below can be used to reduce the number of generators of a module over a polynomial ring. In particular, it can be used to find a free basis of a free finitely presented module. The used references are <a href="chapBib_mj.html#biBBL">[BLH11]</a>, <a href="chapBib_mj.html#biBCLO5">[CLO05]</a>, <a href="chapBib_mj.html#biBFab">[Fab08]</a>, <a href="chapBib_mj.html#biBFQ">[FQ07]</a>, <a href="chapBib_mj.html#biBhomalg-project">[hpa13]</a>, <a href="chapBib_mj.html#biBLW">[LW00]</a>.</p>
+<p>The algorithms below can be used to reduce the number of generators of a module over a polynomial ring. In particular, it can be used to find a free basis of a free finitely presented module. The used references are <a href="chapBib_mj.html#biBBL">[BL11]</a>, <a href="chapBib_mj.html#biBCLO5">[CLO05]</a>, <a href="chapBib_mj.html#biBFab">[Fab08]</a>, <a href="chapBib_mj.html#biBFQ">[FQ07]</a>, <a href="chapBib_mj.html#biBhomalg-project">[hpa13]</a>, <a href="chapBib_mj.html#biBLW">[LW00]</a>.</p>
 
 <p><a id="X790C1D1C7C565CCB" name="X790C1D1C7C565CCB"></a></p>
 
@@ -54,7 +54,7 @@
 <h5>1.1-1 SuslinLemma</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SuslinLemma</code>( <var class="Arg">f</var>, <var class="Arg">g</var>, <var class="Arg">j</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Returns: a <strong class="pkg">homalg</strong> ring element</p>
+<p>Returns: a homalg ring element</p>
 
 <p>Returns a linear combination of <var class="Arg">f</var> and <var class="Arg">g</var> with leading coefficient being the <var class="Arg">j</var>-th coefficient of <var class="Arg">g</var>. <var class="Arg">f</var> has to be monic.</p>
 
@@ -115,82 +115,82 @@ Q[x][y]
 InstallMethod( SuslinLemma,
         "for a homalg matrix and three integers",
         [ IsHomalgMatrix, IsInt, IsInt, IsInt ],
-&lt;P/&gt;
+        
   function( row, pos_f, pos_g, j )
     local c, bool_inv, f, g, bj, pos_h, h, deg_h, e, af, ag, lc, a, R, T, TI;
-&lt;P/&gt;
+    
     Info( InfoQuillenSuslin, 4, "Entering SuslinLemma for row" );
-&lt;P/&gt;
+    
     if not NrRows( row ) = 1 then
         Error( "Number of rows should be 1\n" );
     fi;
-&lt;P/&gt;
+    
     c := NrColumns( row );
-&lt;P/&gt;
+    
     if c &lt; 3 then
         Error( "the row has less than three columns\n" );
     fi;
-&lt;P/&gt;
+    
     if HasIsRightInvertibleMatrix( row ) then
         bool_inv := IsRightInvertibleMatrix( row );
     fi;
-&lt;P/&gt;
+    
     f := row[ 1, pos_f ];
     g := row[ 1, pos_g ];
-&lt;P/&gt;
+    
     bj := CoefficientOfUnivariatePolynomial( g, j );
-&lt;P/&gt;
+    
     Assert( 4, IsUnit( bj ) ); ## in the local base ring
-&lt;P/&gt;
+    
     pos_h := First( [ 1 .. c ], i -&gt; not i in [ pos_f, pos_g ] );
     h := row[ 1, pos_h ];
-&lt;P/&gt;
+    
     deg_h := Degree( h );
-&lt;P/&gt;
+    
     Assert( 0, deg_h &lt; Degree( f ) and not IsMonic( h ) );
-&lt;P/&gt;
+    
     e := SuslinLemma( f, g, j );
-&lt;P/&gt;
+    
     af := e[2];
     ag := e[3];
     e := e[1];
-&lt;P/&gt;
+    
     Assert( 4, LeadingCoefficient( e ) = bj );
-&lt;P/&gt;
+    
     if deg_h &lt; Degree( f ) - 1 then
         a := bj^-1;
     else
         lc := LeadingCoefficient( h );
         a := ( 1 - lc ) * bj^-1;
     fi;
-&lt;P/&gt;
+    
     R := HomalgRing( row );
     T := HomalgInitialIdentityMatrix( c, R );
     TI := HomalgInitialIdentityMatrix( c, R );
-&lt;P/&gt;
+    
     T[ pos_f, pos_h ] := a * af;
     T[ pos_g, pos_h ] := a * ag;
-&lt;P/&gt;
+    
     TI[ pos_f, pos_h ] := -a * af;
     TI[ pos_g, pos_h ] := -a * ag;
-&lt;P/&gt;
+    
     MakeImmutable( T );
     MakeImmutable( TI );
-&lt;P/&gt;
+    
     Assert( 4, IsOne( T * TI ) );
-&lt;P/&gt;
+    
     row := row * T;
-&lt;P/&gt;
+    
     if IsBound( bool_inv ) then
         ## We cannot algorithmically verify the line below.
         ## TODO: should become obsolete with ToDo-lists in MatricesForHomalg.
         SetIsRightInvertibleMatrix( row, bool_inv );
     fi;
-&lt;P/&gt;
+    
     Info( InfoQuillenSuslin, 4, "Leaving SuslinLemma for row" );
-&lt;P/&gt;
+    
     return [ row, T, TI, pos_h, bj ];
-&lt;P/&gt;
+    
 end );
 </pre></div>
 
@@ -284,7 +284,7 @@ true
 <h5>1.1-4 Patch</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Patch</code>( <var class="Arg">row</var>, <var class="Arg">Vs</var>, <var class="Arg">VIs</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Returns: a <strong class="pkg">homalg</strong> matrix</p>
+<p>Returns: a homalg matrix</p>
 
 <p>Returns a square matrix <var class="Arg">V</var> over a univariate polynomial ring <span class="SimpleMath">\(R=B[y]\)</span> over a (polynomial) base ring <span class="SimpleMath">\(B\)</span>, such that <var class="Arg">row</var>*<code class="code">V</code> is equal to <var class="Arg">row</var> with <span class="SimpleMath">\(y\)</span> set to <span class="SimpleMath">\(0\)</span>.<br /> The arguments <var class="Arg">Vs</var> and <var class="Arg">VIs</var> are lists of matrices obtained from <code class="code">Horrocks</code> over a localization of <span class="SimpleMath">\(R\)</span> defined by various maximal ideals of <span class="SimpleMath">\(B\)</span>.<br /> <var class="Arg">VIs</var><span class="SimpleMath">\([j]\)</span> is the inverse of <var class="Arg">Vs</var><span class="SimpleMath">\([j]\)</span>. The denominators of <var class="Arg">Vs</var><span class="SimpleMath">\([j]\)</span> must generate the unit ideal of <span class="SimpleMath">\(B\)</span>.</p>
 
@@ -316,7 +316,7 @@ true
 <h5>1.2-1 QuillenSuslinUnipotent</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; QuillenSuslinUnipotent</code>( <var class="Arg">mat</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Returns: a list of two <strong class="pkg">homalg</strong> matrices</p>
+<p>Returns: a list of two homalg matrices</p>
 
 <p>Compute for the <span class="SimpleMath">\(r \times c\)</span>-matrix <var class="Arg">mat</var> a square matrix <span class="SimpleMath">\(V\)</span> such that <var class="Arg">mat</var> <span class="SimpleMath">\(* V\)</span> is a lower unipotent matrix.</p>
 
@@ -325,7 +325,7 @@ true
 <h5>1.2-2 QuillenSuslin</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; QuillenSuslin</code>( <var class="Arg">mat</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Returns: a <strong class="pkg">homalg</strong> matrix</p>
+<p>Returns: a homalg matrix</p>
 
 <p>For the given <span class="SimpleMath">\(r \times c\)</span>-matrix <var class="Arg">mat</var>, compute a square matrix <span class="SimpleMath">\(V\)</span> such that <var class="Arg">mat</var> <span class="SimpleMath">\(* V\)</span> is equal to the first <span class="SimpleMath">\(r\)</span> rows of the <span class="SimpleMath">\(c \times c\)</span> identity matrix.</p>
 
@@ -336,6 +336,6 @@ true
 <div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chapBib_mj.html">Bib</a>  <a href="chapInd_mj.html">Ind</a>  </div>
 
 <hr />
-<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+<p class="foot">generated by <a href="https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
 </body>
 </html>

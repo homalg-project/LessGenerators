@@ -31,11 +31,11 @@ To obtain current versions of all dependencies, `git clone` (or `git pull` to up
 [date-img]: https://img.shields.io/endpoint?url=https://homalg-project.github.io/LessGenerators/badge_date.json&label=🔗%20released%20on&color=yellow
 [date-url]: https://homalg-project.github.io/LessGenerators/view_release.html
 
-[tests-img]: https://github.com/homalg-project/LessGenerators/workflows/Tests/badge.svg?branch=master
-[tests-url]: https://github.com/homalg-project/LessGenerators/actions?query=workflow%3ATests+branch%3Amaster
+[tests-img]: https://github.com/homalg-project/LessGenerators/actions/workflows/Tests.yml/badge.svg?branch=master
+[tests-url]: https://github.com/homalg-project/LessGenerators/actions/workflows/Tests.yml?query=branch%3Amaster
 
 [codecov-img]: https://codecov.io/gh/homalg-project/LessGenerators/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/homalg-project/LessGenerators
+[codecov-url]: https://app.codecov.io/gh/homalg-project/LessGenerators
 
 [code-img]: https://img.shields.io/badge/-View%20code-blue?logo=github
 [code-url]: https://github.com/homalg-project/LessGenerators#top

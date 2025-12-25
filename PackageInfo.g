@@ -10,10 +10,10 @@ SetPackageInfo( rec(
 
 PackageName := "LessGenerators",
 Subtitle := "Find smaller generating sets for modules",
-Version := "2022.07-01",
+Version := "2025.12-01",
 
-Date := "05/07/2022",
-Date := "05/07/2022",
+Date := "2025-12-25",
+Date := "2025-12-25",
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -100,7 +100,7 @@ PackageDoc := rec(
 ),
 
 Dependencies := rec(
-  GAP := ">= 4.11.1",
+  GAP := ">= 4.13.0",
   NeededOtherPackages := [
                    [ "AutoDoc", ">= 2013.08.07" ],
                    [ "Modules", ">= 2017.06.19" ],

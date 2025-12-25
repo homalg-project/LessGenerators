@@ -3,7 +3,7 @@
   
   [33X[0;0YThe  algorithms  below  can  be used to reduce the number of generators of a
   module  over a polynomial ring. In particular, it can be used to find a free
-  basis  of a free finitely presented module. The used references are [BLH11],
+  basis  of  a free finitely presented module. The used references are [BL11],
   [CLO05], [Fab08], [FQ07], [hpa13], [LW00].[133X
   
   
@@ -12,7 +12,7 @@
   [1X1.1-1 SuslinLemma[101X
   
   [33X[1;0Y[29X[2XSuslinLemma[102X( [3Xf[103X, [3Xg[103X, [3Xj[103X ) [32X operation[133X
-  [6XReturns:[106X  [33X[0;10Ya [5Xhomalg[105X ring element[133X
+  [6XReturns:[106X  [33X[0;10Ya homalg ring element[133X
   
   [33X[0;0YReturns  a  linear combination of [3Xf[103X and [3Xg[103X with leading coefficient being the
   [3Xj[103X-th coefficient of [3Xg[103X. [3Xf[103X has to be monic.[133X
@@ -77,82 +77,82 @@
     [4XInstallMethod( SuslinLemma,[104X
     [4X        "for a homalg matrix and three integers",[104X
     [4X        [ IsHomalgMatrix, IsInt, IsInt, IsInt ],[104X
-    [4X<P/>[104X
+    [4X        [104X
     [4X  function( row, pos_f, pos_g, j )[104X
     [4X    local c, bool_inv, f, g, bj, pos_h, h, deg_h, e, af, ag, lc, a, R, T, TI;[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    Info( InfoQuillenSuslin, 4, "Entering SuslinLemma for row" );[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    if not NrRows( row ) = 1 then[104X
     [4X        Error( "Number of rows should be 1\n" );[104X
     [4X    fi;[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    c := NrColumns( row );[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    if c < 3 then[104X
     [4X        Error( "the row has less than three columns\n" );[104X
     [4X    fi;[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    if HasIsRightInvertibleMatrix( row ) then[104X
     [4X        bool_inv := IsRightInvertibleMatrix( row );[104X
     [4X    fi;[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    f := row[ 1, pos_f ];[104X
     [4X    g := row[ 1, pos_g ];[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    bj := CoefficientOfUnivariatePolynomial( g, j );[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    Assert( 4, IsUnit( bj ) ); ## in the local base ring[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    pos_h := First( [ 1 .. c ], i -> not i in [ pos_f, pos_g ] );[104X
     [4X    h := row[ 1, pos_h ];[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    deg_h := Degree( h );[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    Assert( 0, deg_h < Degree( f ) and not IsMonic( h ) );[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    e := SuslinLemma( f, g, j );[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    af := e[2];[104X
     [4X    ag := e[3];[104X
     [4X    e := e[1];[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    Assert( 4, LeadingCoefficient( e ) = bj );[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    if deg_h < Degree( f ) - 1 then[104X
     [4X        a := bj^-1;[104X
     [4X    else[104X
     [4X        lc := LeadingCoefficient( h );[104X
     [4X        a := ( 1 - lc ) * bj^-1;[104X
     [4X    fi;[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    R := HomalgRing( row );[104X
     [4X    T := HomalgInitialIdentityMatrix( c, R );[104X
     [4X    TI := HomalgInitialIdentityMatrix( c, R );[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    T[ pos_f, pos_h ] := a * af;[104X
     [4X    T[ pos_g, pos_h ] := a * ag;[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    TI[ pos_f, pos_h ] := -a * af;[104X
     [4X    TI[ pos_g, pos_h ] := -a * ag;[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    MakeImmutable( T );[104X
     [4X    MakeImmutable( TI );[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    Assert( 4, IsOne( T * TI ) );[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    row := row * T;[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    if IsBound( bool_inv ) then[104X
     [4X        ## We cannot algorithmically verify the line below.[104X
     [4X        ## TODO: should become obsolete with ToDo-lists in MatricesForHomalg.[104X
     [4X        SetIsRightInvertibleMatrix( row, bool_inv );[104X
     [4X    fi;[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    Info( InfoQuillenSuslin, 4, "Leaving SuslinLemma for row" );[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4X    return [ row, T, TI, pos_h, bj ];[104X
-    [4X<P/>[104X
+    [4X    [104X
     [4Xend );[104X
   [4X[32X[104X
   
@@ -244,7 +244,7 @@
   [1X1.1-4 Patch[101X
   
   [33X[1;0Y[29X[2XPatch[102X( [3Xrow[103X, [3XVs[103X, [3XVIs[103X ) [32X operation[133X
-  [6XReturns:[106X  [33X[0;10Ya [5Xhomalg[105X matrix[133X
+  [6XReturns:[106X  [33X[0;10Ya homalg matrix[133X
   
   [33X[0;0YReturns  a  square  matrix [3XV[103X over a univariate polynomial ring [22XR=B[y][122X over a
   (polynomial) base ring [22XB[122X, such that [3Xrow[103X*[10XV[110X is equal to [3Xrow[103X with [22Xy[122X set to [22X0[122X.[133X
@@ -277,7 +277,7 @@
   [1X1.2-1 QuillenSuslinUnipotent[101X
   
   [33X[1;0Y[29X[2XQuillenSuslinUnipotent[102X( [3Xmat[103X ) [32X operation[133X
-  [6XReturns:[106X  [33X[0;10Ya list of two [5Xhomalg[105X matrices[133X
+  [6XReturns:[106X  [33X[0;10Ya list of two homalg matrices[133X
   
   [33X[0;0YCompute  for  the  [22Xr × c[122X-matrix [3Xmat[103X a square matrix [22XV[122X such that [3Xmat[103X [22X* V[122X is a
   lower unipotent matrix.[133X
@@ -285,7 +285,7 @@
   [1X1.2-2 QuillenSuslin[101X
   
   [33X[1;0Y[29X[2XQuillenSuslin[102X( [3Xmat[103X ) [32X operation[133X
-  [6XReturns:[106X  [33X[0;10Ya [5Xhomalg[105X matrix[133X
+  [6XReturns:[106X  [33X[0;10Ya homalg matrix[133X
   
   [33X[0;0YFor  the given [22Xr × c[122X-matrix [3Xmat[103X, compute a square matrix [22XV[122X such that [3Xmat[103X [22X* V[122X
   is equal to the first [22Xr[122X rows of the [22Xc × c[122X identity matrix.[133X

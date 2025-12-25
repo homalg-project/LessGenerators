@@ -1,7 +1,7 @@
 name: LessGenerators
-version: "2022.07-01"
+version: "2025.12-01"
 license: "GPL-2.0-or-later"
-date: 2022-07-05
+date: 2025-12-25
 description: |
     Find smaller generating sets for modules
 
@@ -17,7 +17,7 @@ maintainers:
     - name: Mohamed Barakat
       url: https://mohamed-barakat.github.io/
 
-GAP: ">= 4.11.1"
+GAP: ">= 4.13.0"
 
 needed-pkgs:
     - name: "AutoDoc"
@@ -40,7 +40,7 @@ needed-pkgs:
       url: "https://homalg-project.github.io/pkg/MatricesForHomalg"
     - name: "GAPDoc"
       version: ">= 1.1"
-      url: "http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc"
+      url: "https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc"
 
 www: https://homalg-project.github.io/pkg/LessGenerators
 readme: README.md
@@ -48,11 +48,11 @@ packageinfo: https://homalg-project.github.io/LessGenerators/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/homalg-project/LessGenerators/releases/download/v2022.07-01/LessGenerators-2022.07-01.tar.gz
+      url: https://github.com/homalg-project/LessGenerators/releases/download/v2025.12-01/LessGenerators-2025.12-01.tar.gz
     - name: .zip
-      url: https://github.com/homalg-project/LessGenerators/releases/download/v2022.07-01/LessGenerators-2022.07-01.zip
+      url: https://github.com/homalg-project/LessGenerators/releases/download/v2025.12-01/LessGenerators-2025.12-01.zip
 
-pdf: https://github.com/homalg-project/LessGenerators/releases/download/v2022.07-01/LessGenerators-2022.07-01.pdf
+pdf: https://github.com/homalg-project/LessGenerators/releases/download/v2025.12-01/LessGenerators-2025.12-01.pdf
 
 abstract: |
 
@@ -63,30 +63,30 @@ keywords: |
     generators, minimal set of generators, heuristics, Quillen-Suslin.
 citeas: |
     <p class='BibEntry'>
-    [<span class='BibKey'>BFW22</span>]   <b class='BibAuthor'>Barakat, M., Fabiańska, A. and Wagh, V.</b>,
+    [<span class='BibKey'>BFW25</span>]   <b class='BibAuthor'>Barakat, M., Fabiańska, A. and Wagh, V.</b>,
      <i class='BibTitle'>LessGenerators, Find smaller generating sets for modules,
-             Version 2022.07-01</i>
-     (<span class='BibYear'>2022</span>)<br />
+             Version 2025.12-01</i>
+     (<span class='BibYear'>2-25</span>)<br />
     (<span class='BibNote'>GAP package</span>),
     <span class='BibHowpublished'><a href="https://homalg-project.github.io/pkg/LessGenerators">https://homalg-project.github.io/pkg/LessGenerators</a></span>.
     </p>
     
 
 bibtex: |
-    @misc{ LessGenerators2022.07-01,
+    @misc{ LessGenerators,
       author =           {Barakat, M. and Fabia{\a'n}ska, A. and Wagh, V.},
-      title =            {{LessGenerators},  Find  smaller  generating  sets for
-                          modules, {V}ersion 2022.07-01},
-      month =            {Jul},
-      year =             {2022},
+      title =            {{LessGenerators},  {Find  smaller  generating sets for
+                          modules}, {V}ersion 2025.12\texttt{\symbol{45}}01},
+      month =            {5\texttt{\symbol{45}}},
+      year =             {2\texttt{\symbol{45}}25},
       note =             {GAP package},
       howpublished =     {\href
                           {https://homalg-project.github.io/pkg/LessGenerators}
-                          {\texttt{https://homalg-project.github.io/}\discretionary
+                          {\texttt{https://homalg\texttt{\symbol{45}}project.github.io/}\discretionary
                           {}{}{}\texttt{pkg/}\discretionary
                           {}{}{}\texttt{LessGenerators}}},
       keywords =         {generators;  minimal  set  of  generators; heuristics;
-                          Quillen-Suslin},
-      printedkey =       {BFW22}
+                          Quillen\texttt{\symbol{45}}Suslin},
+      printedkey =       {BFW25}
     }
 
